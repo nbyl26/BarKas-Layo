@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarKas Indralaya</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">BarKas Layo</div>
+                <div class="nav-links">
+                    <a href="beranda.html">Beranda</a>
+                    <a href="kategori.html">Kategori</a>
+                    <a href="jual-barang.html">Jual Barang</a>
+                    <a href="tentang-kami.html">Tentang Kami</a>
+                </div>
+                <div class="auth-links">
+                    <a href="login.html" class="btn-login">Masuk</a>
+                    <a href="register.html" class="btn-register">Daftar</a>
+                </div>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Cari barang bekas...">
+                <button>Cari</button>
+            </div>
+        </div>
+    </header>
+    
+
+    <main>
+        <!-- Filter Bar Section -->
+        <div class="filter-bar">
+            <h2>Filter Pencarian</h2>
+            <form action="#" method="GET">
+                <label for="kategori">Kategori:</label>
+                <select id="kategori" name="kategori">
+                    <option value="elektronik">Elektronik</option>
+                    <option value="furnitur">Furnitur</option>
+                    <option value="pakaian">Pakaian</option>
+                    <option value="stationery">Alat Tulis</option>
+                </select>
+                
+                <label for="min-price">Harga Minimum:</label>
+                <input type="number" id="min-price" name="min-price" placeholder="Rp 0">
+                
+                <label for="max-price">Harga Maksimum:</label>
+                <input type="number" id="max-price" name="max-price" placeholder="Rp 10.000.000">
+                
+                <label for="kondisi">Kondisi:</label>
+                <select id="kondisi" name="kondisi">
+                    <option value="baru">Baru</option>
+                    <option value="bekas">Bekas</option>
+                </select>
+                
+                <button type="submit">Terapkan Filter</button>
+            </form>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Temukan Barang Bekas Berkualitas di Indralaya</h1>
+                <p>Beli dan jual barang bekas dengan mudah dan aman</p>
+                <a href="#" class="cta-button">Mulai Menjelajah</a>
+            </div>
+        </section>
+
+        <!-- Popular Categories Section -->
+        <section class="categories">
+            <div class="container">
+                <h2>Kategori Populer</h2>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <img src="Assets/img/elektronik.png" alt="Elektronik">
+                        <h3>Elektronik</h3>
+                    </div>
+                    <div class="category-item">
+                        <img src="Assets/img/furniture.png" alt="Furnitur">
+                        <h3>Furnitur</h3>
+                    </div>
+                    <div class="category-item">
+                        <img src="Assets/img/pakaian.png" alt="Pakaian">
+                        <h3>Pakaian</h3>
+                    </div>
+                    <div class="category-item">
+                        <img src="Assets/img/stationery.png" alt="Alat Tulis">
+                        <h3>Alat Tulis</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Items Section -->
+        <section class="featured-items">
+            <div class="container">
+                <h2>Barang Terbaru</h2>
+                <div class="item-grid">
+                    <div class="item-card">
+                        <img src="Assets/img/laptop.png" alt="Barang 1" class="item-image">
+                        <div class="item-info">
+                            <h3>Laptop Bekas</h3>
+                            <p>Kondisi: Baik, masih lancar</p>
+                            <p class="price">Rp 3.500.000</p>
+                            <a href="detail.html?item=laptop" class="detail-button">Detail</a>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <img src="Assets/img/bicycle.png" alt="Barang 2" class="item-image">
+                        <div class="item-info">
+                            <h3>Sepeda Gunung</h3>
+                            <p>Kondisi: Jarang dipakai, like new</p>
+                            <p class="price">Rp 1.800.000</p>
+                            <a href="detail.html?item=bicycle" class="detail-button">Detail</a>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <img src="Assets/img/cupboard.png" alt="Barang 3" class="item-image">
+                        <div class="item-info">
+                            <h3>Lemari Kayu Jati</h3>
+                            <p>Kondisi: Sangat baik, hampir baru</p>
+                            <p class="price">Rp 2.200.000</p>
+                            <a href="detail.html?item=lemari" class="detail-button">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Tentang Kami</a>
+                <a href="#">Syarat dan Ketentuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Hubungi Kami</a>
+            </div>
+            <p>&copy; 2024 @BarKas-Layo. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+</body>
+</html>
