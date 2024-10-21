@@ -29,25 +29,24 @@ function displayItemDetails() {
         laptop: {
             name: "Laptop Bekas",
             condition: "Kondisi: Baik, masih lancar",
-            description: "Laptop ini cocok untuk penggunaan sehari-hari, ideal untuk mahasiswa dan pekerja.",
+            description: "Deskripsi: Laptop ini cocok untuk penggunaan sehari-hari, ideal untuk mahasiswa dan pekerja.",
             price: "Rp 3.500.000",
             image: "Assets/img/laptop.png"
         },
         sepeda: {
             name: "Sepeda Gunung",
             condition: "Jarang Dipake, Like New",
-            description: "Sepeda Gunung sangat cocok untuk yang hobi mendaki gunung menggunakan sepeda",
+            description: "Deskripsi: Sepeda Gunung sangat cocok untuk yang hobi mendaki gunung menggunakan sepeda",
             price: "Rp 2.200.000",
             image: "Assets/img/bicycle.png" 
         },
         lemari: {
             name: "Lemari Kayu Jati",
             condition: "Kondisi: Sangat baik, hampir baru",
-            description: "Lemari ini terbuat dari kayu jati, sangat kokoh dan luas.",
+            description: "Deskripsi: Lemari ini terbuat dari kayu jati, sangat kokoh dan luas.",
             price: "Rp 5.200.000",
             image: "Assets/img/cupboard.png" 
         },
-        
     };
 
     const itemDetail = itemDetails[item];
@@ -60,5 +59,9 @@ function displayItemDetails() {
         document.querySelector('.item-image').src = itemDetail.image;
     } else {
         console.error("Item not found:", item);
+        // Optional: Menampilkan pesan kesalahan di UI
+        document.querySelector('.info').innerHTML = "<p>Item tidak ditemukan.</p>";
     }
 }
+
+document.addEventListener("DOMContentLoaded", displayItemDetails);
