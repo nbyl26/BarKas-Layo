@@ -1,3 +1,16 @@
+// Header Transparant
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 50) {
+        header.style.backgroundColor = 'rgba(76, 175, 80, 0.8)'; 
+    } else {
+        header.style.backgroundColor = 'rgba(76, 175, 80, 0.9)'; 
+    }
+});
+
+// Menampilkan Image yang di Input cuy
 document.addEventListener("DOMContentLoaded", function() {
     setupImageUpload();
     displayItemDetails();
@@ -21,6 +34,7 @@ function setupImageUpload() {
     });
 }
 
+// Menampilkan Detail item 
 function displayItemDetails() {
     const params = new URLSearchParams(window.location.search);
     const item = params.get('item');

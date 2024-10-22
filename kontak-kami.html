@@ -8,12 +8,13 @@
 
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+
   </head>
   <body>
     <header>
       <div class="container">
         <nav>
-          <div class="logo">BarKas-Layo</div>
+          <div class="logo"><span>BarKas</span>-Layo</div>
           <div class="nav-links">
             <a href="beranda.html">Beranda</a>
             <a href="kategori.html">Kategori</a>
@@ -34,27 +35,33 @@
 
       <div class="row">
         <iframe
-          src="https://www.google.co.id/maps/place/SRIWIJAYA+KOST+-+UNSRI+INDRALAYA/@-3.2146682,104.6553964,21z/data=!4m6!3m5!1s0x2e3bbd24093a7289:0xa0657cd695cd4840!8m2!3d-3.2145625!4d104.6554375!16s%2Fg%2F11vjb4mqb_?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2581.6986800915233!2d104.65374983400258!3d-3.214532339734229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3bbd24093a7289%3A0xa0657cd695cd4840!2sSRIWIJAYA%20KOST%20-%20UNSRI%20INDRALAYA!5e0!3m2!1sid!2sid!4v1729599612001!5m2!1sid!2sid"
+          width="600"
+          height="450"
+          style="border: 0"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          class="map"
         ></iframe>
 
-        <form action="">
+        <form id="contact-form">
           <div class="input-group">
             <i data-feather="user"></i>
-            <input type="text" placeholder="nama" />
+            <input type="text" name="nama" placeholder="Nama" required />
           </div>
           <div class="input-group">
             <i data-feather="mail"></i>
-            <input type="text" placeholder="email" />
+            <input type="email" name="email" placeholder="Email" required />
           </div>
           <div class="input-group">
             <i data-feather="phone"></i>
-            <input type="text" placeholder="no hp" />
+            <input type="text" name="nohp" placeholder="No HP" required />
           </div>
-          <button type="submit" class="btn">kirim pesan</button>
+          <div class="input-group">
+            <i data-feather="message-square"></i>
+            <input type="text" name="pesan" placeholder="Isi Pesan" required />
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
         </form>
       </div>
     </section>
@@ -65,7 +72,7 @@
           <a href="tentang-kami.html">Tentang Kami</a>
           <a href="syarat-dan-ketentuan.html">Syarat dan Ketentuan</a>
           <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
-          <a href="hubungi-kami.html">Hubungi Kami</a>
+          <a href="kontak-kami.html">Kontak Kami</a>
         </div>
         <p>&copy; 2024 @BarKas-Layo. Hak Cipta Dilindungi.</p>
       </div>
@@ -83,5 +90,6 @@
     <script>
       feather.replace();
     </script>
+
   </body>
 </html>

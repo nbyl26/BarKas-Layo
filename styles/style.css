@@ -25,17 +25,24 @@ body {
 
 main {
     flex: 1;
+    padding-top: 80px;
 }
 
 /* Header */
 header {
-    background-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.9);
     color: white;
     padding: 1rem 0;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 .logo {
+    
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 1px;
@@ -43,9 +50,19 @@ header {
     transition: transform 0.3s;
 }
 
+.logo span{
+    color: #FFC107;
+}
+
 .logo:hover {
     transform: scale(1.1);
+    color: #FFC107;
+
+    span{
+        color: #fff;
+    }
 }
+
 
 nav {
     display: flex;
@@ -54,17 +71,15 @@ nav {
 }
 
 .nav-links {
-    color: white;
-    text-decoration: none;
-    margin: 0 1rem;
-    transition: color 0.3s;
-    flex-grow: 1;
+    display: flex;
+    position: relative;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    margin-left: 1rem;
+    margin: 0 1rem;
+    padding: 0.5rem 0;
     transition: color 0.3s ease;
     position: relative;
 }
@@ -76,16 +91,14 @@ nav {
     height: 2px;
     background-color: #FFC107;
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    transform: scaleX(0);
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
     transition: transform 0.3s ease;
-    transform-origin: right;
 }
 
 .nav-links a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+    transform: translateX(-50%) scaleX(1);
 }
 
 .nav-links a:hover {
@@ -97,7 +110,6 @@ nav {
 .auth-links {
     display: flex;
     align-items: center;
-    margin-left: auto;
 }
 
 .btn-login,
@@ -120,6 +132,7 @@ nav {
 .search-bar {
     display: flex;
     margin: 1rem 0px;
+    align-items: center;
 }
 
 .search-bar input {
@@ -142,6 +155,7 @@ nav {
 .filter-bar {
     background-color: #f9f9f9;
     padding: 2rem;
+    margin-top: 3rem;
     margin-bottom: 2rem;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -206,56 +220,112 @@ nav {
 
 /* About Us Section */
 .about-us {
-    padding: 3rem 0;
     background-color: #f9f9f9;
+    padding: 4rem 2rem;
+}
+
+.about-us .container {
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
 }
 
 .about-us h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.about-us h2 {
-    font-size: 2rem;
-    margin: 1.5rem 0;
+    font-size: 3.2rem;
+    margin-bottom: 1.5rem;
+    color: #4CAF50; 
 }
 
 .about-us p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.about-us h2 {
+    font-size: 2.4rem;
+    color: #333;
+    margin-top: 3rem;
     margin-bottom: 1rem;
-    line-height: 1.5;
+    position: relative;
+}
+
+.about-us h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #FFA000;
+    margin: 0.5rem auto;
 }
 
 .about-us ul {
-    list-style-type: disc;
-    margin: 0 auto;
-    padding: 0 2rem;
+    list-style: none;
+    padding: 0;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #555;
     text-align: left;
+    margin: 0 auto 2rem;
+    max-width: 800px;
+}
+
+.about-us ul li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about-us ul li::before {
+    content: "\2022";
+    color: #4CAF50;
+    font-weight: bold;
+    display: inline-block;
+    width: 1rem;
+    margin-left: -2rem;
 }
 
 .features {
     display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 3rem;
     flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 2rem;
 }
 
 .feature-item {
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    margin: 1rem;
-    flex: 1 1 300px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 30%;
+    max-width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .feature-item h3 {
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
 }
+
+.feature-item p {
+    font-size: 1.4rem;
+    color: #555;
+}
+
 
 /* Categories Section */
 .categories {
     padding: 3rem 0;
+    margin-top: 3rem;
 }
 
 .categories h1 {
@@ -288,8 +358,21 @@ nav {
 }
 
 /* Item Details Section */
-.item-details {
-    padding: 3rem 0;
+.info {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
 }
 
 .item-info {
@@ -304,20 +387,9 @@ nav {
     margin-right: 2rem;
 }
 
-.info {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.info h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #333;
+.item-details {
+    text-align: left;
+    padding: 0 1rem;
 }
 
 .item-image {
@@ -327,10 +399,7 @@ nav {
     margin-bottom: 1rem;
 }
 
-.item-details {
-    text-align: left;
-    padding: 0 1rem;
-}
+
 
 .condition,
 .description,
@@ -445,10 +514,14 @@ nav {
     background-color: #f9f9f9;
 }
 
-.sell-form-section h1 {
+.sell-form-section h2 {
     text-align: center;
+    font-size: 2rem;
     margin-bottom: 2rem;
-    color: #333;
+}
+
+.sell-form-section h2 span{
+    color: #FFA000;
 }
 
 .sell-form {
@@ -500,25 +573,106 @@ nav {
     background-color: #45a049;
 }
 
-/* Syarat Ketentuan */
+/* Syarat dan Ketentuan */
 .syarat-ketentuan-content {
-    padding: 2rem 20px;
+    background-color: #f9f9f9; 
+    padding: 4rem 0; 
+    margin-top: 3rem;
 }
 
-.syarat-ketentuan-content h2 {
-    font-size: 1.5rem;
-    margin: 1.5rem 0 0.5rem;
+.syarat-ketentuan-content h1 {
+    text-align: center; 
+    font-size: 2.8rem; 
+    margin-bottom: 2rem; 
+    color: #4CAF50; 
 }
 
 .syarat-ketentuan-content p {
-    margin-bottom: 1rem;
+    font-size: 1.6rem; 
+    line-height: 1.8; 
+    margin-bottom: 1.5rem; 
+    color: #555; 
+    text-align: justify; 
 }
 
+.syarat-ketentuan-content h2 {
+    font-size: 2.2rem;
+    margin-top: 2rem; 
+    margin-bottom: 1rem; 
+    color: #FFA000; 
+    border-bottom: 2px solid #4CAF50; 
+    padding-bottom: 0.5rem; 
+}
+
+.syarat-ketentuan-content a {
+    color: #4CAF50; 
+    text-decoration: underline;
+    transition: color 0.3s; 
+}
+
+.syarat-ketentuan-content a:hover {
+    text-decoration: underline; 
+}
+
+.container-2 {
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+/* Kebijakan Privasi */
+.kebijakan-privasi-content {
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.kebijakan-privasi-content h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #4CAF50; 
+}
+
+.kebijakan-privasi-content p,
+.kebijakan-privasi-content ul {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #555; 
+}
+
+.kebijakan-privasi-content h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #FFA000; 
+}
+
+.kebijakan-privasi-content ul {
+    list-style-type: disc;
+    padding-left: 20px; 
+}
+
+.kebijakan-privasi-content a {
+    color: #4CAF50; 
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.kebijakan-privasi-content a:hover {
+    color: #FFA000;
+}
+
+
 /* Hubungi Kami */
+.contact{
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
 .contact h2 {
     text-align: center;
     font-size: 2.6rem;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
 }
 
 .contact h2 span {
@@ -527,50 +681,74 @@ nav {
 
 .contact .row {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
     margin-top: 2rem;
-    background-color: #222;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    background-color: #f1f1f1;
+    border-radius: 10px;
 }
 
-.contact .row .map {
-    flex: 1 1 45rem;
-    width: 100%;
+.contact .map {
+    flex: 1 1 55%;
+    height: 400px;
+    border: 0;
+    margin-top: 1rem;
+    border-radius: 8px;
     object-fit: cover;
 }
 
-.contact .row form {
-    flex: 1 1 45rem;
-    padding: 5rem 2rem;
-    text-align: center;
+.contact form {
+    flex: 1 1 40%;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.contact .row form .input-group {
+.contact .input-group {
     display: flex;
     align-items: center;
-    margin-top: 2rem;
+    margin-bottom: 1.5rem;
     background-color: #010101;
     color: #fff;
     border: 1px solid #eee;
-    padding-left: 2rem;
+    padding-left: 1rem;
+    border-radius: 4px;
 }
 
-.contact .row form .input-group input {
+.contact .input-group input {
     width: 100%;
-    padding: 2rem;
-    font-size: 1.7rem;
+    padding: 1rem;
+    font-size: 1rem;
     background: none;
     color: #fff;
-    border: none transparent;
+    border: none;
     outline: none;
+    margin-left: 1rem;
 }
 
-.contact .row form .btn {
-    margin-top: 3rem;
+.contact .btn {
     display: inline-block;
-    padding: 1rem 3rem;
-    font-size: 1.7rem;
+    padding: 1rem;
+    font-size: 1.2rem;
     color: #fff;
     background-color: #FFA000;
     cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.contact .btn:hover{
+    background-color: #e69500;
 }
 
 
@@ -594,8 +772,8 @@ footer .socials a {
 }
 
 footer .socials a:hover,
-footer .links a:hover {
-    color: var(#FFC107);
+footer .footer-links a:hover {
+    color: #4CAF50;
 }
 
 .footer-links {
@@ -618,6 +796,18 @@ footer .links a:hover {
 
     .item-image {
         margin-bottom: 1rem;
+    }
+
+    .contact .row {
+        flex-direction: column; 
+    }
+
+    .contact .map, .contact form {
+        flex: 1 1 100%; 
+    }
+
+    .contact .map {
+        margin-top: 1rem; 
     }
 }
 
