@@ -1,67 +1,87 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Syarat dan Ketentuan - BarKas-Layo</title>
-    <link rel="stylesheet" href="styles/style.css"> 
-    
+    <link rel="stylesheet" href="styles/style.css" />
+
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">BarKas-Layo</div>
-                <div class="nav-links">
-                    <a href="beranda.html">Beranda</a>
-                    <a href="kategori.html">Kategori</a>
-                    <a href="jual-barang.html">Jual Barang</a>
-                    <a href="tentang-kami.html">Tentang Kami</a>
-                </div>
-                <div class="auth-links">
-                    <a href="#" class="btn-login">Masuk</a>
-                    <a href="#" class="btn-register">Daftar</a>
-                </div>
-            </nav>
-        </div>
+      <div class="container">
+        <nav>
+          <div class="logo">BarKas-Layo</div>
+          <div class="nav-links">
+            <a href="beranda.html">Beranda</a>
+            <a href="kategori.html">Kategori</a>
+            <a href="jual-barang.html">Jual Barang</a>
+            <a href="tentang-kami.html">Tentang Kami</a>
+          </div>
+          <div class="auth-links">
+            <a href="#" class="btn-login">Masuk</a>
+            <a href="#" class="btn-register">Daftar</a>
+          </div>
+        </nav>
+      </div>
     </header>
 
-    <main class="hubungi-kami-content">
-        <h2>Kontak Kami</h2>
-        <p>Jika Anda memiliki pertanyaan, silakan hubungi kami melalui:</p>
-        <ul>
-            <li>Email: <a href="mailto:info@barkaslayo.com">info@barkaslayo.com</a></li>
-            <li>Telepon: <a href="tel:+628117832306">+628 117 832 306</a></li>
-        </ul>
-        <h2>Alamat</h2>
-        <p>Jl. Nusantara No. 23, Indralaya, Sumatera Selatan</p>
-    </main>
+    <section id="contact" class="contact">
+      <h2><span>Kontak</span> Kami</h2>
+      <p></p>
+
+      <div class="row">
+        <iframe
+          src="https://www.google.co.id/maps/place/SRIWIJAYA+KOST+-+UNSRI+INDRALAYA/@-3.2146682,104.6553964,21z/data=!4m6!3m5!1s0x2e3bbd24093a7289:0xa0657cd695cd4840!8m2!3d-3.2145625!4d104.6554375!16s%2Fg%2F11vjb4mqb_?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        ></iframe>
+
+        <form action="">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="nama" />
+          </div>
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="text" placeholder="email" />
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" placeholder="no hp" />
+          </div>
+          <button type="submit" class="btn">kirim pesan</button>
+        </form>
+      </div>
+    </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="tentang-kami.html">Tentang Kami</a>
-                <a href="syarat-dan-ketentuan.html">Syarat dan Ketentuan</a>
-                <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
-                <a href="hubungi-kami.html">Hubungi Kami</a>
-            </div>
-            <p>&copy; 2024 @BarKas-Layo. Hak Cipta Dilindungi.</p>
+      <div class="container">
+        <div class="footer-links">
+          <a href="tentang-kami.html">Tentang Kami</a>
+          <a href="syarat-dan-ketentuan.html">Syarat dan Ketentuan</a>
+          <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+          <a href="hubungi-kami.html">Hubungi Kami</a>
         </div>
-        <div class="socials">
-            <a href="https://www.instagram.com/nbyl.26"
-              ><i data-feather="instagram"></i
-            ></a>
-            <a href="https://github.com/nbyl26"><i data-feather="github"></i></a>
-            <a href="https://www.linkedin.com/in/nabilpasha"
-              ><i data-feather="linkedin"></i
-            ></a>
-          </div>
+        <p>&copy; 2024 @BarKas-Layo. Hak Cipta Dilindungi.</p>
+      </div>
+      <div class="socials">
+        <a href="https://www.instagram.com/nbyl.26"
+          ><i data-feather="instagram"></i
+        ></a>
+        <a href="https://github.com/nbyl26"><i data-feather="github"></i></a>
+        <a href="https://www.linkedin.com/in/nabilpasha"
+          ><i data-feather="linkedin"></i
+        ></a>
+      </div>
     </footer>
 
     <script>
-        feather.replace();
+      feather.replace();
     </script>
-</body>
+  </body>
 </html>
