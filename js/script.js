@@ -59,7 +59,6 @@ function displayItemDetails() {
         document.querySelector('.item-image').src = itemDetail.image;
     } else {
         console.error("Item not found:", item);
-        // Optional: Menampilkan pesan kesalahan di UI
         document.querySelector('.info').innerHTML = "<p>Item tidak ditemukan.</p>";
     }
 }
