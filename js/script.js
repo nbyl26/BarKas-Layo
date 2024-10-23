@@ -78,3 +78,6 @@ function displayItemDetails() {
 }
 
 document.addEventListener("DOMContentLoaded", displayItemDetails);
+
+
+// Mengambil Pesan Ke EmailJs
