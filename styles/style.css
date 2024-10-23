@@ -325,80 +325,6 @@ nav {
     color: #555;
 }
 
-/* All Items */
-.all-items {
-    padding: 40px 20px;
-    background-color: #f8f8f8; /* Light background for contrast */
-    margin-top: 3rem;
-}
-
-.all-items .container{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.all-items h1{
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    color: #333;
-}
-
-.all-items .item-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.all-items .item-card {
-    border: 1px solid white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.all-items .item-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.all-items .item-card img {
-    max-width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.all-items .item-card h2 {
-    font-size: 1.5rem;
-    margin: 10px;
-    text-align: center;
-}
-
-.all-items .item-card p {
-    text-align: center;
-    font-weight: bold;
-    color: #2ecc71;
-    margin: 10px 0;
-}
-
-.all-items .item-card .btn {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background-color: #76c7c0; 
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.all-items .item-card .btn:hover {
-    background-color: #5baea8; /* Darker green */
-}
-
-
 /* Categories Section */
 .categories {
     padding: 3rem 0;
@@ -649,6 +575,24 @@ nav {
 .submit-button:hover {
     background-color: #45a049;
 }
+
+/* All Items */
+.all-items {
+    padding: 3rem 0;
+    background-color: #f9f9f9;
+    margin-top: 3rem;
+}
+
+.all-items h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.all-items h1 span{
+    color: #FFA000;
+}
+
 
 /* Syarat dan Ketentuan */
 .syarat-ketentuan-content {
