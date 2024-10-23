@@ -221,6 +221,10 @@ nav {
     font-weight: bold;
 }
 
+.cta-button:hover{
+    background-color: #45a049;
+}
+
 
 /* About Us Section */
 .about-us {
