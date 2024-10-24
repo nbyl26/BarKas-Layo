@@ -79,5 +79,61 @@ function displayItemDetails() {
 
 document.addEventListener("DOMContentLoaded", displayItemDetails);
 
+// Chat Bot
+function toggleChat() {
+    const chatbotContainer = document.getElementById('chatbot-container');
+    chatbotContainer.style.display = chatbotContainer.style.display === 'none' ? 'block' : 'none';
+}
 
-// Mengambil Pesan Ke EmailJs
+function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const messagesContainer = document.getElementById('chatbot-messages');
+    const userMessage = input.value;
+
+    // Tampilkan pesan pengguna
+    if (userMessage) {
+        const userMessageElement = document.createElement('div');
+        userMessageElement.textContent = 'Anda: ' + userMessage;
+        messagesContainer.appendChild(userMessageElement);
+        
+        // Menampilkan pesan balasan dari chatbot
+        const botMessageElement = document.createElement('div');
+        botMessageElement.textContent = getBotResponse(userMessage);
+        messagesContainer.appendChild(botMessageElement);
+
+        // Kosongkan input
+        input.value = '';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll ke bawah
+    }
+}
+
+function sendTemplateMessage(templateMessage) {
+    const messagesContainer = document.getElementById('chatbot-messages');
+
+    // Tampilkan pesan template pengguna
+    const userMessageElement = document.createElement('div');
+    userMessageElement.textContent = 'Anda: ' + templateMessage;
+    messagesContainer.appendChild(userMessageElement);
+    
+    // Menampilkan pesan balasan dari chatbot
+    const botMessageElement = document.createElement('div');
+    botMessageElement.textContent = getBotResponse(templateMessage);
+    messagesContainer.appendChild(botMessageElement);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll ke bawah
+}
+
+
+function getBotResponse(userMessage) {
+    // Ganti dengan logika balasan chatbot Anda
+    const responses = {
+        "apa itu barkas layo?": "Barkas Layo adalah platform jual beli barang bekas.",
+        "bagaimana cara berbelanja?": "Anda bisa memilih barang dan mengikuti instruksi di website.",
+        "terima kasih": "Sama-sama! Jika ada pertanyaan lain, silakan tanyakan."
+    };
+
+    return responses[userMessage.toLowerCase()] || "Maaf, saya tidak mengerti pertanyaan itu.";
+}
+
+// Menginisialisasi Feather Icons
+feather.replace();
