@@ -1,0 +1,96 @@
+.contact{
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-top: 2rem;
+}
+
+.contact h2 span {
+    color: #FFA000;
+}
+
+.contact .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.contact .map {
+    flex: 1 1 55%;
+    height: 400px;
+    border: 0;
+    margin-top: 1rem;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.contact form {
+    flex: 1 1 40%;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    background-color: #010101;
+    color: #fff;
+    border: 1px solid #eee;
+    padding-left: 1rem;
+    border-radius: 4px;
+}
+
+.contact .input-group input{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    background: none;
+    color: #fff;
+    border: none;
+    outline: none;
+    margin-left: 1rem;
+}
+.contact .input-group textarea{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    background: none;
+    color: #fff;
+    border: none;
+    outline: none;
+    margin-left: 1rem;
+}
+
+.contact .btn {
+    display: inline-block;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #FFA000;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.contact .btn:hover{
+    background-color: #e69500;
+}
