@@ -4,7 +4,7 @@ import '../assets/styles/Footer.css'
 
 function Footer() {
   useEffect(() => {
-    feather.replace() // Inisialisasi ikon Feather setiap kali komponen dirender
+    feather.replace() 
   }, [])
 
   return (
