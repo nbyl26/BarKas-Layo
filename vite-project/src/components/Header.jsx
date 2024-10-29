@@ -10,8 +10,8 @@ function Header() {
                 <div className="logo"><span>BarKas</span>-Layo</div>
                 <div className="nav-links">
                     <Link to="/">Beranda</Link>
-                    <Link to="/kategori">Kategori</Link>
-                    <Link to="/jual-barang">Jual Barang</Link>
+                    <Link to="/Kategori">Kategori</Link>
+                    <Link to="/JualBarangSection">Jual Barang</Link>
                     <Link to="/tentang-kami">Tentang Kami</Link>
                 </div>
                 <div className="auth-links">
