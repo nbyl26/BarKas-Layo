@@ -6,6 +6,7 @@ import Kategori from './pages/Kategori'
 import JualBarang from './pages/JualBarang'
 import TentangKami from './pages/TentangKami'
 import SyaratDanKetentuan from './pages/SyaratDanKetentuan'
+import KebijakanPrivasi from './pages/KebijakanPrivasi'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/JualBarang" element={<JualBarang />} />
         <Route path="/TentangKami" element={<TentangKami />} />
         <Route path="/SyaratDanKetentuan" element={<SyaratDanKetentuan />} />
+        <Route path="/KebijakanPrivasi" element={<KebijakanPrivasi />} />
         
       </Routes>
     </Router>

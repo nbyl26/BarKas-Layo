@@ -1,0 +1,40 @@
+.kebijakan-privasi-content {
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.kebijakan-privasi-content h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #4CAF50; 
+}
+
+.kebijakan-privasi-content p,
+.kebijakan-privasi-content ul {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #555; 
+}
+
+.kebijakan-privasi-content h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #FFA000; 
+}
+
+.kebijakan-privasi-content ul {
+    list-style-type: disc;
+    padding-left: 20px; 
+}
+
+.kebijakan-privasi-content a {
+    color: #4CAF50; 
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.kebijakan-privasi-content a:hover {
+    color: #FFA000;
+}
