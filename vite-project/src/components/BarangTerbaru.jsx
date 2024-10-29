@@ -10,7 +10,7 @@ function BarangTerbaru() {
   const navigate = useNavigate()
 
   const handleDetailNavigation = (item) => {
-    navigate(`/Barang/detailBarang?item=${item}`)
+    navigate(`/DetailBarang?item=${item}`)
   }
 
   return (

@@ -9,6 +9,7 @@ import SyaratDanKetentuan from './pages/SyaratDanKetentuan'
 import KebijakanPrivasi from './pages/KebijakanPrivasi'
 import KontakKami from './pages/KontakKami'
 import SemuaBarang from './pages/SemuaBarang'
+import DetailBarang from './pages/DetailBarang'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/KebijakanPrivasi" element={<KebijakanPrivasi />} />
         <Route path="/KontakKami" element={<KontakKami />} />
         <Route path="/SemuaBarang" element={<SemuaBarang />} />
+        <Route path="/DetailBarang" element={<DetailBarang />} />
         
       </Routes>
     </Router>
