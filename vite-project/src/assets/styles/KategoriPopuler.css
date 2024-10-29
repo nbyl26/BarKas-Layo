@@ -1,0 +1,33 @@
+.categories {
+    padding: 3rem 0;
+    margin-top: 3rem;
+}
+
+.categories h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.category-item {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.3s;
+}
+
+.category-item:hover {
+    transform: scale(1.05);
+}
+
+.category-item img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.5rem;
+}
