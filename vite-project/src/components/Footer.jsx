@@ -11,10 +11,10 @@ function Footer() {
     <div className="footer">
       <div className="container">
         <div className="footer-links">
-          <a href="/tentang-kami">Tentang Kami</a>
-          <a href="/syarat-dan-ketentuan">Syarat dan Ketentuan</a>
-          <a href="/kebijakan-privasi">Kebijakan Privasi</a>
-          <a href="/kontak-kami">Kontak Kami</a>
+          <a href="/TentangKami">Tentang Kami</a>
+          <a href="/SyaratDanKetentuan">Syarat dan Ketentuan</a>
+          <a href="/KebijakanPrivasi">Kebijakan Privasi</a>
+          <a href="/KontakKami">Kontak Kami</a>
         </div>
         <p>&copy; 2024 @BarKas-Layo. Hak Cipta Dilindungi.</p>
       </div>

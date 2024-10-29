@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import '../assets/styles/Header.css'
 
-function Header() {
+function Header2() {
   return (
     <div className="header">
         <div className="container">
@@ -18,15 +18,10 @@ function Header() {
                     <Link to="/login" className="btn-login">Masuk</Link>
                     <Link to="/register" className="btn-register">Daftar</Link>
                 </div>
-                
             </nav>
-            <div className="search-bar">
-                    <input type="text" placeholder="Cari barang bekas..." />
-                    <button type="button">Cari</button>
-            </div>
         </div>
     </div>
   )
 }
 
-export default Header
+export default Header2

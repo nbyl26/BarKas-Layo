@@ -1,0 +1,102 @@
+.about-us {
+    background-color: #f9f9f9;
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+}
+
+.about-us .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-us h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1.5rem;
+    color: #4CAF50; 
+}
+
+.about-us p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.about-us h2 {
+    font-size: 2.4rem;
+    color: #333;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.about-us h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #FFA000;
+    margin: 0.5rem auto;
+}
+
+.about-us ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: left;
+    margin: 0 auto 2rem;
+    max-width: 800px;
+}
+
+.about-us ul li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about-us ul li::before {
+    content: "\2022";
+    color: #4CAF50;
+    font-weight: bold;
+    display: inline-block;
+    width: 1rem;
+    margin-left: -2rem;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 30%;
+    max-width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item h3 {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.feature-item p {
+    font-size: 1.4rem;
+    color: #555;
+}

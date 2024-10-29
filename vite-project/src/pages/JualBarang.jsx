@@ -1,11 +1,11 @@
-import Header from "../components/Header"
+import Header2 from "../components/Header2"
 import Footer from "../components/Footer"
 import JualBarangSection from "../components/JualBarangSection"
 
 function JualBarang() {
   return (
     <>
-    <Header />
+    <Header2 />
     <JualBarangSection />
     <Footer />
     </>
