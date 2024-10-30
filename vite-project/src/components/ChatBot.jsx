@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Feather } from 'react-feather';
+import { MessageCircle } from 'react-feather';
 
 function ChatBot() {
   const [isChatVisible, setChatVisible] = useState(false);
@@ -39,7 +39,9 @@ function ChatBot() {
     const responses = {
       "apa itu barkas layo?": "Barkas Layo adalah platform jual beli barang bekas.",
       "bagaimana cara berbelanja?": "Anda bisa mencari produk di halaman utama dan menambahkannya ke keranjang.",
-      "terima kasih": "Sama-sama! Jika ada pertanyaan lain, silakan tanya.",
+      "Kenapa Harus Barkas Layo?": "Karena Barkas Layo adalah platform jual beli barang bekas yang terpercaya.",  
+      "Mengapa Harga Barang Bekas Lebih Murah?": "Karena barang bekas sudah pernah dipakai, sehingga harganya lebih murah.",
+      "terima kasih": "Sama-sama! Jika ada pertanyaan lain, silakan tanya."  
     };
     return responses[userMessage.toLowerCase()] || "Maaf, saya tidak mengerti.";
   };
@@ -55,7 +57,7 @@ function ChatBot() {
       {/* Chatbot Button */}
       <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 1000 }}>
         <button onClick={toggleChat} style={{ backgroundColor: '#76c7c0', border: 'none', borderRadius: '50%', padding: '15px', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}>
-          <Feather name="message-circle" style={{ color: 'white' }} />
+        <MessageCircle style={{ color: 'white' }} />;
         </button>
       </div>
 
@@ -73,6 +75,8 @@ function ChatBot() {
             <div id="template-questions">
               <p style={{ cursor: 'pointer', color: '#76c7c0' }} onClick={() => sendTemplateMessage('apa itu barkas layo?')}>Apa itu Barkas Layo?</p>
               <p style={{ cursor: 'pointer', color: '#76c7c0' }} onClick={() => sendTemplateMessage('bagaimana cara berbelanja?')}>Bagaimana cara berbelanja?</p>
+              <p style={{ cursor: 'pointer', color: '#76c7c0' }} onClick={() => sendTemplateMessage('Kenapa Harus Barkas Layo?')}>Kenapa Harus Barkas Layo?</p>
+              <p style={{ cursor: 'pointer', color: '#76c7c0' }} onClick={() => sendTemplateMessage('Mengapa Harga Barang Bekas Lebih Murah?')}>Mengapa Harga Barang Bekas Lebih Murah?</p>
               <p style={{ cursor: 'pointer', color: '#76c7c0' }} onClick={() => sendTemplateMessage('terima kasih')}>Terima kasih</p>
             </div>
           </div>
