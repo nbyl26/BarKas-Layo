@@ -16,6 +16,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
+    // Daftar pengguna baru
     const { user, error } = await supabase.auth.signUp({
       email,
       password,
@@ -24,8 +25,21 @@ function Register() {
     if (error) {
       setErrorMessage(error.message);
     } else {
-      alert('Registrasi berhasil! Silakan cek email untuk verifikasi.');
-      navigate('/Login'); 
+      // Mengirim email verifikasi menggunakan SendGrid
+      const response = await fetch('http://localhost:5000/send-verification-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        alert('Registrasi berhasil! Silakan cek email untuk verifikasi.');
+        navigate('/Login'); 
+      } else {
+        setErrorMessage('Gagal mengirim email verifikasi.');
+      }
     }
   };
 
@@ -35,7 +49,7 @@ function Register() {
       <div className="auth-container">
         <div className="auth-box">
           <h2 className="auth-title">SIGN UP</h2>
-          <form className="auth-form" onSubmit={handleRegister}> {/* Panggil handleRegister di sini */}
+          <form className="auth-form" onSubmit={handleRegister}>
             <input type="text" placeholder="Enter Your Name" className="auth-input" required />
             <input
               type="email"
