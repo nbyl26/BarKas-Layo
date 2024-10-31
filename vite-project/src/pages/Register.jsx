@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/styles/Auth.css'
 import { registerUserByEmailAndPassword } from '../lib/networks/user';
 
 function Register() {
@@ -26,13 +27,22 @@ function Register() {
 
 
   return (
-    <div>
-        <h1>Register</h1>
-        <input type="text" placeholder="Email" onChange={(e) => email = e.target.value} />
-        <input type="password" placeholder="Password" onChange={(e) => password = e.target.value} />
-        <button onClick={registerUser}>Register</button>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2 className="auth-title">Daftar di BarKas-Layo</h2>
+        <form className="auth-form">
+          <input type="text" placeholder="Nama Lengkap" className="auth-input" required />
+          <input type="email" placeholder="Email" className="auth-input" required />
+          <input type="password" placeholder="Password" className="auth-input" required />
+          <input type="password" placeholder="Konfirmasi Password" className="auth-input" required />
+          <button type="submit" className="auth-button">Daftar</button>
+        </form>
+        <p className="auth-footer-text">
+          Sudah punya akun? <a href="/login" className="auth-link">Masuk</a>
+        </p>
+      </div>
     </div>
   )
 }
 
-export default Register
+export default Register;

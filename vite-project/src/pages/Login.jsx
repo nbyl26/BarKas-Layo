@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/styles/Auth.css'
 import { getAllUsers, loginUserByEmailAndPassword } from '../lib/networks/user'
 
 
@@ -16,13 +17,20 @@ function Login() {
     }
     
     return (
-        <div>
-            <h1>Login</h1>
-            <input type="text" placeholder="Email" onChange={(e) => email = e.target.value} />
-            <input type="password" placeholder="Password" onChange={(e) => password = e.target.value} />
-            <button onClick={loginUser}>Login</button>
-        </div>
+        <div className="auth-container">
+      <div className="auth-box">
+        <h2 className="auth-title">Masuk ke BarKas-Layo</h2>
+        <form className="auth-form">
+          <input type="email" placeholder="Email" className="auth-input" required />
+          <input type="password" placeholder="Password" className="auth-input" required />
+          <button type="submit" className="auth-button">Masuk</button>
+        </form>
+        <p className="auth-footer-text">
+          Belum punya akun? <a href="/register" className="auth-link">Daftar Sekarang</a>
+        </p>
+      </div>
+    </div>
   )
 }
 
-export default Login
+export default Login;
