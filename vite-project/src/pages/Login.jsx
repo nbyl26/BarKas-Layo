@@ -1,37 +1,57 @@
-import React from 'react'
-import '../assets/styles/Auth.css'
-import Header2 from '../components/Header2'
-import Footer from '../components/Footer'
-
-import { getAllUsers, loginUserByEmailAndPassword } from '../lib/networks/user'
-
+import React, { useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
+import '../assets/styles/Auth.css';
+import Header2 from '../components/Header2';
+import Footer from '../components/Footer';
 
 function Login() {
-    var email, password;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-    const loginUser = async () => {
-        const isLogin = await loginUserByEmailAndPassword(email, password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-        if (isLogin !== null && isLogin !== undefined) {
-            console.log("Login success");
-        } else {
-            console.log("Login failed");
-        }
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setErrorMessage(error.message);
+    } else {
+      alert('Login berhasil!');
+      // Arahkan user ke halaman utama atau dashboard
     }
-    
-    return (
-      <div className="auth-page">
-      
+  };
+
+  return (
+    <div className="auth-page">
       <Header2 />
 
       <div className="auth-container">
         <div className="auth-box">
           <h2 className="auth-title">SIGN IN</h2>
-          <form className="auth-form">
-            <input type="email" placeholder="Email" className="auth-input" required />
-            <input type="password" placeholder="Password" className="auth-input" required />
-            <button type="submit" className="auth-button">Log In</button>
+          <form className="auth-form" onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="auth-input"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="auth-input"
+              required
+            />
+            <button type="submit" className="auth-button">Masuk</button>
           </form>
+          {errorMessage && <p className="auth-error">{errorMessage}</p>}
           <p className="auth-footer-text">
             Don't have an account? <a href="/Register" className="auth-link">Sign Up</a>
           </p>
@@ -39,9 +59,8 @@ function Login() {
       </div>
 
       <Footer />
-      
     </div>
-  )
+  );
 }
 
 export default Login;

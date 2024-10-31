@@ -1,4 +1,4 @@
-import { supabase } from "../createClient";
+import { supabase } from "../supabaseClient";
 
 export const getAllUsers = async () => {
     try {
