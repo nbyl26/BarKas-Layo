@@ -1,12 +1,21 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../assets/styles/BarangTerbaru.css'
+// import { supabase} from '@supabase/supabase-js'
+import { getAllUsers, loginUserByEmailAndPassword } from '../lib/networks/user'
 
 import imgLaptop from '../assets/img/laptop.png'
 import imgBicycle from '../assets/img/bicycle.png'
 import imgCupboard from '../assets/img/cupboard.png'
 
 function BarangTerbaru() {
+
+  const login = async () => {
+
+    await loginUserByEmailAndPassword('nabilpasha230606@gmail.com', 'nW-QvXzqVdUPg97');
+  }
+
+  login();
   const navigate = useNavigate()
 
   const handleDetailNavigation = (item) => {

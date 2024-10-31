@@ -10,6 +10,8 @@ import KebijakanPrivasi from './pages/KebijakanPrivasi'
 import KontakKami from './pages/KontakKami'
 import SemuaBarang from './pages/SemuaBarang'
 import DetailBarang from './pages/DetailBarang'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/KontakKami" element={<KontakKami />} />
         <Route path="/SemuaBarang" element={<SemuaBarang />} />
         <Route path="/DetailBarang" element={<DetailBarang />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
         
       </Routes>
     </Router>
