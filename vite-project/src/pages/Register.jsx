@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import '../assets/styles/Auth.css'
-import Header2 from '../components/Header2'
-import Footer from '../components/Footer'
+import '../assets/styles/Auth.css';
+import Header2 from '../components/Header2';
+import Footer from '../components/Footer';
 import { supabase } from '../lib/supabaseClient';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  
+
   const navigate = useNavigate(); // Inisialisasi useNavigate
 
   const handleRegister = async (e) => {
@@ -31,13 +31,11 @@ function Register() {
 
   return (
     <div className="auth-page">
-
       <Header2 />
-
       <div className="auth-container">
         <div className="auth-box">
           <h2 className="auth-title">SIGN UP</h2>
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={handleRegister}> {/* Panggil handleRegister di sini */}
             <input type="text" placeholder="Enter Your Name" className="auth-input" required />
             <input
               type="email"
@@ -64,11 +62,9 @@ function Register() {
           </p>
         </div>
       </div>
-
       <Footer />
-
     </div>
-  )
+  );
 }
 
 export default Register;
