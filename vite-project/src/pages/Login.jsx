@@ -1,5 +1,8 @@
 import React from 'react'
 import '../assets/styles/Auth.css'
+import Header2 from '../components/Header2'
+import Footer from '../components/Footer'
+
 import { getAllUsers, loginUserByEmailAndPassword } from '../lib/networks/user'
 
 
@@ -17,18 +20,26 @@ function Login() {
     }
     
     return (
+      <div className="auth-page">
+      
+      <Header2 />
+
       <div className="auth-container">
-      <div className="auth-glass">
-        <h2 className="auth-title">Masuk ke BarKas-Layo</h2>
-        <form className="auth-form">
-          <input type="email" placeholder="Email" className="auth-input" required />
-          <input type="password" placeholder="Password" className="auth-input" required />
-          <button type="submit" className="auth-button">Masuk</button>
-        </form>
-        <p className="auth-footer-text">
-          Belum punya akun? <a href="/register" className="auth-link">Daftar Sekarang</a>
-        </p>
+        <div className="auth-box">
+          <h2 className="auth-title">SIGN IN</h2>
+          <form className="auth-form">
+            <input type="email" placeholder="Email" className="auth-input" required />
+            <input type="password" placeholder="Password" className="auth-input" required />
+            <button type="submit" className="auth-button">Log In</button>
+          </form>
+          <p className="auth-footer-text">
+            Don't have an account? <a href="/Register" className="auth-link">Sign Up</a>
+          </p>
+        </div>
       </div>
+
+      <Footer />
+      
     </div>
   )
 }

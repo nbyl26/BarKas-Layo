@@ -15,8 +15,8 @@ function Header() {
                     <Link to="/TentangKami">Tentang Kami</Link>
                 </div>
                 <div className="auth-links">
-                    <Link to="/login" className="btn-login">Masuk</Link>
-                    <Link to="/register" className="btn-register">Daftar</Link>
+                    <Link to="/Login" className="btn-login">Masuk</Link>
+                    <Link to="/Register" className="btn-register">Daftar</Link>
                 </div>
                 
             </nav>

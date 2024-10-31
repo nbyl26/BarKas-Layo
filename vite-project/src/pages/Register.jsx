@@ -1,5 +1,8 @@
 import React from 'react'
 import '../assets/styles/Auth.css'
+import Header2 from '../components/Header2'
+import Footer from '../components/Footer'
+
 import { registerUserByEmailAndPassword } from '../lib/networks/user';
 
 function Register() {
@@ -27,20 +30,28 @@ function Register() {
 
 
   return (
-    <div className="auth-container">
-      <div className="auth-glass">
-        <h2 className="auth-title">Daftar di BarKas-Layo</h2>
-        <form className="auth-form">
-          <input type="text" placeholder="Nama Lengkap" className="auth-input" required />
-          <input type="email" placeholder="Email" className="auth-input" required />
-          <input type="password" placeholder="Password" className="auth-input" required />
-          <input type="password" placeholder="Konfirmasi Password" className="auth-input" required />
-          <button type="submit" className="auth-button">Daftar</button>
-        </form>
-        <p className="auth-footer-text">
-          Sudah punya akun? <a href="/login" className="auth-link">Masuk</a>
-        </p>
+    <div className="auth-page">
+
+      <Header2 />
+
+      <div className="auth-container">
+        <div className="auth-box">
+          <h2 className="auth-title">SIGN UP</h2>
+          <form className="auth-form">
+            <input type="text" placeholder="Enter Your Name" className="auth-input" required />
+            <input type="email" placeholder="Enter Your Email" className="auth-input" required />
+            <input type="password" placeholder="Create Password" className="auth-input" required />
+            <input type="password" placeholder="Confirm Password" className="auth-input" required />
+            <button type="submit" className="auth-button">Sign Up</button>
+          </form>
+          <p className="auth-footer-text">
+            Already have an account? <a href="/Login" className="auth-link">Login</a>
+          </p>
+        </div>
       </div>
+
+      <Footer />
+
     </div>
   )
 }
