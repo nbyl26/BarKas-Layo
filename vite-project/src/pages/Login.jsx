@@ -17,8 +17,8 @@ function Login() {
     }
     
     return (
-        <div className="auth-container">
-      <div className="auth-box">
+      <div className="auth-container">
+      <div className="auth-glass">
         <h2 className="auth-title">Masuk ke BarKas-Layo</h2>
         <form className="auth-form">
           <input type="email" placeholder="Email" className="auth-input" required />

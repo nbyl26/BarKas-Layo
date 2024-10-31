@@ -28,7 +28,7 @@ function Register() {
 
   return (
     <div className="auth-container">
-      <div className="auth-box">
+      <div className="auth-glass">
         <h2 className="auth-title">Daftar di BarKas-Layo</h2>
         <form className="auth-form">
           <input type="text" placeholder="Nama Lengkap" className="auth-input" required />
