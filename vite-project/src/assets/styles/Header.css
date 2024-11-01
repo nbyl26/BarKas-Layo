@@ -113,7 +113,8 @@ nav {
 }
 
 .btn-login,
-.btn-register {
+.btn-register,
+.btn-logout {
     background-color: #FFC107;
     color: white;
     text-decoration: none;
@@ -124,7 +125,8 @@ nav {
 }
 
 .btn-login:hover,
-.btn-register:hover {
+.btn-register,
+.btn-logout:hover {
     background-color: #FFA000;
 }
 
