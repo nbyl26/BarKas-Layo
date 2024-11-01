@@ -1,32 +1,23 @@
+// src/auth/authService.js
+import { auth } from '../firebaseConfig';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { supabase } from '../lib/supabaseClient';
-import CryptoJS from 'crypto-js';
-
-const hashPassword = (plainPassword) => {
-  return CryptoJS.SHA256(plainPassword).toString(); 
-};
-
 
 export const registerUser = async (email, password, name) => {
-  const { user, error: signUpError } = await supabase.auth.signUp({
-    email,
-    password,
-  });
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  const user = userCredential.user;
 
-  if (signUpError) {
-    throw new Error(signUpError.message);
-  }
-
-  const { error: insertError } = await supabase
+  // Simpan data pengguna di Supabase
+  const { error } = await supabase
     .from('users')
-    .insert([{ id: user.id, email, name, created_at: new Date() }]); 
+    .insert([{ id: user.uid, email: user.email, name }]);
 
-  if (insertError) {
-    throw new Error(insertError.message);
+  if (error) {
+    throw new Error(error.message);
   }
 
-  return user; 
+  return user;
 };
-
 
 export const loginUser = async (email, plainPassword) => {
     const { data: user, error } = await supabase

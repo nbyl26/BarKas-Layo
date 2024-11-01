@@ -1,10 +1,10 @@
+// src/pages/Register.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import '../assets/styles/Auth.css';
 import Header2 from '../components/Header2';
 import Footer from '../components/Footer';
-import { registerUser } from '../auth/authService'; // Impor fungsi registerUser
+import { registerUser } from '../auth/authService';
 
 function Register() {
   const [email, setEmail] = useState('');
