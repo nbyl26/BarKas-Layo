@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
 import '../assets/styles/Auth.css';
 import Header2 from '../components/Header2';
 import Footer from '../components/Footer';
+import { loginUser } from '../auth/authService';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -13,16 +13,11 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { user, error } = await supabase.auth.signIn({
-      email,
-      password,
-    });
-
-    if (error) {
+    try {
+      await loginUser(email, password);
+      navigate('/'); // Ganti dengan rute home Anda
+    } catch (error) {
       setErrorMessage(error.message);
-    } else {
-      alert('Login berhasil!');
-      navigate('/'); // Arahkan ke halaman beranda setelah login
     }
   };
 

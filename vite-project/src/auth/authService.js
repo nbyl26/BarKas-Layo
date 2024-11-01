@@ -1,44 +1,24 @@
 import { auth } from '../firebaseConfig';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { supabase } from '../lib/supabaseClient';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { db } from '../firebaseConfig';
+import { doc, setDoc } from "firebase/firestore";
 
+// Fungsi untuk registrasi pengguna
 export const registerUser = async (email, password, name) => {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
-  // Simpan data pengguna di Supabase
-  const { error } = await supabase
-    .from('users')
-    .insert([{ 
-      email: user.email, 
-      name,
-      firebase_uid: user.uid // Menyimpan UID Firebase di kolom baru
-    }]);
-
-  if (error) {
-    throw new Error(error.message);
-  }
+  // Simpan data pengguna di Firestore
+  await setDoc(doc(db, 'users', user.uid), {
+    email: user.email,
+    name: name,
+  });
 
   return user;
 };
 
-export const loginUser = async (email, plainPassword) => {
-    const { data: user, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
-  
-    if (error) {
-      throw new Error("Pengguna tidak ditemukan.");
-    }
-  
-    const isPasswordCorrect = verifyPassword(plainPassword, user.password);
-  
-    if (!isPasswordCorrect) {
-      throw new Error("Kata sandi salah.");
-    }
-  
-    return user;
-  };
-  
+// Fungsi untuk login pengguna
+export const loginUser = async (email, password) => {
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  return userCredential.user;
+};
