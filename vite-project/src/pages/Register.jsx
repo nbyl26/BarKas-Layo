@@ -8,12 +8,19 @@ import { registerUser } from '../auth/authService';
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+
     try {
       await registerUser(email, password, name);
       alert('Registrasi berhasil! Silakan cek email untuk verifikasi.');
@@ -51,6 +58,14 @@ function Register() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="auth-input"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className="auth-input"
               required
             />
