@@ -41,7 +41,7 @@ function Header() {
                                 <Link to="/Register" className="btn-register">Daftar</Link>
                             </>
                         ) : (
-                            <button onClick={handleLogout} className="btn-logout">Logout</button>
+                            <Link onClick={handleLogout} className="btn-logout">Logout</Link>
                         )}
                     </div>
                 </nav>

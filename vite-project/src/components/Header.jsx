@@ -42,7 +42,6 @@ function Header() {
                             </>
                         ) : (
                             <Link onClick={handleLogout} className="btn-logout">Logout</Link>
-                            //   <button onClick={handleLogout} className="btn-logout">Logout</button>
                         )}
                     </div>
                 </nav>
