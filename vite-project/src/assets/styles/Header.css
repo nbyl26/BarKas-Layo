@@ -42,26 +42,28 @@ main {
 }
 
 .logo {
-    
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 1px;
     padding-left: 20px;
     transition: transform 0.3s;
+    text-decoration: none;
+    color: inherit; 
 }
 
-.logo span{
+.logo span {
     color: #FFC107;
 }
 
 .logo:hover {
     transform: scale(1.1);
     color: #FFC107;
-
-    span{
-        color: #fff;
-    }
 }
+
+.logo:hover span {
+    color: #fff; 
+}
+
 
 
 nav {
@@ -143,8 +145,8 @@ nav {
     padding: 0.5rem;
     border: none;
     border-radius: 4px 0 0 4px;
-    height: 2.5rem; /* Tambahkan tinggi untuk meratakan bagian atas dan bawah */
-    box-sizing: border-box; /* Pastikan padding tidak memperluas ukuran */
+    height: 2.5rem;
+    box-sizing: border-box; 
 }
 
 .search-bar button {
@@ -152,7 +154,7 @@ nav {
     color: white;
     border: none;
     padding: 0 1rem;
-    height: 2.5rem; /* Sama tinggi dengan input */
+    height: 2.5rem; 
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     box-sizing: border-box;
