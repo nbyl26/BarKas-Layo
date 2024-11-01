@@ -122,6 +122,7 @@ nav {
     border-radius: 4px;
     margin-left: 1rem;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
 .btn-login:hover,
