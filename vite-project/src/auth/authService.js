@@ -1,16 +1,17 @@
-// src/auth/authService.js
 import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { supabase } from '../lib/supabaseClient';
+import { v4 as uuidv4 } from 'uuid';
 
 export const registerUser = async (email, password, name) => {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
-  // Simpan data pengguna di Supabase
+  const newUserId = uuidv4();
+
   const { error } = await supabase
     .from('users')
-    .insert([{ id: user.uid, email: user.email, name }]);
+    .insert([{ id: newUserId, email: user.email, name }]);
 
   if (error) {
     throw new Error(error.message);
@@ -18,6 +19,7 @@ export const registerUser = async (email, password, name) => {
 
   return user;
 };
+
 
 export const loginUser = async (email, plainPassword) => {
     const { data: user, error } = await supabase
