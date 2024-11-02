@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { CartProvider } from './components/CartContext';
+import feather from 'feather-icons';
 
 import Beranda from './pages/Beranda'
 import Kategori from './pages/Kategori'
@@ -37,5 +38,7 @@ function App() {
     </Router>
   )
 }
+
+feather.replace();
 
 export default App

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/styles/DetailBarangSection.css';
-import { useCart } from '/components/CartContext';
+import { useCart } from './cartContext';
+import { Link } from 'react-router-dom';
 
 import imgLaptop from '../assets/img/laptop.png';
 import imgSepeda from '../assets/img/bicycle.png';
@@ -83,7 +84,11 @@ function DetailBarangSection() {
             <p className="price">{itemDetail.price}</p>
           </div>
           <a href="#" className="btn-buy">Beli Sekarang</a>
-          <button onClick={handleAddToCart}>Tambah ke Keranjang</button>
+          <Link to="/cart">
+            <i data-feather="shopping-cart" onClick={handleAddToCart}></i> 
+            {cart.length > 0 && <span>({cart.length})</span>} 
+          </Link>
+          {/* <button onClick={handleAddToCart} className="btn-add-to-cart">Tambah ke Keranjang</button> */}
         </>
       )}
     </div>

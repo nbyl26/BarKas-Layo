@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../assets/styles/Header.css';
+import { useCart } from './CartContext'; 
 
 function Header() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const { cart } = useCart(); // Ambil data keranjang
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -33,6 +35,10 @@ function Header() {
                         <Link to="/Kategori">Kategori</Link>
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
+                        <Link to="/cart">
+                            <i data-feather="shopping-cart"></i> {/* Ikon keranjang */}
+                            {cart.length > 0 && <span>({cart.length})</span>} {/* Tampilkan jumlah item */}
+                        </Link>
                     </div>
                     <div className="auth-links">
                         {!user ? (
