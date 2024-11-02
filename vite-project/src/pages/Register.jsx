@@ -22,13 +22,17 @@ function Register() {
     }
 
     try {
+      console.log("Registering user...");
       await registerUser(email, password, name);
       alert('Registrasi berhasil! Silakan cek email untuk verifikasi.');
+      console.log("Navigating to login...");
       navigate('/Login');
     } catch (error) {
+      console.error("Error during registration:", error);
       setErrorMessage(error.message);
     }
   };
+
 
   return (
     <div className="auth-page">
