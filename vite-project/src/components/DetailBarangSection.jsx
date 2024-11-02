@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react';
 import '../assets/styles/DetailBarangSection.css';
 import { useCart } from './context/CartContext';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import imgLaptop from '../assets/img/laptop.png';
 import imgSepeda from '../assets/img/bicycle.png';
 import imgLemari from '../assets/img/cupboard.png';
 
 function DetailBarangSection() {
-  useEffect(() => {
-    if (window.feather) {
-      window.feather.replace();
-    }
-  }, []);
 
   const [itemDetail, setItemDetail] = useState(null);
-  const { cart, dispatch } = useCart(); 
+  const { cart, dispatch } = useCart();
   useEffect(() => {
     displayItemDetails();
   }, []);
@@ -90,10 +87,10 @@ function DetailBarangSection() {
           </div>
           <div className="button-container">
             <a href="#" className="btn-buy">Beli Sekarang</a>
-            <Link to="/cart" onClick={handleAddToCart} className="cart-icon-add">
-              <i data-feather="shopping-cart"></i>
+            <button onClick={handleAddToCart} className="cart-icon-add">
+              <FontAwesomeIcon icon={faShoppingCart} />
               {cart.length > 0 && <span>({cart.length})</span>}
-            </Link>
+            </button>
           </div>
         </>
       )}
