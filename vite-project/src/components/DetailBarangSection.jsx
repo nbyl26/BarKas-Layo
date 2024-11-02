@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/styles/DetailBarangSection.css';
+import { useCart } from '/components/CartContext';
 
 import imgLaptop from '../assets/img/laptop.png';
 import imgSepeda from '../assets/img/bicycle.png';
@@ -7,6 +8,7 @@ import imgLemari from '../assets/img/cupboard.png';
 
 function DetailBarangSection() {
   const [itemDetail, setItemDetail] = useState(null);
+  const { dispatch } = useCart(); // Ambil dispatch dari context
 
   useEffect(() => {
     displayItemDetails();
@@ -18,6 +20,7 @@ function DetailBarangSection() {
 
     const itemDetails = {
       laptop: {
+        id: 'laptop', // Tambahkan ID untuk keperluan keranjang
         name: "Laptop Bekas",
         condition: "Kondisi: Baik, masih lancar",
         description: "Deskripsi: Laptop ini cocok untuk penggunaan sehari-hari, ideal untuk mahasiswa dan pekerja.",
@@ -26,6 +29,7 @@ function DetailBarangSection() {
         image: imgLaptop
       },
       sepeda: {
+        id: 'sepeda', // Tambahkan ID untuk keperluan keranjang
         name: "Sepeda Gunung",
         condition: "Jarang Dipake, Like New",
         description: "Deskripsi: Sepeda Gunung sangat cocok untuk yang hobi mendaki gunung menggunakan sepeda",
@@ -34,6 +38,7 @@ function DetailBarangSection() {
         image: imgSepeda
       },
       lemari: {
+        id: 'lemari', // Tambahkan ID untuk keperluan keranjang
         name: "Lemari Kayu Jati",
         condition: "Kondisi: Sangat baik, hampir baru",
         description: "Deskripsi: Lemari ini terbuat dari kayu jati, sangat kokoh dan luas.",
@@ -53,8 +58,14 @@ function DetailBarangSection() {
     }
   };
 
+  const handleAddToCart = () => {
+    if (itemDetail) {
+      dispatch({ type: 'ADD_TO_CART', payload: itemDetail });
+    }
+  };
+
   if (!itemDetail) {
-    return <p>Loading...</p>; 
+    return <p>Loading...</p>;
   }
 
   return (
@@ -63,15 +74,16 @@ function DetailBarangSection() {
         <p>{itemDetail.error}</p>
       ) : (
         <>
-          <h2 className="item-name">{itemDetail.name}</h2> 
-          <img className="item-image" src={itemDetail.image} alt={itemDetail.name} /> 
+          <h2 className="item-name">{itemDetail.name}</h2>
+          <img className="item-image" src={itemDetail.image} alt={itemDetail.name} />
           <div className="item-details">
-            <p className="condition">{itemDetail.condition}</p> 
-            <p className="description">{itemDetail.description}</p> 
-            <p className="category">{itemDetail.category}</p> 
-            <p className="price">{itemDetail.price}</p> 
+            <p className="condition">{itemDetail.condition}</p>
+            <p className="description">{itemDetail.description}</p>
+            <p className="category">{itemDetail.category}</p>
+            <p className="price">{itemDetail.price}</p>
           </div>
-          <a href="#" className="btn-buy">Beli Sekarang</a> 
+          <a href="#" className="btn-buy">Beli Sekarang</a>
+          <button onClick={handleAddToCart}>Tambah ke Keranjang</button>
         </>
       )}
     </div>

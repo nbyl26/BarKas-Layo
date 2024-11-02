@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { CartProvider } from './components/CartContext';
 
 import Beranda from './pages/Beranda'
 import Kategori from './pages/Kategori'
@@ -12,24 +13,27 @@ import SemuaBarang from './pages/SemuaBarang'
 import DetailBarang from './pages/DetailBarang'
 import Register from './pages/Register'
 import Login from './pages/LoginPages'
+import Cart from './pages/Cart'
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Beranda />} />
-        <Route path="/Kategori" element={<Kategori />} />
-        <Route path="/JualBarang" element={<JualBarang />} />
-        <Route path="/TentangKami" element={<TentangKami />} />
-        <Route path="/SyaratDanKetentuan" element={<SyaratDanKetentuan />} />
-        <Route path="/KebijakanPrivasi" element={<KebijakanPrivasi />} />
-        <Route path="/KontakKami" element={<KontakKami />} />
-        <Route path="/SemuaBarang" element={<SemuaBarang />} />
-        <Route path="/DetailBarang" element={<DetailBarang />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        
-      </Routes>
+      <CartProvider>
+        <Routes>
+          <Route path="/" element={<Beranda />} />
+          <Route path="/Kategori" element={<Kategori />} />
+          <Route path="/JualBarang" element={<JualBarang />} />
+          <Route path="/TentangKami" element={<TentangKami />} />
+          <Route path="/SyaratDanKetentuan" element={<SyaratDanKetentuan />} />
+          <Route path="/KebijakanPrivasi" element={<KebijakanPrivasi />} />
+          <Route path="/KontakKami" element={<KontakKami />} />
+          <Route path="/SemuaBarang" element={<SemuaBarang />} />
+          <Route path="/DetailBarang" element={<DetailBarang />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Cart" element={<Cart />} />
+        </Routes>
+      </CartProvider>
     </Router>
   )
 }
