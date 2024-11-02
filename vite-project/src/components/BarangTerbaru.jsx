@@ -32,6 +32,7 @@ function BarangTerbaru() {
             <div className="item-info">
               <h3>Laptop Bekas</h3>
               <p>Kondisi: Baik, masih lancar</p>
+              <p>Kategori: Elektronik</p>
               <p className="price">Rp 3.500.000</p>
               <button className="detail-button">Detail</button>
             </div>
@@ -41,6 +42,7 @@ function BarangTerbaru() {
             <div className="item-info">
               <h3>Sepeda Gunung</h3>
               <p>Kondisi: Jarang dipakai, like new</p>
+              <p>Kategori: Kendaraan</p>
               <p className="price">Rp 2.200.000</p>
               <button className="detail-button">Detail</button>
             </div>
@@ -50,6 +52,7 @@ function BarangTerbaru() {
             <div className="item-info">
               <h3>Lemari Kayu Jati</h3>
               <p>Kondisi: Sangat baik, seperti baru</p>
+              <p>Kategori: Furnitur</p>
               <p className="price">Rp 5.200.000</p>
               <button className="detail-button">Detail</button>
             </div>

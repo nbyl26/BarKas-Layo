@@ -21,6 +21,7 @@ function DetailBarangSection() {
         name: "Laptop Bekas",
         condition: "Kondisi: Baik, masih lancar",
         description: "Deskripsi: Laptop ini cocok untuk penggunaan sehari-hari, ideal untuk mahasiswa dan pekerja.",
+        category: "Kategori: Elektronik",
         price: "Rp 3.500.000",
         image: imgLaptop
       },
@@ -28,6 +29,7 @@ function DetailBarangSection() {
         name: "Sepeda Gunung",
         condition: "Jarang Dipake, Like New",
         description: "Deskripsi: Sepeda Gunung sangat cocok untuk yang hobi mendaki gunung menggunakan sepeda",
+        category: "Kategori: Kendaraan",
         price: "Rp 2.200.000",
         image: imgSepeda
       },
@@ -35,6 +37,7 @@ function DetailBarangSection() {
         name: "Lemari Kayu Jati",
         condition: "Kondisi: Sangat baik, hampir baru",
         description: "Deskripsi: Lemari ini terbuat dari kayu jati, sangat kokoh dan luas.",
+        category: "Kategori: Furnitur",
         price: "Rp 5.200.000",
         image: imgLemari
       },
@@ -65,6 +68,7 @@ function DetailBarangSection() {
           <div className="item-details">
             <p className="condition">{itemDetail.condition}</p> 
             <p className="description">{itemDetail.description}</p> 
+            <p className="category">{itemDetail.category}</p> 
             <p className="price">{itemDetail.price}</p> 
           </div>
           <a href="#" className="btn-buy">Beli Sekarang</a> 
