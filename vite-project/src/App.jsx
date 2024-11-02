@@ -10,8 +10,8 @@ import KebijakanPrivasi from './pages/KebijakanPrivasi'
 import KontakKami from './pages/KontakKami'
 import SemuaBarang from './pages/SemuaBarang'
 import DetailBarang from './pages/DetailBarang'
-import Login from './pages/Login'
 import Register from './pages/Register'
+import Login from './pages/LoginPages'
 
 function App() {
   return (

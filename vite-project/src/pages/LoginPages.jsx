@@ -5,7 +5,7 @@ import Header2 from '../components/Header2';
 import Footer from '../components/Footer';
 import { loginUser } from '../auth/authService';
 
-function Login() {
+function LoginPages() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     try {
       await loginUser(email, password);
-      navigate('/'); // Ganti dengan rute home Anda
+      navigate('/'); 
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -26,7 +26,7 @@ function Login() {
       <Header2 />
       <div className="auth-container">
         <div className="auth-box">
-          <h2 className="auth-title">LOGIN</h2>
+          <h2 className="auth-title">Login</h2>
           <form className="auth-form" onSubmit={handleLogin}>
             <input
               type="email"
@@ -57,4 +57,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPages;

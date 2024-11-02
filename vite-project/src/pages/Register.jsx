@@ -35,7 +35,7 @@ function Register() {
       <Header2 />
       <div className="auth-container">
         <div className="auth-box">
-          <h2 className="auth-title">SIGN UP</h2>
+          <h2 className="auth-title">Sign Up</h2>
           <form className="auth-form" onSubmit={handleRegister}>
             <input
               type="text"
