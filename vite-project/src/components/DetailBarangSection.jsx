@@ -8,11 +8,14 @@ import imgSepeda from '../assets/img/bicycle.png';
 import imgLemari from '../assets/img/cupboard.png';
 
 function DetailBarangSection() {
+  useEffect(() => {
+    if (window.feather) {
+      window.feather.replace();
+    }
+  }, []);
+
   const [itemDetail, setItemDetail] = useState(null);
-  const { cart, dispatch } = useCart(); // Ambil dispatch dari context dan cart
-
-  
-
+  const { cart, dispatch } = useCart(); 
   useEffect(() => {
     displayItemDetails();
   }, []);

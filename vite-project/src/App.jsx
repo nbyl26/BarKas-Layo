@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { CartProvider } from './components/context/CartContext';
-import feather from 'feather-icons';
 
 import Beranda from './pages/Beranda'
 import Kategori from './pages/Kategori'
@@ -17,10 +16,6 @@ import Login from './pages/LoginPages'
 import Cart from './pages/Cart'
 
 function App() {
-  useEffect(() => {
-    window.Feather && window.Feather.replace();
-  }, []);
-
   return (
     <Router>
       <CartProvider>
@@ -42,7 +37,5 @@ function App() {
     </Router>
   )
 }
-
-feather.replace();
 
 export default App
