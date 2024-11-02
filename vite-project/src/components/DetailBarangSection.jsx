@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/styles/DetailBarangSection.css';
-import { useCart } from './cartContext';
+import { useCart } from './context/CartContext';
 import { Link } from 'react-router-dom';
 
 import imgLaptop from '../assets/img/laptop.png';
@@ -9,7 +9,7 @@ import imgLemari from '../assets/img/cupboard.png';
 
 function DetailBarangSection() {
   const [itemDetail, setItemDetail] = useState(null);
-  const { dispatch } = useCart(); // Ambil dispatch dari context
+  const { cart, dispatch } = useCart(); // Ambil dispatch dari context dan cart
 
   useEffect(() => {
     displayItemDetails();
@@ -21,7 +21,7 @@ function DetailBarangSection() {
 
     const itemDetails = {
       laptop: {
-        id: 'laptop', // Tambahkan ID untuk keperluan keranjang
+        id: 'laptop',
         name: "Laptop Bekas",
         condition: "Kondisi: Baik, masih lancar",
         description: "Deskripsi: Laptop ini cocok untuk penggunaan sehari-hari, ideal untuk mahasiswa dan pekerja.",
@@ -30,7 +30,7 @@ function DetailBarangSection() {
         image: imgLaptop
       },
       sepeda: {
-        id: 'sepeda', // Tambahkan ID untuk keperluan keranjang
+        id: 'sepeda',
         name: "Sepeda Gunung",
         condition: "Jarang Dipake, Like New",
         description: "Deskripsi: Sepeda Gunung sangat cocok untuk yang hobi mendaki gunung menggunakan sepeda",
@@ -39,7 +39,7 @@ function DetailBarangSection() {
         image: imgSepeda
       },
       lemari: {
-        id: 'lemari', // Tambahkan ID untuk keperluan keranjang
+        id: 'lemari',
         name: "Lemari Kayu Jati",
         condition: "Kondisi: Sangat baik, hampir baru",
         description: "Deskripsi: Lemari ini terbuat dari kayu jati, sangat kokoh dan luas.",
@@ -84,11 +84,10 @@ function DetailBarangSection() {
             <p className="price">{itemDetail.price}</p>
           </div>
           <a href="#" className="btn-buy">Beli Sekarang</a>
-          <Link to="/cart">
-            <i data-feather="shopping-cart" onClick={handleAddToCart}></i> 
+          <Link to="/cart" onClick={handleAddToCart} className="cart-icon-add">
+            <i data-feather="shopping-cart"></i>
             {cart.length > 0 && <span>({cart.length})</span>} 
           </Link>
-          {/* <button onClick={handleAddToCart} className="btn-add-to-cart">Tambah ke Keranjang</button> */}
         </>
       )}
     </div>
