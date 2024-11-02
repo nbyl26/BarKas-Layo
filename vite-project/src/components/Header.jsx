@@ -36,8 +36,8 @@ function Header() {
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
                         <Link to="/cart">
-                            <i data-feather="shopping-cart"></i> {/* Ikon keranjang */}
-                            {cart.length > 0 && <span>({cart.length})</span>} {/* Tampilkan jumlah item */}
+                            <i data-feather="shopping-cart"></i> 
+                            {cart.length > 0 && <span>({cart.length})</span>} 
                         </Link>
                     </div>
                     <div className="auth-links">

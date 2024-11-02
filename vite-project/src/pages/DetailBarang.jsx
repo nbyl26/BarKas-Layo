@@ -4,6 +4,7 @@ import Footer from "../components/Footer"
 
 
 function DetailBarang() {
+  
   return (
     <>
     <Header />

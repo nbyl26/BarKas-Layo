@@ -11,6 +11,8 @@ function DetailBarangSection() {
   const [itemDetail, setItemDetail] = useState(null);
   const { cart, dispatch } = useCart(); // Ambil dispatch dari context dan cart
 
+  
+
   useEffect(() => {
     displayItemDetails();
   }, []);
@@ -83,11 +85,13 @@ function DetailBarangSection() {
             <p className="category">{itemDetail.category}</p>
             <p className="price">{itemDetail.price}</p>
           </div>
-          <a href="#" className="btn-buy">Beli Sekarang</a>
-          <Link to="/cart" onClick={handleAddToCart} className="cart-icon-add">
-            <i data-feather="shopping-cart"></i>
-            {cart.length > 0 && <span>({cart.length})</span>} 
-          </Link>
+          <div className="button-container">
+            <a href="#" className="btn-buy">Beli Sekarang</a>
+            <Link to="/cart" onClick={handleAddToCart} className="cart-icon-add">
+              <i data-feather="shopping-cart"></i>
+              {cart.length > 0 && <span>({cart.length})</span>}
+            </Link>
+          </div>
         </>
       )}
     </div>

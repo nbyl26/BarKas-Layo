@@ -17,6 +17,10 @@ import Login from './pages/LoginPages'
 import Cart from './pages/Cart'
 
 function App() {
+  useEffect(() => {
+    window.Feather && window.Feather.replace();
+  }, []);
+
   return (
     <Router>
       <CartProvider>

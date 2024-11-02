@@ -84,3 +84,24 @@
 .detail-button:hover {
     background-color: #45a049;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Memposisikan tombol dan ikon ke tengah */
+    align-items: center; /* Menjaga agar ikon dan tombol berada pada garis yang sama */
+    margin-top: 1rem; /* Jarak antara elemen atas */
+}
+
+.cart-icon-add {
+    display: flex;
+    align-items: center; /* Agar ikon dan teks berada pada posisi yang sama secara vertikal */
+    margin-left: 1rem; /* Memberi jarak antara tombol dan ikon keranjang */
+    text-decoration: none; /* Menghapus garis bawah pada link */
+    color: #333; /* Warna teks */
+}
+
+.cart-icon-add i {
+    margin-right: 0.5rem; /* Jarak antara ikon dan jumlah item */
+    color: #4CAF50; /* Ganti warna ikon sesuai preferensi */
+}
+
