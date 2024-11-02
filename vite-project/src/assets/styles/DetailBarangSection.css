@@ -102,6 +102,9 @@
 
 .cart-icon-add i {
     margin-right: 0.5rem;
-    color: #4CAF50; 
+    color: #4CAF50;
+    font-size: 1.5rem; 
+    padding: 10px;
 }
+
 

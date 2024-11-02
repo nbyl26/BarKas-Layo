@@ -3,29 +3,20 @@ import { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../assets/styles/Header.css';
+import { useCart } from './context/CartContext'; 
 
 function Header2() {
     const [user, setUser] = useState(null);
-    const [registerSuccess, setRegisterSuccess] = useState(false); // Menambah state untuk cek status registrasi
     const navigate = useNavigate();
+    const { cart } = useCart(); // Ambil data keranjang
 
     useEffect(() => {
-        // Memantau perubahan status autentikasi
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            if (registerSuccess && !currentUser) {
-                // Arahkan ke halaman login setelah registrasi
-                navigate('/Login');
-                setRegisterSuccess(false); // Reset status registrasi setelah diarahkan ke login
-            }
         });
 
         return () => unsubscribe();
-    }, [registerSuccess, navigate]);
-
-    const handleRegisterSuccess = () => {
-        setRegisterSuccess(true); // Set registerSuccess ke true saat registrasi berhasil
-    };
+    }, []);
 
     const handleLogout = async () => {
         await auth.signOut();
@@ -44,18 +35,16 @@ function Header2() {
                         <Link to="/Kategori">Kategori</Link>
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
+                        <Link to="/cart">
+                            <i data-feather="shopping-cart"></i> 
+                            {cart.length > 0 && <span>({cart.length})</span>} 
+                        </Link>
                     </div>
                     <div className="auth-links">
                         {!user ? (
                             <>
                                 <Link to="/Login" className="btn-login">Masuk</Link>
-                                <Link 
-                                    to="/Register" 
-                                    className="btn-register"
-                                    onClick={handleRegisterSuccess} // Panggil handleRegisterSuccess setelah registrasi
-                                >
-                                    Daftar
-                                </Link>
+                                <Link to="/Register" className="btn-register">Daftar</Link>
                             </>
                         ) : (
                             <Link onClick={handleLogout} className="btn-logout">Logout</Link>
