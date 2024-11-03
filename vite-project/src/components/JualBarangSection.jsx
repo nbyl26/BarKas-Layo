@@ -7,6 +7,8 @@ import '../assets/styles/JualBarangSection.css';
 function JualBarangSection() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const [price, setPrice] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -21,9 +23,17 @@ function JualBarangSection() {
     }, [navigate]);
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        alert('Barang telah ditambahkan untuk dijual!');
-    };
+      event.preventDefault(); 
+      const priceValue = parseFloat(price);
+
+      if (priceValue <= 0) {
+          setErrorMessage('Harga harus lebih besar dari 0.'); 
+          return; 
+      }
+      alert('Barang telah ditambahkan untuk dijual!');
+
+      setErrorMessage(''); 
+  };
 
     useEffect(() => {
         const imageInput = document.getElementById('product-image');
@@ -95,7 +105,16 @@ function JualBarangSection() {
 
                     <div className="form-group">
                         <label htmlFor="price">Harga (Rp)</label>
-                        <input type="number" id="price" name="price" placeholder="Masukkan harga barang" required />
+                        <input 
+                            type="number" 
+                            id="price" 
+                            name="price" 
+                            placeholder="Masukkan harga barang" 
+                            required 
+                            value={price} 
+                            onChange={(e) => setPrice(e.target.value)} 
+                        />
+                        {errorMessage && <span className="error-message">{errorMessage}</span>} 
                     </div>
 
                     <div className="form-group">
