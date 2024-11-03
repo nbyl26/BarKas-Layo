@@ -8,7 +8,7 @@ import { useCart } from './context/CartContext';
 function Header() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
-    const { cart } = useCart(); // Ambil data keranjang
+    const { cart, dispatch } = useCart(); // Ambil data keranjang dan dispatch
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -21,6 +21,7 @@ function Header() {
     const handleLogout = async () => {
         await auth.signOut();
         setUser(null); // Reset user status
+        dispatch({ type: 'CLEAR_CART' }); // Clear cart on logout
         navigate('/'); // Optional: navigate to home after logout
     };
 
