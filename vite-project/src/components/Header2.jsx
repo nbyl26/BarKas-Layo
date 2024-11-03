@@ -5,10 +5,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 import '../assets/styles/Header.css';
 import { useCart } from './context/CartContext';
 
-function Header2() {
+function Header() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
-    const { cart } = useCart(); // Ambil data keranjang
+    const { cart, dispatch } = useCart();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -20,8 +20,9 @@ function Header2() {
 
     const handleLogout = async () => {
         await auth.signOut();
-        setUser(null); // Reset user status
-        navigate('/'); // Optional: navigate to home after logout
+        setUser(null);
+        dispatch({ type: 'CLEAR_CART' });
+        navigate('/');
     };
 
     const isLoginOrRegisterPage = window.location.pathname === '/Login' || window.location.pathname === '/Register';
@@ -38,14 +39,21 @@ function Header2() {
                         <Link to="/Kategori">Kategori</Link>
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
+                        
                     </div>
                     <div className="auth-links">
                         <Link to="/cart" className="cart-icon">
                             <i data-feather="shopping-cart"></i>
                             {cart.length > 0 && <span>({cart.length})</span>}
                         </Link>
+                        
+                        <Link to="/Profil" className="user">
+                            <i data-feather="user"></i>
+                        </Link>
                         {user && !isLoginOrRegisterPage ? (
-                            <Link onClick={handleLogout} className="btn-logout">Logout</Link>
+                            <>
+                                <Link onClick={handleLogout} className="btn-logout">Logout</Link>
+                            </>
                         ) : (
                             <>
                                 <Link to="/Login" className="btn-login">Masuk</Link>
@@ -59,4 +67,4 @@ function Header2() {
     );
 }
 
-export default Header2;
+export default Header;

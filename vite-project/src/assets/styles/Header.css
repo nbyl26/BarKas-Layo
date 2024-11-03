@@ -114,7 +114,7 @@ nav {
     align-items: center;
 }
 
-.auth-links .cart-icon {
+.auth-links .cart-icon, .user {
     position: relative;
     color: white;
     margin-right: 2rem;
@@ -122,7 +122,7 @@ nav {
     text-decoration: none;
 }
 
-.auth-links .cart-icon::after {
+.auth-links .cart-icon::after, .user::after {
     content: "";
     display: block;
     width: 100%;
@@ -135,13 +135,16 @@ nav {
     transition: transform 0.3s ease;
 }
 
-.auth-links .cart-icon:hover::after {
+.auth-links .cart-icon:hover::after, .user:hover::after {
     transform: translateX(-50%) scaleX(1);
 }
 
-.auth-links .cart-icon:hover {
+.auth-links .cart-icon::after, .user:hover {
     color: #FFC107;
 }
+
+
+
 
 .btn-login,
 .btn-register,

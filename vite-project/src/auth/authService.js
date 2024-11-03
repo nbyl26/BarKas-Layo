@@ -11,9 +11,10 @@ export const registerUser = async (email, password, name) => {
 
     // Simpan data pengguna di Firestore
     await setDoc(doc(db, 'users', user.uid), {
-        email: user.email,
-        name: name,
-    });
+      name: name,
+      email: email,
+      registeredDate: Date.now() 
+  });
 
     // Simpan status login di cookie
     Cookies.set('user', JSON.stringify(user), { expires: 1 }); // Cookie akan kedaluwarsa dalam 1 hari

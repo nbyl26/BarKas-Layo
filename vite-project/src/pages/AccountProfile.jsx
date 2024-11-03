@@ -1,12 +1,14 @@
 import React from 'react';
 import AccountProfileSection from '../components/AccountProfileSection';
-
+import Header2 from '../components/Header2';
+import Footer from '../components/Footer';  
 function AccountProfile() {
     return (
-        <div>
-            <h1>Profil Pengguna</h1>
-            <AccountProfileSection />
-        </div>
+        <>
+        <Header2 />
+        <AccountProfileSection />
+        <Footer />
+        </>
     );
 }
 
