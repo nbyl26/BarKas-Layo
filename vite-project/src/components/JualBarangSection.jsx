@@ -43,14 +43,14 @@ function JualBarangSection() {
     }, []);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!user) {
-            alert("Silakan login terlebih dahulu untuk menjual barang.");
-            return;
-        }
-        // Proses untuk menjual barang
-        alert("Barang berhasil dijual!"); // Placeholder untuk logika penjualan barang
-    };
+      e.preventDefault(); // Mencegah reload halaman
+      if (!user) {
+          alert("Silakan login terlebih dahulu untuk menjual barang.");
+          return;
+      }
+      alert("Barang berhasil dijual!"); // Ini hanya placeholder
+  };
+  
 
     return (
         <section className="sell-form-section">
