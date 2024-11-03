@@ -24,61 +24,52 @@ function Register() {
     try {
       await registerUser(email, password, name);
       alert('Registrasi berhasil! Silakan Klik Ok untuk Login.');
-      navigate('/Login'); // Redirect to Login page after registration
+      navigate('/Login'); 
     } catch (error) {
       setErrorMessage(error.message);
     }
   };
 
   return (
-    <div className="auth-page">
+    <>
       <Header2 />
       <div className="auth-container">
-        <div className="auth-box">
-          <h2 className="auth-title">Sign Up</h2>
-          <form className="auth-form" onSubmit={handleRegister}>
-            <input
-              type="text"
-              placeholder="Enter Your Name"
-              className="auth-input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="auth-input"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="auth-input"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="auth-input"
-              required
-            />
-            <button type="submit" className="auth-button">Sign Up</button>
-          </form>
-          {errorMessage && <p className="auth-error">{errorMessage}</p>}
-          <p className="auth-footer-text">
-            Already have an account? <a href="/Login" className="auth-link">Login</a>
-          </p>
-        </div>
+        <h2>Register</h2>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Nama Lengkap"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Konfirmasi Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Daftar</button>
+        </form>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

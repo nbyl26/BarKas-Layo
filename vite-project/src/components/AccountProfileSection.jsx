@@ -1,54 +1,41 @@
-// AccountProfileSection.jsx
-import React, { useState, useEffect } from 'react';
-import { auth, firestore } from '../firebaseConfig';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { db } from '../firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 
-function AccountProfileSection() {
-    const [displayName, setDisplayName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+function AccountProfileSection({ userId }) {
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const user = auth.currentUser;
-            if (user) {
-                const docRef = doc(firestore, 'users', user.uid);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setDisplayName(docSnap.data().displayName || '');
-                    setPhoneNumber(docSnap.data().phoneNumber || '');
+            try {
+                const userDocRef = doc(db, 'users', userId);
+                const userDoc = await getDoc(userDocRef);
+                if (userDoc.exists()) {
+                    setUserData(userDoc.data());
+                } else {
+                    console.log('No such document!');
                 }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
             }
         };
-        fetchUserData();
-    }, []);
 
-    const handleSave = async () => {
-        const user = auth.currentUser;
-        if (user) {
-            const docRef = doc(firestore, 'users', user.uid);
-            await updateDoc(docRef, {
-                displayName,
-                phoneNumber
-            });
-            alert('Perubahan profil berhasil disimpan!');
+        if (userId) {
+            fetchUserData();
         }
-    };
+    }, [userId]);
 
     return (
         <div>
-            <input
-                type="text"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="Nama"
-            />
-            <input
-                type="text"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="Nomor Telepon"
-            />
-            <button onClick={handleSave}>Simpan Perubahan</button>
+            {userData ? (
+                <div>
+                    <h2>{userData.name}</h2>
+                    <p>Email: {userData.email}</p>
+                    <p>Tanggal Bergabung: {userData.createdAt?.toDate().toLocaleDateString()}</p>
+                </div>
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
     );
 }
