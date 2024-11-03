@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import '../assets/styles/JualBarangSection.css';
 
 function JualBarangSection() {
     const [user, setUser] = useState(null);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            if (!currentUser) {
+                alert('Silakan login terlebih dahulu untuk mengakses halaman ini.');
+                navigate('/login'); 
+            }
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [navigate]);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        alert('Barang telah ditambahkan untuk dijual!');
+    };
 
     useEffect(() => {
         const imageInput = document.getElementById('product-image');
@@ -42,15 +53,6 @@ function JualBarangSection() {
         };
     }, []);
 
-    const handleSubmit = (e) => {
-      e.preventDefault(); // Mencegah reload halaman
-      if (!user) {
-          alert("Silakan login terlebih dahulu untuk menjual barang.");
-          return;
-      }
-      alert("Barang berhasil dijual!"); // Ini hanya placeholder
-  };
-  
 
     return (
         <section className="sell-form-section">
