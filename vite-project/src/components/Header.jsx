@@ -20,8 +20,11 @@ function Header() {
 
     const handleLogout = async () => {
         await auth.signOut();
-        navigate('/');
+        setUser(null); // Reset user status
+        navigate('/'); // Optional: navigate to home after logout
     };
+
+    const isLoginOrRegisterPage = window.location.pathname === '/Login' || window.location.pathname === '/Register';
 
     return (
         <div className="header">
@@ -41,13 +44,13 @@ function Header() {
                             <i data-feather="shopping-cart"></i>
                             {cart.length > 0 && <span>({cart.length})</span>}
                         </Link>
-                        {!user ? (
+                        {user && !isLoginOrRegisterPage ? (
+                            <Link onClick={handleLogout} className="btn-logout">Logout</Link>
+                        ) : (
                             <>
                                 <Link to="/Login" className="btn-login">Masuk</Link>
                                 <Link to="/Register" className="btn-register">Daftar</Link>
                             </>
-                        ) : (
-                            <Link onClick={handleLogout} className="btn-logout">Logout</Link>
                         )}
                     </div>
                 </nav>
