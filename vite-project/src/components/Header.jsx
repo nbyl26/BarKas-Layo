@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../assets/styles/Header.css';
-import { useCart } from './context/CartContext'; 
+import { useCart } from './context/CartContext';
 
 function Header() {
     const [user, setUser] = useState(null);
@@ -35,12 +35,12 @@ function Header() {
                         <Link to="/Kategori">Kategori</Link>
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
-                        <Link to="/cart">
-                            <i data-feather="shopping-cart"></i> 
-                            {cart.length > 0 && <span>({cart.length})</span>} 
-                        </Link>
                     </div>
                     <div className="auth-links">
+                        <Link to="/cart" className="cart-icon">
+                            <i data-feather="shopping-cart"></i>
+                            {cart.length > 0 && <span>({cart.length})</span>}
+                        </Link>
                         {!user ? (
                             <>
                                 <Link to="/Login" className="btn-login">Masuk</Link>
