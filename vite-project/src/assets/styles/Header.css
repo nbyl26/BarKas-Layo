@@ -178,6 +178,10 @@ nav {
     box-sizing: border-box; 
 }
 
+.search-bar input:focus {
+    outline-color: #FFC107;
+}
+
 .search-bar button {
     background-color: #FFC107;
     color: white;
