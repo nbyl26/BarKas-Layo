@@ -1,10 +1,10 @@
 .profile-container {
     max-width: 600px;
-    margin: 20px auto;
+    margin: auto;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 8rem;
 }
 
@@ -65,6 +65,20 @@
     color: #333;
 }
 
+.profile-info label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.profile-info input,
+.profile-info textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
 .profile-actions {
     display: flex;
     justify-content: space-between;
@@ -72,13 +86,12 @@
     margin-top: 20px;
 }
 
-.btn-edit, .btn-delete {
+.btn-edit,
+.btn-delete {
     padding: 10px 20px;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .btn-edit {
@@ -86,13 +99,13 @@
     color: white;
 }
 
-.btn-edit:hover {
-    background-color: #0056b3;
-}
-
 .btn-delete {
     background-color: #dc3545;
     color: white;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
 }
 
 .btn-delete:hover {
