@@ -3,6 +3,7 @@ import '../assets/styles/DetailBarangSection.css';
 import { useCart } from './context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import Cookies from 'js-cookie';
@@ -115,8 +116,9 @@ function DetailBarangSection() {
           <div className="button-container">
             <a href="#" onClick={handleBuyNow} className="btn-buy">Beli Sekarang</a>
             <button onClick={handleAddToCart} className="cart-icon-add">
-              <FontAwesomeIcon icon={faShoppingCart} />
+              <FontAwesomeIcon icon={faPlus} />
               {cart.length > 0 && <span>({cart.length})</span>}
+              <p> Add </p>
             </button>
           </div>
         </>

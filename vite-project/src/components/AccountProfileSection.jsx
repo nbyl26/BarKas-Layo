@@ -42,6 +42,10 @@ function AccountProfileSection() {
         return <div>Error: {error}</div>;
     }
 
+    if (!userData) {
+        return <div>Data pengguna tidak ditemukan.</div>;
+    }
+
     return (
         <div className="profile-container">
             <div className="profile-header">
@@ -49,6 +53,13 @@ function AccountProfileSection() {
                 <p>Selamat datang, {userData.name}!</p>
             </div>
             <div className="profile-details">
+                <div className="profile-picture">
+                    {userData.profilePictureUrl ? (
+                        <img src={userData.profilePictureUrl} alt="Foto Profil" />
+                    ) : (
+                        <div className="placeholder-picture">No Image</div>
+                    )}
+                </div>
                 <div className="profile-info">
                     <h2>Informasi Akun</h2>
                     <p><strong>Nama:</strong> {userData.name}</p>

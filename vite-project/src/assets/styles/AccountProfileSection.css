@@ -1,80 +1,98 @@
-/* AccountProfileSection.css */
-
 .profile-container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     margin-top: 8rem;
-    margin-bottom: 8rem;
 }
 
 .profile-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .profile-header h1 {
-    font-size: 2.5rem;
+    font-size: 24px;
     color: #333;
 }
 
 .profile-header p {
-    font-size: 1.2rem;
-    color: #555;
+    color: #777;
+    font-size: 16px;
 }
 
 .profile-details {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-picture img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.placeholder-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    font-size: 14px;
 }
 
 .profile-info {
-    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
 }
 
 .profile-info h2 {
-    font-size: 1.5rem;
-    color: #333;
+    font-size: 20px;
     margin-bottom: 10px;
+    color: #555;
 }
 
 .profile-info p {
-    font-size: 1rem;
-    color: #666;
+    font-size: 16px;
+    color: #333;
 }
 
 .profile-actions {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .btn-edit, .btn-delete {
     padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .btn-edit {
     background-color: #007bff;
-}
-
-.btn-delete {
-    background-color: #dc3545;
+    color: white;
 }
 
 .btn-edit:hover {
     background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
 }
 
 .btn-delete:hover {
