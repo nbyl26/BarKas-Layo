@@ -9,12 +9,12 @@ import '../assets/styles/JualBarangSection.css';
 function JualBarangSection() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
-    const [nama, setNama] = useState('');
-    const [deskripsi, setDeskripsi] = useState('');
-    const [kategori, setKategori] = useState('');
-    const [kondisi, setKondisi] = useState('');
-    const [harga, setHarga] = useState('');
-    const [gambar, setGambar] = useState(null);
+    const [name, setName] = useState(''); // Menggunakan 'name' sesuai dengan field di database
+    const [description, setDescription] = useState(''); // Menggunakan 'description' sesuai dengan field di database
+    const [category, setCategory] = useState(''); // Menggunakan 'category' sesuai dengan field di database
+    const [condition, setCondition] = useState(''); // Menggunakan 'condition' sesuai dengan field di database
+    const [price, setPrice] = useState(''); // Menggunakan 'price' sesuai dengan field di database
+    const [image, setImage] = useState(null); // Menggunakan 'image' sesuai dengan field di database
     const [barang, setBarang] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [isItemUploaded, setIsItemUploaded] = useState(false);
@@ -35,35 +35,35 @@ function JualBarangSection() {
         e.preventDefault();
 
         // Cek apakah gambar diunggah
-        if (!gambar) {
+        if (!image) {
             alert("Silakan unggah gambar");
             return;
         }
 
         console.log("Data yang akan diunggah:", {
-            nama,
-            deskripsi,
-            kategori,
-            kondisi,
-            harga,
-            gambar
+            name,
+            description,
+            category,
+            condition,
+            price,
+            image
         });
 
-        const storageRef = ref(storage, `images/${gambar.name}`);
+        const storageRef = ref(storage, `images/${image.name}`);
         
         // Upload gambar ke Firebase Storage
         try {
-            await uploadBytes(storageRef, gambar);
-            const urlGambar = await getDownloadURL(storageRef);
+            await uploadBytes(storageRef, image);
+            const urlImage = await getDownloadURL(storageRef);
 
             // Tambahkan dokumen ke Firestore
             await addDoc(collection(db, 'barang'), {
-                nama,
-                deskripsi,
-                kategori,
-                kondisi,
-                harga,
-                urlGambar,
+                name,          // Menggunakan 'name' untuk menyimpan nama barang
+                description,   // Menggunakan 'description' untuk menyimpan deskripsi barang
+                category,      // Menggunakan 'category' untuk menyimpan kategori
+                condition,     // Menggunakan 'condition' untuk menyimpan kondisi barang
+                price,         // Menggunakan 'price' untuk menyimpan harga
+                image: urlImage // Menyimpan URL gambar yang diunggah
             });
             alert("Barang berhasil diunggah!"); // Tampilkan pesan jika berhasil
             setIsItemUploaded(true); // Update status item diunggah
@@ -73,12 +73,12 @@ function JualBarangSection() {
         }
 
         // Reset form
-        setNama('');
-        setDeskripsi('');
-        setKategori('');
-        setKondisi('');
-        setHarga('');
-        setGambar(null);
+        setName('');
+        setDescription('');
+        setCategory('');
+        setCondition('');
+        setPrice('');
+        setImage(null);
     };
 
     useEffect(() => {
@@ -92,7 +92,7 @@ function JualBarangSection() {
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setGambar(file); // Simpan gambar ke state
+            setImage(file); // Simpan gambar ke state
             const reader = new FileReader();
             reader.onload = function (e) {
                 const imgPreview = document.createElement('img');
@@ -121,8 +121,8 @@ function JualBarangSection() {
                             id="product-name"
                             name="product-name"
                             placeholder="Masukkan nama barang"
-                            value={nama}
-                            onChange={(e) => setNama(e.target.value)}
+                            value={name} // Menggunakan 'name'
+                            onChange={(e) => setName(e.target.value)} // Menggunakan 'setName'
                             required
                         />
                     </div>
@@ -134,8 +134,8 @@ function JualBarangSection() {
                             name="product-description"
                             rows="5"
                             placeholder="Masukkan deskripsi barang"
-                            value={deskripsi}
-                            onChange={(e) => setDeskripsi(e.target.value)}
+                            value={description} // Menggunakan 'description'
+                            onChange={(e) => setDescription(e.target.value)} // Menggunakan 'setDescription'
                             required
                         ></textarea>
                     </div>
@@ -145,8 +145,8 @@ function JualBarangSection() {
                         <select
                             id="category"
                             name="category"
-                            value={kategori}
-                            onChange={(e) => setKategori(e.target.value)}
+                            value={category} // Menggunakan 'category'
+                            onChange={(e) => setCategory(e.target.value)} // Menggunakan 'setCategory'
                             required
                         >
                             <option value="">Pilih Kategori</option>
@@ -168,8 +168,8 @@ function JualBarangSection() {
                         <select
                             id="condition"
                             name="condition"
-                            value={kondisi}
-                            onChange={(e) => setKondisi(e.target.value)}
+                            value={condition} // Menggunakan 'condition'
+                            onChange={(e) => setCondition(e.target.value)} // Menggunakan 'setCondition'
                             required
                         >
                             <option value="">Pilih Kondisi</option>
@@ -186,8 +186,8 @@ function JualBarangSection() {
                             name="price"
                             placeholder="Masukkan harga barang"
                             required
-                            value={harga}
-                            onChange={(e) => setHarga(e.target.value)}
+                            value={price} // Menggunakan 'price'
+                            onChange={(e) => setPrice(e.target.value)} // Menggunakan 'setPrice'
                         />
                         {errorMessage && <span className="error-message">{errorMessage}</span>}
                     </div>
@@ -214,13 +214,13 @@ function JualBarangSection() {
                             {barang.length > 0 ? (
                                 barang.map(item => (
                                     <div className="item-card" key={item.id}>
-                                        <img src={item.urlGambar} alt={item.nama} className="item-image" />
+                                        <img src={item.image} alt={item.name} className="item-image" /> {/* Menggunakan 'image' */}
                                         <div className="item-info">
-                                            <h3>{item.nama}</h3>
-                                            <p>{item.deskripsi}</p>
-                                            <p className="price">Rp {item.harga}</p>
-                                            <p>Kondisi: {item.kondisi}</p>
-                                            <p>Kategori: {item.kategori}</p>
+                                            <h3>{item.name}</h3> {/* Menggunakan 'name' */}
+                                            <p>{item.description}</p> {/* Menggunakan 'description' */}
+                                            <p className="price">Rp {item.price}</p> {/* Menggunakan 'price' */}
+                                            <p>Kondisi: {item.condition}</p> {/* Menggunakan 'condition' */}
+                                            <p>Kategori: {item.category}</p> {/* Menggunakan 'category' */}
                                         </div>
                                     </div>
                                 ))
