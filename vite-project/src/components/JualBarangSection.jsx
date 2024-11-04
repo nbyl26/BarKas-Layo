@@ -17,50 +17,55 @@ function JualBarangSection() {
             setUser(currentUser);
             if (!currentUser) {
                 alert('Silakan login terlebih dahulu untuk mengakses halaman ini.');
-                navigate('/login'); 
+                navigate('/login');
             }
         });
 
         return () => unsubscribe();
     }, [navigate]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault(); 
-        const priceValue = parseFloat(price);
+    const handleUpload = async (e) => {
+        e.preventDefault();
 
-        if (priceValue <= 0) {
-            setErrorMessage('Harga harus lebih besar dari 0.'); 
-            return; 
+        if (!gambar) {
+            alert("Silakan unggah gambar");
+            return;
         }
 
-        // Mengambil data dari form
-        const name = event.target['product-name'].value;
-        const description = event.target['product-description'].value;
-        const category = event.target['category'].value;
-        const condition = event.target['condition'].value;
-        const image = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
+        const storageRef = ref(storage, `images/${gambar.name}`);
+        await uploadBytes(storageRef, gambar);
+        const urlGambar = await getDownloadURL(storageRef);
 
-        // Mengupload ke Firestore
         try {
-            // Jika ada gambar, Anda bisa meng-upload gambar ke Cloud Storage jika diperlukan
-            // Disini kita hanya meng-upload data tanpa gambar untuk sekarang
-            await addDoc(collection(db, 'products'), {
-                name,
-                description,
-                category,
-                condition,
-                price: priceValue,
-                image: image.name // Simpan nama file jika di-upload ke storage
+            await addDoc(collection(db, 'barang'), {
+                nama,
+                deskripsi,
+                kategori,
+                kondisi,
+                harga,
+                urlGambar,
             });
-
-            alert('Barang telah ditambahkan untuk dijual!');
-            setErrorMessage(''); 
-            event.target.reset(); // Reset form setelah sukses
+            alert("Barang berhasil diunggah!");
         } catch (error) {
-            console.error('Error adding document: ', error);
-            setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
+            console.error("Error adding document: ", error);
         }
+
+        // Reset form
+        setNama('');
+        setDeskripsi('');
+        setKategori('');
+        setKondisi('');
+        setHarga('');
+        setGambar(null);
     };
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'barang'), (snapshot) => {
+            const daftarBarang = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setBarang(daftarBarang);
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         const imageInput = document.getElementById('product-image');
@@ -68,7 +73,7 @@ function JualBarangSection() {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     const imgPreview = document.createElement('img');
                     imgPreview.src = e.target.result;
                     imgPreview.style.maxWidth = '100%';
@@ -132,16 +137,16 @@ function JualBarangSection() {
 
                     <div className="form-group">
                         <label htmlFor="price">Harga (Rp)</label>
-                        <input 
-                            type="number" 
-                            id="price" 
-                            name="price" 
-                            placeholder="Masukkan harga barang" 
-                            required 
-                            value={price} 
-                            onChange={(e) => setPrice(e.target.value)} 
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            placeholder="Masukkan harga barang"
+                            required
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
                         />
-                        {errorMessage && <span className="error-message">{errorMessage}</span>} 
+                        {errorMessage && <span className="error-message">{errorMessage}</span>}
                     </div>
 
                     <div className="form-group">
@@ -151,6 +156,21 @@ function JualBarangSection() {
 
                     <button type="submit" className="submit-button">Jual Barang</button>
                 </form>
+                <h2>Barang yang Dijual</h2>
+                <div className="item-grid">
+                    {barang.map(item => (
+                        <div className="item-card" key={item.id}>
+                            <img src={item.urlGambar} alt={item.nama} className="item-image" />
+                            <div className="item-info">
+                                <h3>{item.nama}</h3>
+                                <p>{item.deskripsi}</p>
+                                <p className="price">Rp {item.harga}</p>
+                                <p>Kondisi: {item.kondisi}</p>
+                                <p>Kategori: {item.kategori}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );
