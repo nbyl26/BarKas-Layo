@@ -2,11 +2,11 @@
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    background-color: #ffffff; /* Warna latar belakang putih */
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-top: 8rem;
-    font-family: 'Arial', sans-serif; /* Font yang lebih modern */
+    margin-bottom: 3rem;
 }
 
 .profile-header {
@@ -15,74 +15,92 @@
 }
 
 .profile-header h1 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 5px;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
+.profile-header h1 span{
+    color: #FFA000;
+}
 .profile-header p {
     color: #777;
-    font-size: 16px;
+    font-size: 18px;
 }
 
-.profile-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f9f9f9; /* Warna latar belakang kartu */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+.profile-header p span{
+    color: #FFA000;
 }
 
 .profile-picture {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin-bottom: 20px;
 }
 
 .profile-picture img {
-    width: 150px; /* Lebar yang lebih besar untuk foto profil */
+    width: 150px;
     height: 150px;
     border-radius: 50%;
-    object-fit: cover; /* Memastikan gambar terpotong proporsional */
-    border: 3px solid #007bff; /* Border biru di sekitar gambar */
-    margin-bottom: 10px;
+    object-fit: cover;
+    border: 2px solid #FFA000; 
 }
 
-.profile-picture input {
-    margin-top: 10px;
+.placeholder-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    font-size: 16px;
 }
 
-.profile-info {
-    width: 100%;
+.profile-details {
     text-align: left;
 }
 
-.profile-info h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #333;
+.profile-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.profile-info label {
+.profile-details h2 span{
+    color: #FFA000;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item label {
     font-weight: bold;
-    margin-top: 10px;
+    color: #45a049;
 }
 
-.profile-info input,
-.profile-info textarea {
+.info-item input,
+.info-item textarea {
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    transition: border-color 0.3s;
 }
 
-.profile-info textarea {
-    height: 80px; /* Tinggi textarea untuk bio */
+.info-item input:focus,
+.info-item textarea:focus {
+    border-color: #4CAF50; /* Warna border saat fokus */
 }
 
 .profile-actions {
@@ -91,38 +109,55 @@
     margin-top: 20px;
 }
 
-.btn-edit,
-.btn-delete {
+.btn-edit, .btn-delete {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    background-color: #45a049;
+}
+
+.confirmation-dialog {
+    background-color: #f8d7da;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.confirmation-dialog p {
+    color: #721c24;
+}
+
+.btn-confirm {
+    background-color: #dc3545;
+    color: white;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
-    width: 48%; /* Mengatur lebar tombol */
+    margin-right: 10px;
 }
 
-.btn-edit {
-    background-color: #007bff; /* Warna biru untuk tombol edit */
+.btn-confirm:hover {
+    background-color: #c82333;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
     color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.btn-edit:hover {
-    background-color: #0056b3; /* Warna lebih gelap saat hover */
-}
-
-.btn-delete {
-    background-color: #dc3545; /* Warna merah untuk tombol hapus */
-    color: white;
-}
-
-.btn-delete:hover {
-    background-color: #c82333; /* Warna lebih gelap saat hover */
-}
-
-.loading,
-.error {
-    text-align: center;
-    font-size: 18px;
-    color: #dc3545; /* Warna merah untuk pesan error */
-    margin-top: 20px;
+.btn-cancel:hover {
+    background-color: #5a6268;
 }

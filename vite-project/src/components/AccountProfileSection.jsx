@@ -2,171 +2,233 @@ import React, { useEffect, useState } from 'react';
 import { auth, db, storage } from '../firebaseConfig';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 import '../assets/styles/AccountProfileSection.css';
 
 function AccountProfileSection() {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [profileImage, setProfileImage] = useState('default-profile.png'); // Set default profile picture
+    const [profileImage, setProfileImage] = useState('');
     const [editMode, setEditMode] = useState(false);
-    const [updatedData, setUpdatedData] = useState({
+    const [formData, setFormData] = useState({
         name: '',
+        email: '',
         phone: '',
         address: '',
         bio: ''
     });
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const user = auth.currentUser;
-                if (user) {
-                    const userRef = doc(db, 'users', user.uid);
-                    const userSnap = await getDoc(userRef);
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                navigate('/login');
+                return;
+            }
 
-                    if (userSnap.exists()) {
-                        const data = userSnap.data();
-                        const registeredDate = new Date(data.registeredDate).toLocaleDateString();
-                        setUserData({ ...data, registeredDate });
-                        setProfileImage(data.profilePicture || 'default-profile.png'); // Update with fetched image
-                        setUpdatedData({ name: data.name, phone: data.phone, address: data.address, bio: data.bio });
-                    } else {
-                        setError('User data not found.');
-                    }
+            try {
+                const userRef = doc(db, 'users', user.uid);
+                const userSnap = await getDoc(userRef);
+
+                if (userSnap.exists()) {
+                    const data = userSnap.data();
+                    setUserData(data);
+                    setProfileImage(data.profilePicture || '');
+                    setFormData({
+                        name: data.name,
+                        email: data.email,
+                        phone: data.phone || '',
+                        address: data.address || '',
+                        bio: data.bio || ''
+                    });
+                    localStorage.setItem('userData', JSON.stringify(data));
                 } else {
-                    setError('User is not authenticated.');
+                    setError('User data not found.');
+                    navigate('/login');
                 }
             } catch (error) {
                 setError(error.message);
             } finally {
                 setLoading(false);
             }
-        };
+        });
 
-        fetchUserData();
-    }, []);
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            const data = JSON.parse(storedUserData);
+            setUserData(data);
+            setProfileImage(data.profilePicture || '');
+            setFormData({
+                name: data.name,
+                email: data.email,
+                phone: data.phone || '',
+                address: data.address || '',
+                bio: data.bio || ''
+            });
+            setLoading(false);
+        }
+
+        return () => unsubscribe();
+    }, [navigate]);
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (file) {
             const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}/${file.name}`);
             await uploadBytes(storageRef, file);
-    
+
             const imageUrl = await getDownloadURL(storageRef);
-            console.log('Uploaded image URL:', imageUrl); // Log URL gambar
-    
-            // Update state dan Firestore
-            setProfileImage(imageUrl); // Update profil image di state
+            setProfileImage(imageUrl);
             const userRef = doc(db, 'users', auth.currentUser.uid);
             await updateDoc(userRef, { profilePicture: imageUrl });
-        } else {
-            console.error("File not found or not valid.");
         }
     };
-    
+
+    const handleEditToggle = () => {
+        if (editMode) {
+            handleUpdateProfile(); // Panggil untuk menyimpan perubahan saat keluar dari edit mode
+        }
+        setEditMode(!editMode);
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setUpdatedData((prevData) => ({ ...prevData, [name]: value }));
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleUpdateProfile = async () => {
         const userRef = doc(db, 'users', auth.currentUser.uid);
-        await updateDoc(userRef, updatedData);
-        setUserData((prevData) => ({ ...prevData, ...updatedData }));
-        setEditMode(false); // Exit edit mode
+        await updateDoc(userRef, {
+            name: formData.name,
+            phone: formData.phone,
+            address: formData.address,
+            bio: formData.bio
+        });
+        setEditMode(false); // Keluar dari mode edit setelah menyimpan perubahan
     };
 
     const handleDeleteAccount = async () => {
-        const userRef = doc(db, 'users', auth.currentUser.uid);
-        await deleteDoc(userRef);
-        // Also delete the user from authentication
-        await auth.currentUser.delete();
-        // Redirect or show a message after deletion
-        alert('Akun berhasil dihapus.');
+        try {
+            const userRef = doc(db, 'users', auth.currentUser.uid);
+            await deleteDoc(userRef);
+            await auth.currentUser.delete();
+            navigate('/login'); 
+        } catch (error) {
+            console.error("Error deleting account:", error);
+        }
+    };
+
+    const confirmDeleteAccount = () => {
+        setShowDeleteConfirmation(true);
+    };
+
+    const cancelDeleteAccount = () => {
+        setShowDeleteConfirmation(false);
     };
 
     if (loading) {
-        return <div className="loading">Loading...</div>;
+        return <div>Loading...</div>;
     }
 
     if (error) {
-        return <div className="error">Error: {error}</div>;
+        return <div>Error: {error}</div>;
     }
 
     return (
         <div className="profile-container">
             <div className="profile-header">
-                <h1>Profil Pengguna</h1>
-                <p>Selamat datang, {userData?.name || 'Pengguna'}</p>
+                <h1><span>Profil</span> Pengguna </h1>
+                <p>Selamat datang, <span>{userData.name}</span>!</p>
             </div>
-            <div className="profile-card">
-                <div className="profile-picture">
+            <div className="profile-picture">
+                {profileImage ? (
                     <img src={profileImage} alt="Profile" />
-                    {editMode && (
-                        <input type="file" accept="image/*" onChange={handleImageUpload} />
-                    )}
-                </div>
+                ) : (
+                    <div className="placeholder-picture">Tidak ada gambar</div>
+                )}
+                {editMode && (
+                    <input type="file" accept="image/*" onChange={handleImageUpload} />
+                )}
+            </div>
+            <div className="profile-details">
+                <h2><span>Informasi </span>Akun</h2>
                 <div className="profile-info">
-                    <h2>Informasi Akun</h2>
-                    {editMode ? (
-                        <>
-                            <label>Nama:</label>
+                    <div className="info-item">
+                        <label>Nama:</label>
+                        {editMode ? (
                             <input
                                 type="text"
                                 name="name"
-                                value={updatedData.name}
+                                value={formData.name}
                                 onChange={handleInputChange}
-                                placeholder="Masukkan nama"
                             />
-                            <label>Nomor Telepon:</label>
+                        ) : (
+                            <p>{userData.name}</p>
+                        )}
+                    </div>
+                    <div className="info-item">
+                        <label>Email:</label>
+                        <p>{userData.email}</p>
+                    </div>
+                    <div className="info-item">
+                        <label>Telepon:</label>
+                        {editMode ? (
                             <input
                                 type="text"
                                 name="phone"
-                                value={updatedData.phone}
+                                value={formData.phone}
                                 onChange={handleInputChange}
-                                placeholder="Masukkan nomor telepon"
                             />
-                            <label>Alamat:</label>
+                        ) : (
+                            <p>{formData.phone}</p>
+                        )}
+                    </div>
+                    <div className="info-item">
+                        <label>Alamat:</label>
+                        {editMode ? (
                             <input
                                 type="text"
                                 name="address"
-                                value={updatedData.address}
+                                value={formData.address}
                                 onChange={handleInputChange}
-                                placeholder="Masukkan alamat"
                             />
-                            <label>Bio:</label>
+                        ) : (
+                            <p>{formData.address}</p>
+                        )}
+                    </div>
+                    <div className="info-item">
+                        <label>Bio:</label>
+                        {editMode ? (
                             <textarea
                                 name="bio"
-                                value={updatedData.bio}
+                                value={formData.bio}
                                 onChange={handleInputChange}
-                                placeholder="Masukkan bio"
                             />
-                        </>
-                    ) : (
-                        <>
-                            <p><strong>Nama:</strong> {userData?.name || 'Belum ditambahkan'}</p>
-                            <p><strong>Email:</strong> {userData?.email || 'Belum ditambahkan'}</p>
-                            <p><strong>Nomor Telepon:</strong> {userData?.phone || 'Belum ditambahkan'}</p>
-                            <p><strong>Alamat:</strong> {userData?.address || 'Belum ditambahkan'}</p>
-                            <p><strong>Bio:</strong> {userData?.bio || 'Belum ditambahkan'}</p>
-                            <p><strong>Tanggal Bergabung:</strong> {userData?.registeredDate || 'Belum ditambahkan'}</p>
-                        </>
-                    )}
+                        ) : (
+                            <p>{formData.bio}</p>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <div className="profile-actions">
-                {editMode ? (
-                    <>
-                        <button className="btn-edit" onClick={handleUpdateProfile}>Simpan Perubahan</button>
-                        <button className="btn-delete" onClick={() => setEditMode(false)}>Batal</button>
-                    </>
-                ) : (
-                    <>
-                        <button className="btn-edit" onClick={() => setEditMode(true)}>Edit Profil</button>
-                        <button className="btn-delete" onClick={handleDeleteAccount}>Hapus Akun</button>
-                    </>
+                <div className="profile-actions">
+                    <button onClick={handleEditToggle} className="btn-edit">
+                        {editMode ? 'Simpan Perubahan' : 'Edit Profil'}
+                    </button>
+                    <button onClick={confirmDeleteAccount} className="btn-delete">
+                        Hapus Akun
+                    </button>
+                </div>
+                {showDeleteConfirmation && (
+                    <div className="confirmation-dialog">
+                        <p>Apakah Anda yakin ingin menghapus akun Anda?</p>
+                        <button onClick={handleDeleteAccount} className="btn-confirm">
+                            Ya, hapus akun
+                        </button>
+                        <button onClick={cancelDeleteAccount} className="btn-cancel">
+                            Batal
+                        </button>
+                    </div>
                 )}
             </div>
         </div>
