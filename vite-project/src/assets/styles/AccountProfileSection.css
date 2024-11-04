@@ -2,74 +2,87 @@
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 4rem;
-    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Warna latar belakang putih */
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 8rem;
+    font-family: 'Arial', sans-serif; /* Font yang lebih modern */
 }
 
 .profile-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .profile-header h1 {
     font-size: 28px;
     color: #333;
+    margin-bottom: 5px;
 }
 
 .profile-header p {
-    color: #555;
-    font-size: 18px;
+    color: #777;
+    font-size: 16px;
 }
 
 .profile-card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    background-color: #f9f9f9; /* Warna latar belakang kartu */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .profile-picture {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .profile-picture img {
-    width: 100px;
-    height: 100px;
+    width: 150px; /* Lebar yang lebih besar untuk foto profil */
+    height: 150px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #007bff;
+    object-fit: cover; /* Memastikan gambar terpotong proporsional */
+    border: 3px solid #007bff; /* Border biru di sekitar gambar */
+    margin-bottom: 10px;
 }
 
 .profile-picture input {
-    position: absolute;
-    top: 70%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    width: 30px;
-    height: 30px;
+    margin-top: 10px;
 }
 
 .profile-info {
-    flex: 1;
+    width: 100%;
+    text-align: left;
 }
 
 .profile-info h2 {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 15px;
-    color: #007bff;
+    color: #333;
 }
 
-.profile-info p {
-    font-size: 16px;
-    color: #333;
+.profile-info label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.profile-info input,
+.profile-info textarea {
+    width: 100%;
+    padding: 10px;
     margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.profile-info textarea {
+    height: 80px; /* Tinggi textarea untuk bio */
 }
 
 .profile-actions {
@@ -80,27 +93,36 @@
 
 .btn-edit,
 .btn-delete {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s;
+    width: 48%; /* Mengatur lebar tombol */
 }
 
 .btn-edit {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-delete {
-    background-color: #dc3545;
+    background-color: #007bff; /* Warna biru untuk tombol edit */
     color: white;
 }
 
 .btn-edit:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Warna lebih gelap saat hover */
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Warna merah untuk tombol hapus */
+    color: white;
 }
 
 .btn-delete:hover {
-    background-color: #c82333;
+    background-color: #c82333; /* Warna lebih gelap saat hover */
+}
+
+.loading,
+.error {
+    text-align: center;
+    font-size: 18px;
+    color: #dc3545; /* Warna merah untuk pesan error */
+    margin-top: 20px;
 }
