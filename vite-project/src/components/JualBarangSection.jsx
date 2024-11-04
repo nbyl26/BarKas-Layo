@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../firebaseConfig'; // Import Firestore configuration
+import { collection, addDoc } from 'firebase/firestore'; // Import Firestore methods
 import '../assets/styles/JualBarangSection.css';
 
 function JualBarangSection() {
@@ -22,18 +24,43 @@ function JualBarangSection() {
         return () => unsubscribe();
     }, [navigate]);
 
-    const handleSubmit = (event) => {
-      event.preventDefault(); 
-      const priceValue = parseFloat(price);
+    const handleSubmit = async (event) => {
+        event.preventDefault(); 
+        const priceValue = parseFloat(price);
 
-      if (priceValue <= 0) {
-          setErrorMessage('Harga harus lebih besar dari 0.'); 
-          return; 
-      }
-      alert('Barang telah ditambahkan untuk dijual!');
+        if (priceValue <= 0) {
+            setErrorMessage('Harga harus lebih besar dari 0.'); 
+            return; 
+        }
 
-      setErrorMessage(''); 
-  };
+        // Mengambil data dari form
+        const name = event.target['product-name'].value;
+        const description = event.target['product-description'].value;
+        const category = event.target['category'].value;
+        const condition = event.target['condition'].value;
+        const image = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
+
+        // Mengupload ke Firestore
+        try {
+            // Jika ada gambar, Anda bisa meng-upload gambar ke Cloud Storage jika diperlukan
+            // Disini kita hanya meng-upload data tanpa gambar untuk sekarang
+            await addDoc(collection(db, 'products'), {
+                name,
+                description,
+                category,
+                condition,
+                price: priceValue,
+                image: image.name // Simpan nama file jika di-upload ke storage
+            });
+
+            alert('Barang telah ditambahkan untuk dijual!');
+            setErrorMessage(''); 
+            event.target.reset(); // Reset form setelah sukses
+        } catch (error) {
+            console.error('Error adding document: ', error);
+            setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
+        }
+    };
 
     useEffect(() => {
         const imageInput = document.getElementById('product-image');
