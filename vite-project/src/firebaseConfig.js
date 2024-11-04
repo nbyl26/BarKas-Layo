@@ -1,6 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCZhhMAFA83Jae0pe3CLYJRuP3SNkEPoAg",
@@ -11,8 +12,12 @@ const firebaseConfig = {
     appId: "1:217595564781:web:d57cea182cb92073fa32e4",
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
 
-export { auth, db };  
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app); // Ensure this line is present
+
+// Export the services
+export { db, auth, storage };

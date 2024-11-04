@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../firebaseConfig';
-import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { auth, db, storage } from '../firebaseConfig';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import '../assets/styles/AccountProfileSection.css';
-import { useNavigate } from 'react-router-dom';
 
 function AccountProfileSection() {
     const [userData, setUserData] = useState(null);
@@ -13,9 +13,9 @@ function AccountProfileSection() {
         name: '',
         phone: '',
         address: '',
-        bio: ''
+        bio: '',
+        profilePicture: ''
     });
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -27,13 +27,13 @@ function AccountProfileSection() {
 
                     if (userSnap.exists()) {
                         const data = userSnap.data();
-                        const registeredDate = new Date(data.registeredDate).toLocaleDateString();
-                        setUserData({ ...data, registeredDate });
+                        setUserData(data);
                         setFormData({
                             name: data.name || '',
                             phone: data.phone || '',
                             address: data.address || '',
-                            bio: data.bio || ''
+                            bio: data.bio || '',
+                            profilePicture: data.profilePicture || ''
                         });
                     } else {
                         setError('User data not found.');
@@ -62,22 +62,28 @@ function AccountProfileSection() {
         try {
             const userRef = doc(db, 'users', auth.currentUser.uid);
             await updateDoc(userRef, formData);
-            setUserData((prev) => ({ ...prev, ...formData }));
+            setUserData(formData);
             setIsEditing(false);
         } catch (error) {
             setError("Failed to update profile.");
         }
     };
 
-    const handleDeleteAccount = async () => {
-        try {
-            const userRef = doc(db, 'users', auth.currentUser.uid);
-            await deleteDoc(userRef);
-            await auth.currentUser.delete();
-            alert("Account deleted successfully.");
-            navigate('/');
-        } catch (error) {
-            setError("Failed to delete account.");
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on(
+                'state_changed',
+                null,
+                (error) => setError("Failed to upload image."),
+                async () => {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                    setFormData((prev) => ({ ...prev, profilePicture: downloadURL }));
+                }
+            );
         }
     };
 
@@ -89,75 +95,66 @@ function AccountProfileSection() {
         return <div>Error: {error}</div>;
     }
 
-    if (!userData) {
-        return <div>Data pengguna tidak ditemukan.</div>;
-    }
-
     return (
         <div className="profile-container">
-            <div className="profile-header">
-                <h1>Profil Pengguna</h1>
-                <p>Selamat datang, {userData.name}!</p>
-            </div>
-            <div className="profile-details">
-                <div className="profile-info">
-                    <h2>Informasi Akun</h2>
-                    {isEditing ? (
-                        <>
-                            <label>
-                                Nama:
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Nomor Telepon:
-                                <input
-                                    type="text"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Alamat:
-                                <input
-                                    type="text"
-                                    name="address"
-                                    value={formData.address}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Bio Singkat:
-                                <textarea
-                                    name="bio"
-                                    value={formData.bio}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <button onClick={handleUpdateProfile}>Simpan</button>
-                            <button onClick={handleEditToggle}>Batal</button>
-                        </>
-                    ) : (
-                        <>
-                            <p><strong>Nama:</strong> {userData.name}</p>
-                            <p><strong>Email:</strong> {userData.email}</p>
-                            <p><strong>Nomor Telepon:</strong> {userData.phone || 'Belum diisi'}</p>
-                            <p><strong>Alamat:</strong> {userData.address || 'Belum diisi'}</p>
-                            <p><strong>Bio Singkat:</strong> {userData.bio || 'Belum diisi'}</p>
-                            <p><strong>Tanggal Bergabung:</strong> {userData.registeredDate}</p>
-
-                        </>
+            <div className="profile-card">
+                <div className="profile-image">
+                    <img
+                        src={formData.profilePicture || "https://via.placeholder.com/150"}
+                        alt="Profile"
+                        className="profile-picture"
+                    />
+                    {isEditing && (
+                        <input type="file" accept="image/*" onChange={handleFileChange} className="file-input" />
                     )}
                 </div>
-                <div className="profile-actions">
-                    <button onClick={handleEditToggle} className="btn-edit">Edit Profil</button>
-                    <button className="btn-delete" onClick={handleDeleteAccount}>Hapus Akun</button>
+                <div className="profile-info">
+                    <h1 className="profile-name">{formData.name || 'Nama Pengguna'}</h1>
+                    <p className="profile-bio">{formData.bio || 'Bio singkat pengguna belum diisi.'}</p>
+                    <p className="profile-phone">{formData.phone || 'Nomor Telepon tidak tersedia'}</p>
+                    <p className="profile-address">{formData.address || 'Alamat belum diisi'}</p>
                 </div>
+            </div>
+            <div className="profile-actions">
+                {isEditing ? (
+                    <>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            placeholder="Nama"
+                            onChange={handleInputChange}
+                            className="input-field"
+                        />
+                        <input
+                            type="text"
+                            name="phone"
+                            value={formData.phone}
+                            placeholder="Nomor Telepon"
+                            onChange={handleInputChange}
+                            className="input-field"
+                        />
+                        <input
+                            type="text"
+                            name="address"
+                            value={formData.address}
+                            placeholder="Alamat"
+                            onChange={handleInputChange}
+                            className="input-field"
+                        />
+                        <textarea
+                            name="bio"
+                            value={formData.bio}
+                            placeholder="Bio Singkat"
+                            onChange={handleInputChange}
+                            className="input-field bio-field"
+                        ></textarea>
+                        <button onClick={handleUpdateProfile} className="btn-save">Simpan</button>
+                        <button onClick={handleEditToggle} className="btn-cancel">Batal</button>
+                    </>
+                ) : (
+                    <button onClick={handleEditToggle} className="btn-edit">Edit Profil</button>
+                )}
             </div>
         </div>
     );

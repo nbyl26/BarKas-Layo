@@ -2,87 +2,79 @@
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 8rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 4rem;
+    font-family: 'Arial', sans-serif;
 }
 
 .profile-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .profile-header h1 {
-    font-size: 24px;
+    font-size: 28px;
     color: #333;
 }
 
 .profile-header p {
-    color: #777;
-    font-size: 16px;
+    color: #555;
+    font-size: 18px;
 }
 
-.profile-details {
+.profile-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
-.profile-picture img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
+.profile-picture {
+    position: relative;
 }
 
-.placeholder-picture {
-    width: 120px;
-    height: 120px;
+.profile-picture img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #bbb;
-    font-size: 14px;
+    object-fit: cover;
+    border: 3px solid #007bff;
+}
+
+.profile-picture input {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 30px;
+    height: 30px;
 }
 
 .profile-info {
-    width: 100%;
-    text-align: left;
+    flex: 1;
 }
 
 .profile-info h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #555;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #007bff;
 }
 
 .profile-info p {
     font-size: 16px;
     color: #333;
-}
-
-.profile-info label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.profile-info input,
-.profile-info textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    margin: 5px 0;
 }
 
 .profile-actions {
     display: flex;
     justify-content: space-between;
-    width: 100%;
     margin-top: 20px;
 }
 
@@ -92,6 +84,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn-edit {
