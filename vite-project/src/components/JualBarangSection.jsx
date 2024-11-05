@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebaseConfig'; // Firebase configuration
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient'; 
@@ -26,17 +26,17 @@ function JualBarangSection() {
     const handleUpload = async (file) => {
         console.log("Uploading file:", file);
         const { data, error } = await supabase.storage
-            .from('uploads') // Ganti dengan nama bucket yang sesuai
+            .from('uploads') // Gunakan nama bucket yang sesuai
             .upload(`images/${file.name}`, file);
-
+    
         if (error) {
             console.error('Error uploading file:', error);
             alert('Error uploading file: ' + error.message);
             return null;
         }
-
+    
         console.log("File uploaded successfully:", data);
-        return data.Key; 
+        return data.path; 
     };
 
     const handleSubmit = async (event) => {
@@ -63,16 +63,20 @@ function JualBarangSection() {
             }
         }
 
+        // Ambil uid dari pengguna yang sedang login di Firebase
+        const uid = user ? user.uid : null;
+
         try {
             const { data, error } = await supabase
-                .from('products') // Ganti dengan nama tabel yang sesuai
+                .from('products')
                 .insert([{
                     name,
                     description,
                     category,
                     condition,
                     price: priceValue,
-                    image: imagePath // Simpan path gambar
+                    image: imagePath, // Simpan path gambar
+                    user_id: uid // Simpan uid pengguna
                 }]);
 
             if (error) {
