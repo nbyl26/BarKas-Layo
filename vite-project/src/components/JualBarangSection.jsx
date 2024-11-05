@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../supabaseClient'; // Import Supabase client
+import { supabase } from '../supabaseClient'; 
 import '../assets/styles/JualBarangSection.css';
 
 function JualBarangSection() {
@@ -24,17 +24,21 @@ function JualBarangSection() {
     }, [navigate]);
 
     const handleUpload = async (file) => {
+        console.log("Uploading file:", file);
         const { data, error } = await supabase.storage
-            .from('products') // Pastikan nama bucket sesuai
+            .from('products')
             .upload(`images/${file.name}`, file);
-
+    
         if (error) {
-            console.error('Error uploading file:', error.message);
+            console.error('Error uploading file:', error);
+            alert('Error uploading file: ' + error.message);
             return null;
         }
-
-        return data.Key; // Kembalikan path file
+    
+        console.log("File uploaded successfully:", data);
+        return data.Key; 
     };
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -45,14 +49,12 @@ function JualBarangSection() {
             return;
         }
 
-        // Mengambil data dari form
         const name = event.target['product-name'].value;
         const description = event.target['product-description'].value;
         const category = event.target['category'].value;
         const condition = event.target['condition'].value;
-        const imageFile = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
+        const imageFile = event.target['product-image'].files[0]; 
 
-        // Mengupload gambar ke Supabase
         let imagePath = null;
         if (imageFile) {
             imagePath = await handleUpload(imageFile);
@@ -62,7 +64,6 @@ function JualBarangSection() {
             }
         }
 
-        // Menyimpan data produk ke Supabase
         try {
             const { data, error } = await supabase
                 .from('products') // Ganti dengan nama tabel yang sesuai
