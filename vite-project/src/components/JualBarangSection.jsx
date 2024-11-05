@@ -26,19 +26,18 @@ function JualBarangSection() {
     const handleUpload = async (file) => {
         console.log("Uploading file:", file);
         const { data, error } = await supabase.storage
-            .from('products')
+            .from('uploads') // Ganti dengan nama bucket yang sesuai
             .upload(`images/${file.name}`, file);
-    
+
         if (error) {
             console.error('Error uploading file:', error);
             alert('Error uploading file: ' + error.message);
             return null;
         }
-    
+
         console.log("File uploaded successfully:", data);
         return data.Key; 
     };
-    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
