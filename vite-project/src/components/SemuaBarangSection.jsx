@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebaseConfig'; // Import Firestore configuration
-import { collection, getDocs } from 'firebase/firestore'; // Import Firestore methods
+import { supabase } from '../supabaseClient'; // Import Supabase client
 import '../assets/styles/SemuaBarangSection.css';
 
 function SemuaBarangSection() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const productsData = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        setProducts(productsData);
-      } catch (error) {
-        console.error('Error fetching products: ', error);
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('products') // Mengambil data dari tabel 'products'
+        .select('*');
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setProducts(data);
       }
+      setLoading(false);
     };
 
     fetchProducts();
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>; // Menampilkan loading saat data sedang diambil
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>; // Menampilkan pesan kesalahan jika ada
+  }
 
   return (
     <section className="all-items">

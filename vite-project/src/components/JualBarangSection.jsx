@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebaseConfig'; // Jika menggunakan Firebase Auth
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '@supabase/supabase-js'; // Import Supabase client
+import { supabase } from '../supabaseClient'; // Import Supabase client
 import '../assets/styles/JualBarangSection.css';
-
-// Inisialisasi Supabase
-const supabaseUrl = 'YOUR_SUPABASE_URL'; // Ganti dengan URL Supabase Anda
-const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY'; // Ganti dengan Anon Key Supabase Anda
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function JualBarangSection() {
     const [user, setUser] = useState(null);
@@ -37,42 +32,50 @@ function JualBarangSection() {
             return;
         }
 
-        // Mengambil data dari form
         const name = event.target['product-name'].value;
         const description = event.target['product-description'].value;
         const category = event.target['category'].value;
         const condition = event.target['condition'].value;
-        const image = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
+        const image = event.target['product-image'].files[0];
 
-        // Mengupload gambar ke Supabase Storage
         try {
-            const { data: uploadData, error: uploadError } = await supabase.storage
-                .from('product-images') // Ganti dengan nama bucket Anda
+            // Upload image to Supabase Storage
+            const { data: uploadData, error: uploadError } = await supabase
+                .storage
+                .from('images') // Pastikan bucket 'images' sudah ada di Supabase
                 .upload(`public/${image.name}`, image);
 
             if (uploadError) {
-                throw uploadError;
+                throw new Error(uploadError.message);
             }
 
-            // Simpan data barang ke Supabase
-            const { error: insertError } = await supabase
-                .from('products') // Ganti dengan nama tabel Anda
-                .insert([{
-                    name,
-                    description,
-                    category,
-                    condition,
-                    price: priceValue,
-                    image: uploadData.Key // Simpan URL gambar yang diupload
-                }]);
+            // Mendapatkan URL gambar setelah diupload
+            const { publicURL } = supabase
+                .storage
+                .from('images')
+                .getPublicUrl(`public/${image.name}`);
 
-            if (insertError) {
-                throw insertError;
+            // Simpan informasi produk ke tabel 'products'
+            const { error: dbError } = await supabase
+                .from('products')
+                .insert([
+                    {
+                        name,
+                        description,
+                        category,
+                        condition,
+                        price: priceValue,
+                        image_url: publicURL, // Simpan URL gambar
+                    },
+                ]);
+
+            if (dbError) {
+                throw new Error(dbError.message);
             }
 
             alert('Barang telah ditambahkan untuk dijual!');
             setErrorMessage('');
-            event.target.reset(); // Reset form setelah sukses
+            event.target.reset();
         } catch (error) {
             console.error('Error adding document: ', error);
             setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
