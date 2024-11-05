@@ -3,6 +3,7 @@ import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { db } from '../firebaseConfig';
 import { doc, setDoc } from "firebase/firestore";
+import { supabase } from '../supabaseClient'; // Impor Supabase
 
 export const registerUser = async (email, password, name) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -13,7 +14,21 @@ export const registerUser = async (email, password, name) => {
       name: name,
       email: email,
       registeredDate: Date.now() 
-  });
+    });
+
+    const { data, error } = await supabase
+        .from('users') 
+        .insert([{ 
+            id: user.uid, // Gunakan uid dari Firebase sebagai id
+            name: name, 
+            email: email,
+            registered_date: new Date() // Simpan tanggal registrasi
+        }]);
+
+    if (error) {
+        console.error('Error saving user to Supabase:', error);
+        throw new Error('Gagal menyimpan pengguna ke Supabase: ' + error.message);
+    }
 
     Cookies.set('user', JSON.stringify(user), { expires: 1 }); // Cookie akan kedaluwarsa dalam 1 hari
     return user;
