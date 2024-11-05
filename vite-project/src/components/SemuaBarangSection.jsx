@@ -39,7 +39,7 @@ function SemuaBarangSection() {
         <h1><span>Semua</span> Barang</h1>
         <div className="item-grid">
           {products.length === 0 ? (
-            <p>Tidak ada barang yang tersedia.</p>
+            <h1>Tidak ada barang yang tersedia.</h1>
           ) : (
             products.map(product => (
               <div key={product.id} className="item-card">

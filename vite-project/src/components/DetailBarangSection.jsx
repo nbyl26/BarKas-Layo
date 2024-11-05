@@ -116,9 +116,9 @@ function DetailBarangSection() {
           <div className="button-container">
             <a href="#" onClick={handleBuyNow} className="btn-buy">Beli Sekarang</a>
             <button onClick={handleAddToCart} className="cart-icon-add">
-              <FontAwesomeIcon icon={faPlus} />
+              <FontAwesomeIcon icon={faPlus} className="icon"/>
+              <p>Add </p>
               {cart.length > 0 && <span>({cart.length})</span>}
-              <p> Add </p>
             </button>
           </div>
         </>
