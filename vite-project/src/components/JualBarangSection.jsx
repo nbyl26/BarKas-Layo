@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../firebaseConfig'; // Import Firestore configuration
-import { collection, addDoc } from 'firebase/firestore'; // Import Firestore methods
+import { createClient } from '@supabase/supabase-js'; // Import Supabase client
 import '../assets/styles/JualBarangSection.css';
+
+// Inisialisasi Supabase
+const supabaseUrl = 'YOUR_SUPABASE_URL'; // Ganti dengan URL Supabase Anda
+const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY'; // Ganti dengan Anon Key Supabase Anda
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function JualBarangSection() {
     const [user, setUser] = useState(null);
@@ -40,18 +44,31 @@ function JualBarangSection() {
         const condition = event.target['condition'].value;
         const image = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
 
-        // Mengupload ke Firestore
+        // Mengupload gambar ke Supabase Storage
         try {
-            // Jika ada gambar, Anda bisa meng-upload gambar ke Cloud Storage jika diperlukan
-            // Disini kita hanya meng-upload data tanpa gambar untuk sekarang
-            await addDoc(collection(db, 'products'), {
-                name,
-                description,
-                category,
-                condition,
-                price: priceValue,
-                image: image.name // Simpan nama file jika di-upload ke storage
-            });
+            const { data: uploadData, error: uploadError } = await supabase.storage
+                .from('product-images') // Ganti dengan nama bucket Anda
+                .upload(`public/${image.name}`, image);
+
+            if (uploadError) {
+                throw uploadError;
+            }
+
+            // Simpan data barang ke Supabase
+            const { error: insertError } = await supabase
+                .from('products') // Ganti dengan nama tabel Anda
+                .insert([{
+                    name,
+                    description,
+                    category,
+                    condition,
+                    price: priceValue,
+                    image: uploadData.Key // Simpan URL gambar yang diupload
+                }]);
+
+            if (insertError) {
+                throw insertError;
+            }
 
             alert('Barang telah ditambahkan untuk dijual!');
             setErrorMessage('');
@@ -89,7 +106,6 @@ function JualBarangSection() {
             }
         };
     }, []);
-
 
     return (
         <section className="sell-form-section">
