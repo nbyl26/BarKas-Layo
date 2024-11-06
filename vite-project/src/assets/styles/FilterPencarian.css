@@ -38,3 +38,50 @@
     cursor: pointer;
     width: 100%;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .filter-bar {
+        padding: 1.5rem;
+        margin-top: 27rem;
+    }
+
+    .filter-bar h2 {
+        font-size: 1.6rem;
+    }
+
+    .filter-bar select,
+    .filter-bar input {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+
+    .filter-bar button {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-bar {
+        padding: 1rem;
+        margin-top: 26rem;
+    }
+
+    .filter-bar h2 {
+        font-size: 1.4rem;
+    }
+
+    .filter-bar label {
+        font-size: 0.9rem;
+    }
+
+    .filter-bar select,
+    .filter-bar input {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .filter-bar button {
+        padding: 0.5rem 1rem;
+    }
+}
