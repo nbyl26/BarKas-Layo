@@ -1,5 +1,5 @@
 import { auth, db } from '../firebaseConfig';
-import { collection, doc, getDocs, getDoc, query, where, addDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, getDoc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 // Mendapatkan semua pengguna dari Firestore
