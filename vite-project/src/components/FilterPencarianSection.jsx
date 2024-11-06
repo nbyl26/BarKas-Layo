@@ -6,26 +6,40 @@ import '../assets/styles/FilterPencarianSection.css';
 
 function FilterPencarianSection() {
   const location = useLocation();
-  const { kategori, minPrice, maxPrice, kondisi } = location.state || {};
+  const { kategori, minPrice, maxPrice, kondisi } = location.state || {}; // Mendapatkan filter dari props
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchFilteredProducts = async () => {
-      const q = query(
+      // Pastikan harga diproses menjadi angka
+      const minPriceVal = parseInt(minPrice) || 0;
+      const maxPriceVal = parseInt(maxPrice) || 10000000;
+
+      // Membuat query berdasarkan filter
+      let q = query(
         collection(db, 'products'),
         where('category', '==', kategori),
-        where('price', '>=', minPrice || 0),
-        where('price', '<=', maxPrice || 10000000),
-        where('condition', '==', kondisi)
+        where('price', '>=', minPriceVal),
+        where('price', '<=', maxPriceVal)
       );
-      
-      const querySnapshot = await getDocs(q);
-      const filteredProducts = querySnapshot.docs.map(doc => doc.data());
-      setProducts(filteredProducts);
+
+      // Tambahkan kondisi jika ada
+      if (kondisi) {
+        q = query(q, where('condition', '==', kondisi));
+      }
+
+      try {
+        // Mengambil data produk yang sesuai dengan query
+        const querySnapshot = await getDocs(q);
+        const filteredProducts = querySnapshot.docs.map(doc => doc.data());
+        setProducts(filteredProducts); // Menyimpan produk yang sudah difilter
+      } catch (error) {
+        console.error('Error fetching filtered products:', error);
+      }
     };
 
-    fetchFilteredProducts();
-  }, [kategori, minPrice, maxPrice, kondisi]);
+    fetchFilteredProducts(); // Menjalankan fungsi pengambilan produk
+  }, [kategori, minPrice, maxPrice, kondisi]); // Menyinkronkan filter jika ada perubahan
 
   return (
     <section className="filtered-products">
