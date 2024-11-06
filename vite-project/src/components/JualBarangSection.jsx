@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../firebaseConfig'; // Firebase configuration
+import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../supabaseClient'; 
+import { db } from '../firebaseConfig'; // Import Firestore configuration
+import { collection, addDoc } from 'firebase/firestore'; // Import Firestore methods
 import '../assets/styles/JualBarangSection.css';
 
 function JualBarangSection() {
@@ -23,22 +24,6 @@ function JualBarangSection() {
         return () => unsubscribe();
     }, [navigate]);
 
-    const handleUpload = async (file) => {
-        console.log("Uploading file:", file);
-        const { data, error } = await supabase.storage
-            .from('uploads') // Gunakan nama bucket yang sesuai
-            .upload(`images/${file.name}`, file);
-    
-        if (error) {
-            console.error('Error uploading file:', error);
-            alert('Error uploading file: ' + error.message);
-            return null;
-        }
-    
-        console.log("File uploaded successfully:", data);
-        return data.path; 
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const priceValue = parseFloat(price);
@@ -48,40 +33,23 @@ function JualBarangSection() {
             return;
         }
 
+        // Mengambil data dari form
         const name = event.target['product-name'].value;
         const description = event.target['product-description'].value;
         const category = event.target['category'].value;
         const condition = event.target['condition'].value;
-        const imageFile = event.target['product-image'].files[0]; 
+        const image = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
 
-        let imagePath = null;
-        if (imageFile) {
-            imagePath = await handleUpload(imageFile);
-            if (!imagePath) {
-                setErrorMessage('Gagal mengupload gambar.');
-                return;
-            }
-        }
-
-        // Ambil uid dari pengguna yang sedang login di Firebase
-        const uid = user ? user.uid : null;
-
+        // Mengupload ke Firestore
         try {
-            const { data, error } = await supabase
-                .from('products')
-                .insert([{
-                    name,
-                    description,
-                    category,
-                    condition,
-                    price: priceValue,
-                    image: imagePath, // Simpan path gambar
-                    user_id: uid // Simpan uid pengguna
-                }]);
-
-            if (error) {
-                throw error;
-            }
+            await addDoc(collection(db, 'products'), {
+                name,
+                description,
+                category,
+                condition,
+                price: priceValue,
+                image: image.name // Simpan nama file jika di-upload ke storage
+            });
 
             alert('Barang telah ditambahkan untuk dijual!');
             setErrorMessage('');
@@ -119,6 +87,7 @@ function JualBarangSection() {
             }
         };
     }, []);
+
 
     return (
         <section className="sell-form-section">
