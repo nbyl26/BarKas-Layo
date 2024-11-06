@@ -23,6 +23,7 @@
 .profile-header h1 span{
     color: #FFA000;
 }
+
 .profile-header p {
     color: #777;
     font-size: 18px;
@@ -45,7 +46,7 @@
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #FFA000; 
+    border: 2px solid #FFA000;
 }
 
 .placeholder-picture {
@@ -100,7 +101,7 @@
 
 .info-item input:focus,
 .info-item textarea:focus {
-    border-color: #4CAF50; /* Warna border saat fokus */
+    border-color: #4CAF50; 
 }
 
 .profile-actions {
@@ -160,4 +161,93 @@
 
 .btn-cancel:hover {
     background-color: #5a6268;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 15px;
+        margin-top: 4rem;
+    }
+
+    .profile-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .profile-header p {
+        font-size: 16px;
+    }
+
+    .profile-picture img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-details h2 {
+        font-size: 1.3rem;
+    }
+
+    .info-item label {
+        font-size: 14px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-edit, .btn-delete {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .btn-edit:hover, .btn-delete:hover {
+        background-color: #45a049;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 10px;
+        margin-top: 3rem;
+    }
+
+    .profile-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .profile-header p {
+        font-size: 14px;
+    }
+
+    .profile-picture img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-details h2 {
+        font-size: 1.2rem;
+    }
+
+    .info-item label {
+        font-size: 12px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-edit, .btn-delete {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .btn-confirm, .btn-cancel {
+        width: 100%;
+        padding: 8px 15px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
 }
