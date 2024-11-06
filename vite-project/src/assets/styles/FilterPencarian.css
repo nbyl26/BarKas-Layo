@@ -11,6 +11,10 @@
     margin-bottom: 1rem;
 }
 
+.filter-bar span{
+    color: #FFA000;
+}
+
 .filter-bar label {
     display: block;
     margin-bottom: 0.5rem;

@@ -8,7 +8,7 @@ function FilterPencarian() {
 
   return (
     <div className="filter-bar">
-      <h2>Filter Pencarian</h2>
+      <h2><span>Filter</span> Pencarian</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="kategori">Kategori:</label>
         <select id="kategori" name="kategori">
