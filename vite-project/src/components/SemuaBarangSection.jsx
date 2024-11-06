@@ -37,7 +37,7 @@ function SemuaBarangSection() {
                 <div className="item-info">
                   <h3>{product.name}</h3>
                   <p className="price">Rp {product.price}</p>
-                  <a href={/DetailBarang?item=${product.id}} className="detail-button">Detail</a>
+                  <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
                 </div>
               </div>
             ))
