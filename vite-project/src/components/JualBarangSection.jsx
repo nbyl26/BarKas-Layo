@@ -108,7 +108,7 @@ function JualBarangSection() {
                             <option value="elektronik">Elektronik</option>
                             <option value="furniture">Furnitur</option>
                             <option value="pakaian">Pakaian</option>
-                            <option value="buku">Alat Tulis</option>
+                            <option value="alatTulis">Alat Tulis</option>
                             <option value="alatOlahraga">Peralatan Olahraga</option>
                             <option value="alatKecantikan">Alat Kecantikan</option>
                             <option value="kendaraan">Kendaraan</option>

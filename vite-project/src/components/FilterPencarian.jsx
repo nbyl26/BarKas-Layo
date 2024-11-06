@@ -7,12 +7,11 @@ function FilterPencarian() {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [kondisi, setKondisi] = useState('');
-  
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Meneruskan filter ke halaman FilterPencarian
     navigate('/Filter', {
       state: { kategori, minPrice, maxPrice, kondisi }
     });
@@ -29,13 +28,18 @@ function FilterPencarian() {
           value={kategori}
           onChange={(e) => setKategori(e.target.value)}
         >
-          <option value="">Pilih Kategori</option>
           <option value="elektronik">Elektronik</option>
-          <option value="furnitur">Furnitur</option>
+          <option value="furniture">Furnitur</option>
           <option value="pakaian">Pakaian</option>
-          <option value="stationery">Alat Tulis</option>
+          <option value="alatTulis">Alat Tulis</option>
+          <option value="alatOlahraga">Peralatan Olahraga</option>
+          <option value="alatKecantikan">Alat Kecantikan</option>
+          <option value="kendaraan">Kendaraan</option>
+          <option value="alatDapur">Alat Dapur</option>
+          <option value="perlengkapanBayi">Perlengkapan Bayi</option>
+          <option value="mainan">Mainan</option>
         </select>
-        
+
         <label htmlFor="min-price">Harga Minimum:</label>
         <input
           type="number"
@@ -45,7 +49,7 @@ function FilterPencarian() {
           onChange={(e) => setMinPrice(e.target.value)}
           placeholder="Rp 0"
         />
-        
+
         <label htmlFor="max-price">Harga Maksimum:</label>
         <input
           type="number"
@@ -55,7 +59,7 @@ function FilterPencarian() {
           onChange={(e) => setMaxPrice(e.target.value)}
           placeholder="Rp 10.000.000"
         />
-        
+
         <label htmlFor="kondisi">Kondisi:</label>
         <select
           id="kondisi"
@@ -64,10 +68,10 @@ function FilterPencarian() {
           onChange={(e) => setKondisi(e.target.value)}
         >
           <option value="">Pilih Kondisi</option>
-          <option value="baru">Baru</option>
-          <option value="bekas">Bekas</option>
+          <option value="new">Baru</option>
+          <option value="second">Bekas</option>
         </select>
-        
+
         <button type="submit">Terapkan Filter</button>
       </form>
     </div>
