@@ -15,6 +15,7 @@ import Register from './pages/Register'
 import Login from './pages/LoginPages'
 import Cart from './pages/Cart'
 import Profil from './pages/AccountProfile'
+import FilterPencarian from './pages/FilterPencarianPages';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/Profil" element={<Profil />} />
+          <Route path="/Filter" element={<FilterPencarian />} />
         </Routes>
       </CartProvider>
     </Router>

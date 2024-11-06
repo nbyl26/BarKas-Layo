@@ -13,7 +13,7 @@ function FilterPencarian() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Meneruskan filter ke halaman FilterPencarian
-    navigate('/filter-pencarian', {
+    navigate('/Filter', {
       state: { kategori, minPrice, maxPrice, kondisi }
     });
   };
