@@ -15,7 +15,7 @@ export const registerUser = async (email, password, name) => {
         registeredDate: Date.now()
     });
 
-    Cookies.set('user', JSON.stringify(user), { expires: 1 }); // Cookie kedaluwarsa dalam 1 hari
+    Cookies.set('user', JSON.stringify(user), { expires: 1 });
     return user;
 };
 

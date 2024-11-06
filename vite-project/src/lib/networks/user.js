@@ -1,21 +1,18 @@
-import { auth, db } from '../firebaseConfig';
+import { auth, db } from '../../firebaseConfig';
 import { collection, doc, getDocs, getDoc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-// Mendapatkan semua pengguna dari Firestore
 export const getAllUsers = async () => {
     try {
         const usersCollection = collection(db, 'users');
         const userSnapshot = await getDocs(usersCollection);
-        const userList = userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        return userList;
+        return userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (err) {
         console.error("Unexpected error fetching users:", err);
         return null;
     }
 };
 
-// Mendapatkan pengguna berdasarkan ID dari Firestore
 export const getUserById = async (id) => {
     try {
         const userDoc = doc(db, 'users', id);
@@ -33,7 +30,7 @@ export const getUserById = async (id) => {
     }
 };
 
-// Login pengguna dengan email dan password menggunakan Firebase
+
 export const loginUserByEmailAndPassword = async (email, password) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);

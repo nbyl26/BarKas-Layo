@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db, storage } from '../firebaseConfig';
+import { auth, db} from '../firebaseConfig';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/AccountProfileSection.css';
 

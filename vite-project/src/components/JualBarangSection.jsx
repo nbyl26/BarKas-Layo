@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../firebaseConfig'; // Import Firestore configuration
-import { collection, addDoc } from 'firebase/firestore'; // Import Firestore methods
+import { db } from '../firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
 import '../assets/styles/JualBarangSection.css';
 
 function JualBarangSection() {
@@ -20,7 +20,6 @@ function JualBarangSection() {
                 navigate('/login');
             }
         });
-
         return () => unsubscribe();
     }, [navigate]);
 
@@ -33,14 +32,12 @@ function JualBarangSection() {
             return;
         }
 
-        // Mengambil data dari form
         const name = event.target['product-name'].value;
         const description = event.target['product-description'].value;
         const category = event.target['category'].value;
         const condition = event.target['condition'].value;
-        const image = event.target['product-image'].files[0]; // Menyimpan gambar yang diupload
+        const image = event.target['product-image'].files[0];
 
-        // Mengupload ke Firestore
         try {
             await addDoc(collection(db, 'products'), {
                 name,
@@ -48,12 +45,13 @@ function JualBarangSection() {
                 category,
                 condition,
                 price: priceValue,
-                image: image.name // Simpan nama file jika di-upload ke storage
+                image: image ? image.name : null,
+                userId: user.uid
             });
 
             alert('Barang telah ditambahkan untuk dijual!');
             setErrorMessage('');
-            event.target.reset(); // Reset form setelah sukses
+            event.target.reset();
         } catch (error) {
             console.error('Error adding document: ', error);
             setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
