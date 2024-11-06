@@ -24,6 +24,7 @@
     margin: 1rem;
     max-width: 400px;
     align-items: center;
+    transition: transform 0.3s;
 }
 
 .item-card:hover {
@@ -48,13 +49,6 @@
     margin-bottom: 0.5rem;
 }
 
-.item-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-
 .price {
     font-weight: bold;
     color: #4CAF50;
@@ -74,4 +68,72 @@
 
 .detail-button:hover {
     background-color: #45a049;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .featured-items {
+        padding: 2rem 0;
+    }
+
+    .item-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+
+    .item-card {
+        padding: 0.8rem;
+        max-width: 350px;
+    }
+
+    .item-img {
+        width: 100px;
+    }
+
+    .item-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+
+    .detail-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-items {
+        padding: 1.5rem 0;
+    }
+
+    .item-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .item-card {
+        padding: 0.6rem;
+        max-width: 100%;
+    }
+
+    .item-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .item-info h3 {
+        font-size: 1rem;
+    }
+
+    .price {
+        font-size: 1rem;
+    }
+
+    .detail-button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
 }
