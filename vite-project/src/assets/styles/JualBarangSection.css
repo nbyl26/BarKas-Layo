@@ -1,7 +1,7 @@
 .sell-form-section {
     padding: 3rem 0;
     background-color: #f9f9f9;
-    margin-top: 4rem;
+    margin-top: 5rem;
 }
 
 .sell-form-section h2 {
@@ -10,7 +10,7 @@
     margin-bottom: 2rem;
 }
 
-.sell-form-section h2 span{
+.sell-form-section h2 span {
     color: #FFA000;
 }
 
@@ -61,4 +61,50 @@
 
 .submit-button:hover {
     background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .sell-form-section {
+        padding: 2rem 0; 
+        margin-top: 23rem;
+    }
+
+    .sell-form-section h2 {
+        font-size: 1.8rem; 
+    }
+
+    .sell-form {
+        padding: 1.5rem; 
+    }
+
+    .form-group {
+        margin-bottom: 1rem; 
+    }
+
+    .submit-button {
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sell-form-section {
+        padding: 1.5rem 0; 
+    }
+
+    .sell-form-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .sell-form {
+        padding: 1rem; 
+    }
+
+    .form-group {
+        margin-bottom: 0.8rem; 
+    }
+
+    .submit-button {
+        padding: 0.5rem; 
+        font-size: 0.9rem; 
+    }
 }
