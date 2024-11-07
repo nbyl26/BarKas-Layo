@@ -7,7 +7,6 @@ function KategoriBarangSection() {
   const [products, setProducts] = useState([]);
   const location = useLocation();
   
-  // Mendapatkan parameter kategori dari URL
   const category = new URLSearchParams(location.search).get('category-items');
 
   useEffect(() => {

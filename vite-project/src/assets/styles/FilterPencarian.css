@@ -39,6 +39,10 @@
     width: 100%;
 }
 
+.filter-bar button:hover {
+    background-color: #45a049;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .filter-bar {
