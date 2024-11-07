@@ -68,7 +68,6 @@
     background-color: #f0f0f0;
 }
 
-
 input[type="text"] {
     width: calc(100% - 80px);
     padding: 10px;
@@ -83,4 +82,60 @@ button {
     color: white;
     border-radius: 4px;
     cursor: pointer;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .chatbot-container {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .chatbot-window {
+        width: 250px;
+        bottom: 60px; /* Adjusted position for smaller screens */
+    }
+
+    .chatbot-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 60px); /* Adjust input width */
+    }
+
+    button {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chatbot-container {
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .chatbot-window {
+        width: 200px;
+        bottom: 50px;
+    }
+
+    .chatbot-icon img {
+        width: 35px;
+        height: 35px;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 50px); /* Adjust input width */
+    }
+
+    button {
+        padding: 7px;
+        font-size: 14px;
+    }
+
+    .chatbot-header h3 {
+        font-size: 16px; /* Reduce font size for smaller screens */
+    }
 }
