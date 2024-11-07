@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; 
 import '../assets/styles/KategoriBarangSection.css';
 
 function KategoriBarangSection() {
@@ -8,21 +9,26 @@ function KategoriBarangSection() {
     const location = useLocation();
 
     const category = new URLSearchParams(location.search).get('category');
+    console.log("Selected Category:", category); // Log untuk memeriksa kategori yang diterima
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const db = getFirestore();
+            try {
+                const q = query(
+                    collection(db, 'products'),
+                    where('category', '==', category) // Pastikan nama field konsisten di database
+                );
 
-            const q = query(
-                collection(db, 'products'),
-                where('kategori', '==', category)
-            );
-
-            const querySnapshot = await getDocs(q);
-            const fetchedProducts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            console.log("Filtered Products:", fetchedProducts);
-
-            setProducts(fetchedProducts);
+                const querySnapshot = await getDocs(q);
+                const fetchedProducts = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                console.log("Filtered Products:", fetchedProducts); // Log produk yang difilter
+                setProducts(fetchedProducts);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
         };
 
         if (category) {
