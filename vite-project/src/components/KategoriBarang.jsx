@@ -16,8 +16,9 @@ function KategoriBarang() {
   const navigate = useNavigate();
 
   const handleNavigation = (category) => {
-    navigate(`/KategoriBarang?category=${category}`);
-  };
+    navigate(`/KategoriBarang?category-items=${category}`);
+};
+
 
   return (
     <section className="categories-2">

@@ -11,7 +11,7 @@ function KategoriPopuler() {
   const navigate = useNavigate()
 
   const handleNavigation = (category) => {
-    navigate(`/Barang/kategori-barang?category-items=${category}`)
+    navigate(`/KategoriBarang?category-items=${category}`)
   }
 
   return (

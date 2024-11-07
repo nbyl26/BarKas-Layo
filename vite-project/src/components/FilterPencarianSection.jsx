@@ -11,11 +11,9 @@ function FilterPencarianSection() {
 
   useEffect(() => {
     const fetchFilteredProducts = async () => {
-      // Pastikan harga diproses menjadi angka
       const minPriceVal = parseInt(minPrice) || 0;
       const maxPriceVal = parseInt(maxPrice) || 10000000;
 
-      // Membuat query berdasarkan filter
       let q = query(
         collection(db, 'products'),
         where('category', '==', kategori),
@@ -23,7 +21,6 @@ function FilterPencarianSection() {
         where('price', '<=', maxPriceVal)
       );
 
-      // Tambahkan kondisi jika ada
       if (kondisi) {
         q = query(q, where('condition', '==', kondisi));
       }
