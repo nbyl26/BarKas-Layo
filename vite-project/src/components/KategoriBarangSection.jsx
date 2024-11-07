@@ -16,7 +16,7 @@ function KategoriBarangSection() {
             try {
                 const q = query(
                     collection(db, 'products'),
-                    where('category', '==', category) // Pastikan nama field konsisten di database
+                    where('category', '==', category) 
                 );
 
                 const querySnapshot = await getDocs(q);
