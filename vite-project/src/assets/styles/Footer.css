@@ -32,3 +32,43 @@
     text-decoration: none;
     margin: 0 1rem;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .footer {
+        padding: 1.5rem 0;
+    }
+
+    .footer .socials a {
+        margin: 0.5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a {
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 1rem 0;
+    }
+
+    .footer .socials a {
+        margin: 0.5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+    }
+}
