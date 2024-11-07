@@ -25,6 +25,44 @@
     font-weight: bold;
 }
 
-.cta-button:hover{
+.cta-button:hover {
     background-color: #45a049;
+}
+
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem; 
+    }
+
+    .hero p {
+        font-size: 1rem; 
+    }
+
+    .cta-button {
+        padding: 0.5rem 1rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 1.5rem 0; 
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem; 
+    }
+
+    .cta-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem; 
+    }
 }
