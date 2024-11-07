@@ -24,7 +24,7 @@ function BarangTerbaru() {
   return (
     <section className="featured-items">
       <div className="container">
-        <h2>Barang Terbaru</h2>
+        <h2><span>Barang</span> Terbaru</h2>
         <div className="item-grid">
           <div className="item-card" onClick={() => handleDetailNavigation('laptop')}>
             <img src={imgLaptop} alt="Barang 1" className="item-image" />

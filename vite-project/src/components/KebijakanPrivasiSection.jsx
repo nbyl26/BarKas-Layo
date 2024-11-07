@@ -25,7 +25,7 @@ function KebijakanPrivasiSection() {
             <p>Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Perubahan akan diberitahukan melalui situs web kami. Pastikan untuk memeriksa kebijakan ini secara berkala.</p>
     
             <h2>5. Kontak Kami</h2>
-            <p>Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi kami di <a href="../Footer/kontak-kami.html">Kontak Kami</a>.</p>
+            <p>Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi kami di <a href="/KontakKami">Kontak Kami</a>.</p>
         </div>
     </main>
   )
