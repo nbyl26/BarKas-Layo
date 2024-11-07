@@ -19,19 +19,19 @@ function KategoriPopuler() {
       <div className="container">
         <h1><span>Kategori</span> Populer</h1>
         <div className="category-grid">
-          <div className="category-item" onClick={() => handleNavigation('elektronik')}>
+          <div className="category" onClick={() => handleNavigation('elektronik')}>
         <img src={imgElektronik} alt="Elektronik" />
             <h3>Elektronik</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('furnitur')}>
+          <div className="category" onClick={() => handleNavigation('furnitur')}>
             <img src={imgFurnitur} alt="Furnitur" />
             <h3>Furnitur</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('pakaian')}>
+          <div className="category" onClick={() => handleNavigation('pakaian')}>
             <img src={imgPakaian} alt="Pakaian" />
             <h3>Pakaian</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('alat-tulis')}>
+          <div className="category" onClick={() => handleNavigation('alat-tulis')}>
             <img src={imgAlatTulis} alt="Alat Tulis" />
             <h3>Alat Tulis</h3>
           </div>

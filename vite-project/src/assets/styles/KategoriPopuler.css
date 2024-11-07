@@ -18,7 +18,7 @@
     gap: 1rem;
 }
 
-.category-item {
+.category {
     background-color: #f0f0f0;
     border-radius: 4px;
     text-align: center;
@@ -26,11 +26,11 @@
     transition: transform 0.3s;
 }
 
-.category-item:hover {
+.category:hover {
     transform: scale(1.05);
 }
 
-.category-item img {
+.category img {
     width: 64px;
     height: 64px;
     margin-bottom: 0.5rem;

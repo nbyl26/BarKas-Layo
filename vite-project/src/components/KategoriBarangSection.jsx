@@ -7,7 +7,7 @@ function KategoriBarangSection() {
     const [products, setProducts] = useState([]);
     const location = useLocation();
 
-    const category = new URLSearchParams(location.search).get('category-items');
+    const category = new URLSearchParams(location.search).get('category');
 
     useEffect(() => {
         const fetchProducts = async () => {

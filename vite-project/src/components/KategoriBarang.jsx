@@ -16,52 +16,51 @@ function KategoriBarang() {
   const navigate = useNavigate();
 
   const handleNavigation = (category) => {
-    navigate(`/KategoriBarang?category-items=${category}`);
-};
-
+    navigate(`/KategoriBarang?category=${category}`);
+  };
 
   return (
     <section className="categories-2">
       <div className="container">
         <h2><span>Kategori</span> Barang</h2>
         <div className="category-grid">
-          <div className="category-item" onClick={() => handleNavigation('elektronik')}>
+          <div className="category" onClick={() => handleNavigation('elektronik')}>
             <img src={imgElektronik} alt="Elektronik" />
             <h3>Elektronik</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('furnitur')}>
+          <div className="category" onClick={() => handleNavigation('furnitur')}>
             <img src={imgFurnitur} alt="Furnitur" />
             <h3>Furniture</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('pakaian')}>
+          <div className="category" onClick={() => handleNavigation('pakaian')}>
             <img src={imgPakaian} alt="Pakaian" />
             <h3>Pakaian</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('alatTulis')}>
+          <div className="category" onClick={() => handleNavigation('alatTulis')}>
             <img src={imgAlatTulis} alt="Alat Tulis" />
             <h3>Alat Tulis</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('alatOlahraga')}>
+          <div className="category" onClick={() => handleNavigation('alatOlahraga')}>
             <img src={imgAlatOlahraga} alt="Alat Olahraga" />
             <h3>Peralatan Olahraga</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('alatKecantikan')}>
+          <div className="category" onClick={() => handleNavigation('alatKecantikan')}>
             <img src={imgAlatKecantikan} alt="Alat Kecantikan" />
             <h3>Alat Kecantikan</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('kendaraan')}>
+          <div className="category" onClick={() => handleNavigation('kendaraan')}>
             <img src={imgKendaraan} alt="Kendaraan" />
             <h3>Kendaraan</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('alatDapur')}>
+          <div className="category" onClick={() => handleNavigation('alatDapur')}>
             <img src={imgAlatDapur} alt="Alat Dapur" />
             <h3>Alat Dapur</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('perlengkapanBayi')}>
+          <div className="category" onClick={() => handleNavigation('perlengkapanBayi')}>
             <img src={imgPerlengkapanBayi} alt="Perlengkapan Bayi" />
             <h3>Perlengkapan Bayi</h3>
           </div>
-          <div className="category-item" onClick={() => handleNavigation('mainan')}>
+          <div className="category" onClick={() => handleNavigation('mainan')}>
             <img src={imgMainan} alt="Mainan" />
             <h3>Mainan</h3>
           </div>
