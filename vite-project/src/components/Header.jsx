@@ -7,6 +7,7 @@ import { useCart } from './context/CartContext';
 
 function Header() {
     const [user, setUser] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(''); // Menyimpan input pencarian
     const navigate = useNavigate();
     const { cart, dispatch } = useCart();
 
@@ -25,6 +26,12 @@ function Header() {
         navigate('/');
     };
 
+    const handleSearch = () => {
+        if (searchTerm.trim() !== '') {
+            navigate(`/search?query=${searchTerm}`); // Arahkan ke halaman hasil pencarian dengan query
+        }
+    };
+
     const isLoginOrRegisterPage = window.location.pathname === '/Login' || window.location.pathname === '/Register';
 
     return (
@@ -39,21 +46,17 @@ function Header() {
                         <Link to="/Kategori">Kategori</Link>
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
-                        
                     </div>
                     <div className="auth-links">
                         <Link to="/cart" className="cart-icon">
                             <i data-feather="shopping-cart"></i>
                             {cart.length > 0 && <span>({cart.length})</span>}
                         </Link>
-                        
                         <Link to="/Profil" className="user">
                             <i data-feather="user"></i>
                         </Link>
                         {user && !isLoginOrRegisterPage ? (
-                            <>
-                                <Link onClick={handleLogout} className="btn-logout">Logout</Link>
-                            </>
+                            <Link onClick={handleLogout} className="btn-logout">Logout</Link>
                         ) : (
                             <>
                                 <Link to="/Login" className="btn-login">Masuk</Link>
@@ -63,8 +66,13 @@ function Header() {
                     </div>
                 </nav>
                 <div className="search-bar">
-                    <input type="text" placeholder="Cari barang bekas..." />
-                    <button type="button">Cari</button>
+                    <input
+                        type="text"
+                        placeholder="Cari barang bekas..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm state
+                    />
+                    <button type="button" onClick={handleSearch}>Cari</button> {/* Handle search */}
                 </div>
             </div>
         </div>
