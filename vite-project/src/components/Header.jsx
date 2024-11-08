@@ -28,7 +28,7 @@ function Header() {
 
     const handleSearch = () => {
         if (searchTerm.trim() !== '') {
-            navigate(`/search?query=${searchTerm}`); // Arahkan ke halaman hasil pencarian dengan query
+            navigate(`/SearchPage?query=${searchTerm}`); // Arahkan ke halaman hasil pencarian dengan query
         }
     };
 

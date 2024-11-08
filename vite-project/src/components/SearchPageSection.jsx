@@ -23,7 +23,7 @@ const SearchPageSection = () => {
         // Query Firestore untuk mencocokkan nama produk dengan query
         const q = query(
             productsCollection,
-            where('name', '>=', term), 
+            where('name', '>=', term),
             where('name', '<=', term + '\uf8ff') // Range pencarian agar bisa mencakup semua hasil yang relevan
         );
         try {
@@ -42,7 +42,7 @@ const SearchPageSection = () => {
     return (
         <section className="search-page">
             <div className="container">
-                <h1>Hasil Pencarian untuk: <span>"{searchTerm}"</span> </h1>
+                <h1>Hasil Pencarian untuk: <span>"{searchTerm}"</span></h1>
                 <div className="product-grid">
                     {loading ? (
                         <p>Loading...</p>
@@ -67,6 +67,7 @@ const SearchPageSection = () => {
                 </div>
             </div>
         </section>
+
     );
 };
 
