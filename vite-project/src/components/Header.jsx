@@ -28,7 +28,13 @@ function Header() {
 
     const handleSearch = () => {
         if (searchTerm.trim() !== '') {
-            navigate(`/SearchPage?query=${searchTerm}`); // Arahkan ke halaman hasil pencarian dengan query
+            navigate(`/SearchPage?query=${searchTerm}`);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch(); 
         }
     };
 
@@ -70,7 +76,8 @@ function Header() {
                         type="text"
                         placeholder="Cari barang bekas..."
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm state
+                        onChange={(e) => setSearchTerm(e.target.value)} 
+                        onKeyPress={handleKeyPress} 
                     />
                     <button type="button" onClick={handleSearch}>Cari</button> {/* Handle search */}
                 </div>
