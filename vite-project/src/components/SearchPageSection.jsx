@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import '../assets/styles/SearchPageSection.css';
 
-const SearchPage = () => {
+const SearchPageSection = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { search } = useLocation();
@@ -27,7 +28,7 @@ const SearchPage = () => {
     };
 
     return (
-        <div>
+        <div className="search-page">
             <h2>Hasil Pencarian untuk: "{searchTerm}"</h2>
             {loading ? (
                 <p>Loading...</p>
@@ -35,8 +36,14 @@ const SearchPage = () => {
                 <div className="products-list">
                     {products.map((product, index) => (
                         <div key={index} className="product-card">
-                            <h3>{product.name}</h3>
-                            <p>{product.description}</p>
+                            <img src={product.image} alt={product.name} className="item-image" />
+                                <div className="item-info">
+                                    <h3>{product.name}</h3>
+                                    <p>{product.description}</p>
+                                    <p>{product.condition}</p>
+                                    <p className="price">Rp {product.price}</p>
+                                    <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
+                                </div>
                         </div>
                     ))}
                 </div>
@@ -47,4 +54,4 @@ const SearchPage = () => {
     );
 };
 
-export default SearchPage;
+export default SearchPageSection;
