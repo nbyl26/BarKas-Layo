@@ -36,10 +36,16 @@ function KategoriBarangSection() {
         }
     }, [category]);
 
+    const formatCategoryName = (category) => {
+        return category
+            .replace(/([a-z])([A-Z])/g, '$1 $2') 
+            .replace(/^./, (str) => str.toUpperCase()); 
+    };
+
     return (
         <section className="kategori-barang">
             <div className="container">
-                <h1>Barang Kategori <span>{category}</span></h1>
+                <h1>Barang Kategori <span>{formatCategoryName(category)}</span></h1>
                 <div className="product-grid">
                     {products.length > 0 ? (
                         products.map(product => (

@@ -9,32 +9,32 @@ const SearchPageSection = () => {
     const [loading, setLoading] = useState(true);
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
-    const searchTerm = queryParams.get('query'); // Mendapatkan kata kunci pencarian dari URL
+    const searchTerm = queryParams.get('query'); 
 
     useEffect(() => {
         if (searchTerm) {
-            fetchProducts(searchTerm); // Panggil fungsi pencarian produk
+            fetchProducts(searchTerm); 
         }
-    }, [searchTerm]); // Ketika searchTerm berubah, pencarian dilakukan lagi
+    }, [searchTerm]); 
 
     const fetchProducts = async (term) => {
         setLoading(true);
         const productsCollection = collection(db, 'products');
-        // Query Firestore untuk mencocokkan nama produk dengan query
+      
         const q = query(
             productsCollection,
             where('name', '>=', term),
-            where('name', '<=', term + '\uf8ff') // Range pencarian agar bisa mencakup semua hasil yang relevan
+            where('name', '<=', term + '\uf8ff') 
         );
         try {
             const querySnapshot = await getDocs(q);
             const fetchedProducts = querySnapshot.docs.map(doc => ({
                 id: doc.id,
-                ...doc.data() // Menambahkan data produk beserta id-nya
+                ...doc.data() 
             }));
-            setProducts(fetchedProducts); // Menyimpan produk yang ditemukan dalam state
+            setProducts(fetchedProducts);
         } catch (error) {
-            console.error("Error fetching products:", error); // Menangani error jika ada
+            console.error("Error fetching products:", error); 
         }
         setLoading(false);
     };

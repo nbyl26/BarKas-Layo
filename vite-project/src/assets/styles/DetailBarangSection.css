@@ -124,7 +124,7 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .info {
-        margin-top: 5rem;
+        margin-top: 25rem;
         padding: 1rem;
     }
 
