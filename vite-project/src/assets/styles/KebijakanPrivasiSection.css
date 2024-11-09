@@ -1,4 +1,3 @@
-/* Kebijakan Privasi Content Styles */
 .kebijakan-privasi-content {
     padding: 2rem 0;
     margin-top: 4rem;
@@ -40,40 +39,62 @@
     color: #FFA000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .kebijakan-privasi-content {
-        padding: 1.5rem 0; /* Reduce padding for tablet screens */
+        padding: 1.8rem 0; 
+        margin-top: 7rem;
     }
 
     .kebijakan-privasi-content h1 {
-        font-size: 2.2rem; /* Adjust heading size */
+        font-size: 2.5rem; 
     }
 
     .kebijakan-privasi-content p,
     .kebijakan-privasi-content ul {
-        font-size: 1.3rem; /* Reduce text size for better readability */
+        font-size: 1.4rem;
     }
 
     .kebijakan-privasi-content h2 {
-        font-size: 1.8rem; /* Adjust h2 size */
+        font-size: 1.9rem; 
+    }
+}
+
+@media (max-width: 768px) {
+    .kebijakan-privasi-content {
+        padding: 1.5rem 0; 
+        margin-top: 23rem;
+    }
+
+    .kebijakan-privasi-content h1 {
+        font-size: 2.2rem; 
+    }
+
+    .kebijakan-privasi-content p,
+    .kebijakan-privasi-content ul {
+        font-size: 1.3rem;
+    }
+
+    .kebijakan-privasi-content h2 {
+        font-size: 1.8rem; 
     }
 }
 
 @media (max-width: 480px) {
     .kebijakan-privasi-content {
-        padding: 1rem 0; /* Further reduce padding for mobile screens */
+        padding: 1rem 0; 
+        margin-top: 23rem;
     }
 
     .kebijakan-privasi-content h1 {
-        font-size: 1.8rem; /* Adjust heading size for mobile */
+        font-size: 1.8rem;
     }
 
     .kebijakan-privasi-content p,
     .kebijakan-privasi-content ul {
-        font-size: 1.2rem; /* Further reduce text size */
+        font-size: 1.2rem;
     }
 
     .kebijakan-privasi-content h2 {
-        font-size: 1.6rem; /* Further reduce h2 size */
+        font-size: 1.6rem; 
     }
 }

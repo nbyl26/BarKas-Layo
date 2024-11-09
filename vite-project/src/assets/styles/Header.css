@@ -198,7 +198,6 @@ nav {
     background-color: #FFA000;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
     .header {
         padding: 0.8rem 0;
