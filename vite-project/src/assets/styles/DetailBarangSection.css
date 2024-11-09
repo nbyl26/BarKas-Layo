@@ -31,7 +31,7 @@
 .item-details {
     text-align: left;
     padding: 0 1rem;
-    flex: 1; /* Allow the details to take the remaining space */
+    flex: 1;
 }
 
 .item-image {

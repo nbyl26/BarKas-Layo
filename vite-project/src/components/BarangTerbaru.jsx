@@ -12,7 +12,7 @@ function BarangTerbaru() {
     const fetchProducts = async () => {
       try {
         // Mengambil koleksi 'products' dari Firestore, diurutkan berdasarkan waktu ditambahkan, dibatasi misalnya 5 item terbaru
-        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'), limit(5));
+        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'), limit(3));
         const querySnapshot = await getDocs(q);
 
         // Menyimpan data produk ke dalam state

@@ -1,3 +1,4 @@
+/* Kategori Populer Styles */
 .categories {
     padding: 3rem 0;
     margin-top: 3rem;
@@ -34,4 +35,38 @@
     width: 64px;
     height: 64px;
     margin-bottom: 0.5rem;
+}
+
+/* Set Responsiveness for Small Devices */
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Reducing size of grid items */
+        gap: 0.8rem;
+    }
+
+    .category img {
+        width: 50px; /* Reducing image size */
+        height: 50px;
+    }
+}
+
+/* Set Responsiveness for Mobile Devices */
+@media (max-width: 480px) {
+    .categories {
+        padding: 2rem 0; /* Reduce padding on small screens */
+    }
+
+    .categories h1 {
+        font-size: 1.5rem; /* Adjust heading size for small screens */
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Even smaller columns on very small devices */
+        gap: 0.5rem;
+    }
+
+    .category img {
+        width: 40px; /* Further reduce image size */
+        height: 40px;
+    }
 }

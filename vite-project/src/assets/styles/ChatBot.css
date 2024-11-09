@@ -93,7 +93,7 @@ button {
 
     .chatbot-window {
         width: 250px;
-        bottom: 60px; /* Adjusted position for smaller screens */
+        bottom: 60px; 
     }
 
     .chatbot-icon img {
@@ -102,7 +102,7 @@ button {
     }
 
     input[type="text"] {
-        width: calc(100% - 60px); /* Adjust input width */
+        width: calc(100% - 60px); 
     }
 
     button {
@@ -127,7 +127,7 @@ button {
     }
 
     input[type="text"] {
-        width: calc(100% - 50px); /* Adjust input width */
+        width: calc(100% - 50px); 
     }
 
     button {
@@ -136,6 +136,6 @@ button {
     }
 
     .chatbot-header h3 {
-        font-size: 16px; /* Reduce font size for smaller screens */
+        font-size: 16px;
     }
 }
