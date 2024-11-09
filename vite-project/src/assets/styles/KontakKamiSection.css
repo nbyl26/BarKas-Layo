@@ -1,4 +1,4 @@
-.contact{
+.contact {
     padding: 2rem 0;
     margin-top: 3rem;
 }
@@ -58,7 +58,7 @@
     border-radius: 4px;
 }
 
-.contact .input-group input{
+.contact .input-group input {
     width: 100%;
     padding: 1rem;
     font-size: 1rem;
@@ -68,7 +68,8 @@
     outline: none;
     margin-left: 1rem;
 }
-.contact .input-group textarea{
+
+.contact .input-group textarea {
     width: 100%;
     padding: 1rem;
     font-size: 1rem;
@@ -91,6 +92,95 @@
     transition: background-color 0.3s ease;
 }
 
-.contact .btn:hover{
+.contact .btn:hover {
     background-color: #e69500;
+}
+
+@media screen and (max-width: 992px) {
+    .contact{
+        margin-top: 4rem;
+    }
+    .contact .row {
+        flex-direction: column;
+    }
+
+    .contact .map {
+        flex: 1 1 100%;
+        height: 300px;
+    }
+
+    .contact form {
+        flex: 1 1 100%;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .contact{
+        margin-top: 20rem;
+    }
+    .contact h2 {
+        font-size: 2rem;
+    }
+
+    .contact .row {
+        padding: 1rem; 
+    }
+
+    .contact .map {
+        flex: 1 1 100%;
+        height: 250px; 
+    }
+
+    .contact form {
+        flex: 1 1 100%;
+    }
+
+    .contact .input-group {
+        padding-left: 0.5rem; 
+    }
+
+    .contact .input-group input,
+    .contact .input-group textarea {
+        font-size: 0.9rem; 
+    }
+
+    .contact .btn {
+        font-size: 1rem; 
+        padding: 0.8rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .contact h2 {
+        font-size: 1.6rem;
+    }
+
+    .contact .row {
+        flex-direction: column; 
+        padding: 0.5rem; 
+    }
+
+    .contact .map {
+        height: 200px; 
+        margin-bottom: 1rem; 
+    }
+
+    .contact form {
+        padding: 1rem; 
+    }
+
+    .contact .input-group {
+        padding-left: 0.5rem; 
+    }
+
+    .contact .input-group input,
+    .contact .input-group textarea {
+        font-size: 0.8rem; 
+    }
+
+    .contact .btn {
+        font-size: 1rem;
+        padding: 1rem; 
+    }
 }
