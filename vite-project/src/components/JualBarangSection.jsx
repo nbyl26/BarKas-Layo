@@ -3,7 +3,7 @@ import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import '../assets/styles/JualBarangSection.css';
 
 function JualBarangSection() {
@@ -22,6 +22,8 @@ function JualBarangSection() {
         });
         return () => unsubscribe();
     }, [navigate]);
+
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -46,7 +48,8 @@ function JualBarangSection() {
                 condition,
                 price: priceValue,
                 image: image ? image.name : null,
-                userId: user.uid
+                userId: user.uid,
+                createdAt: serverTimestamp() 
             });
 
             alert('Barang telah ditambahkan untuk dijual!');
@@ -57,6 +60,7 @@ function JualBarangSection() {
             setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
         }
     };
+
 
     useEffect(() => {
         const imageInput = document.getElementById('product-image');
