@@ -1,65 +1,59 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../assets/styles/BarangTerbaru.css'
-import { getAllUsers, loginUserByEmailAndPassword } from '../lib/networks/user'
-
-import imgLaptop from '../assets/img/laptop.png'
-import imgBicycle from '../assets/img/bicycle.png'
-import imgCupboard from '../assets/img/cupboard.png'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../assets/styles/BarangTerbaru.css';
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
 
 function BarangTerbaru() {
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
-  const login = async () => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Mengambil koleksi 'products' dari Firestore, diurutkan berdasarkan waktu ditambahkan, dibatasi misalnya 5 item terbaru
+        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'), limit(5));
+        const querySnapshot = await getDocs(q);
 
-    await loginUserByEmailAndPassword('nabilpasha230606@gmail.com', 'nW-QvXzqVdUPg97');
-  }
+        // Menyimpan data produk ke dalam state
+        const latestProducts = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(latestProducts);
+      } catch (error) {
+        console.error("Error fetching latest products:", error);
+      }
+    };
 
-  login();
-  const navigate = useNavigate()
+    fetchProducts();
+  }, []);
 
-  const handleDetailNavigation = (item) => {
-    navigate(`/DetailBarang?item=${item}`)
-  }
+  const handleDetailNavigation = (itemId) => {
+    navigate(`/DetailBarang?item=${itemId}`);
+  };
 
   return (
     <section className="featured-items">
       <div className="container">
         <h2><span>Barang</span> Terbaru</h2>
         <div className="item-grid">
-          <div className="item-card" onClick={() => handleDetailNavigation('laptop')}>
-            <img src={imgLaptop} alt="Barang 1" className="item-image" />
-            <div className="item-info">
-              <h3>Laptop Bekas</h3>
-              <p>Kondisi: Bekas</p>
-              <p>Kategori: Elektronik</p>
-              <p className="price">Rp 3.500.000</p>
-              <button className="detail-button">Detail</button>
+          {products.map(product => (
+            <div key={product.id} className="item-card" onClick={() => handleDetailNavigation(product.id)}>
+              <img src={product.image} alt={product.name} className="item-image" />
+              <div className="item-info">
+                <h3>{product.name}</h3>
+                <p>Kondisi: {product.condition}</p>
+                <p>Kategori: {product.category}</p>
+                <p className="price">Rp {product.price}</p>
+                <button className="detail-button">Detail</button>
+              </div>
             </div>
-          </div>
-          <div className="item-card" onClick={() => handleDetailNavigation('sepeda')}>
-            <img src={imgBicycle} alt="Barang 2" className="item-image" />
-            <div className="item-info">
-              <h3>Sepeda Gunung</h3>
-              <p>Kondisi: Bekas</p>
-              <p>Kategori: Kendaraan</p>
-              <p className="price">Rp 2.200.000</p>
-              <button className="detail-button">Detail</button>
-            </div>
-          </div>
-          <div className="item-card" onClick={() => handleDetailNavigation('lemari')}>
-            <img src={imgCupboard} alt="Barang 3" className="item-image" />
-            <div className="item-info">
-              <h3>Lemari Kayu Jati</h3>
-              <p>Kondisi: Bekas</p>
-              <p>Kategori: Furnitur</p>
-              <p className="price">Rp 5.200.000</p>
-              <button className="detail-button">Detail</button>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default BarangTerbaru
+export default BarangTerbaru;
