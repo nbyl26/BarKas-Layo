@@ -17,7 +17,7 @@ function KategoriPopuler() {
   return (
     <section className="categories">
       <div className="container">
-        <h1><span>Kategori</span> Populer</h1>
+        <h2><span>Kategori</span> Populer</h2>
         <div className="category-grid">
           <div className="category" onClick={() => handleNavigation('elektronik')}>
             <img src={imgElektronik} alt="Elektronik" />

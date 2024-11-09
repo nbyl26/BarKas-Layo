@@ -1,15 +1,14 @@
 /* Kategori Populer Styles */
 .categories {
     padding: 3rem 0;
-    margin-top: 3rem;
 }
 
-.categories h1 {
+.categories h2 {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.categories h1 span {
+.categories h2 span {
     color: #FFA000;
 }
 
