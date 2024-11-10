@@ -130,12 +130,12 @@
     }
 
     .item-info {
-        flex-direction: column; /* Stack the image and details */
+        flex-direction: column; 
         align-items: center;
     }
 
     .item-info img {
-        width: 80%; /* Adjust image size for smaller screens */
+        width: 80%; 
         margin-right: 0;
         margin-bottom: 1rem;
     }
