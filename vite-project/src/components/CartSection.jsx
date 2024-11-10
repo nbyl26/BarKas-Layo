@@ -30,6 +30,9 @@ const CartSection = () => {
         }
     };
 
+    // Menghitung total harga
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
     return (
         <div className="cartSection-container">
             <h2 className="cartSection-title"><span>Keranjang</span> Belanja Anda</h2>
@@ -81,6 +84,11 @@ const CartSection = () => {
                             </li>
                         ))}
                     </ul>
+                </div>
+            )}
+            {cart.length > 0 && (
+                <div className="cartSection-total">
+                    <p className="cartSection-total-text">Total Harga: Rp {totalPrice}</p>
                 </div>
             )}
             {cart.length > 0 && (
