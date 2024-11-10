@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useCart } from './context/CartContext';
-import '../assets/styles/CartSection.module.css';
+import '../assets/styles/CartSection.css';
 
 const CartSection = () => {
     const { cart, dispatch } = useCart();
@@ -22,7 +22,7 @@ const CartSection = () => {
 
     return (
         <div className="cartSection-container">
-            <h2 className="cartSection-title">Keranjang Belanja Anda</h2>
+            <h2 className="cartSection-title"><span>Keranjang</span> Belanja Anda</h2>
             <p className="cartSection-description">Nikmati pengalaman berbelanja yang mudah dan nyaman.</p>
             {cart.length === 0 ? (
                 <div className="cartSection-empty">
