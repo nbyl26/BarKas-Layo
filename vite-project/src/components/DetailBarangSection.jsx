@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebaseConfig'; // Import Firestore
-import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
+import { db } from '../firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 import { useCart } from './context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,11 @@ function DetailBarangSection() {
   const [itemDetail, setItemDetail] = useState(null);
   const { cart, dispatch } = useCart();
 
-  // Memeriksa status login pengguna
+  // Function to calculate total quantity of items in cart
+  const calculateTotalQuantity = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -21,7 +25,6 @@ function DetailBarangSection() {
     return () => unsubscribe();
   }, []);
 
-  // Ambil detail item dari Firestore berdasarkan ID dari URL
   useEffect(() => {
     const fetchItemDetails = async () => {
       const params = new URLSearchParams(window.location.search);
@@ -29,7 +32,7 @@ function DetailBarangSection() {
 
       if (itemId) {
         try {
-          const itemRef = doc(db, 'products', itemId); // Ambil dokumen berdasarkan ID
+          const itemRef = doc(db, 'products', itemId);
           const itemSnapshot = await getDoc(itemRef);
 
           if (itemSnapshot.exists()) {
@@ -86,7 +89,7 @@ function DetailBarangSection() {
             <button onClick={handleAddToCart} className="cart-icon-add">
               <FontAwesomeIcon icon={faPlus} className="icon"/>
               <p>Add </p>
-              {cart.length > 0 && <span>({cart.length})</span>}
+              <span>({calculateTotalQuantity()})</span>
             </button>
           </div>
         </>
