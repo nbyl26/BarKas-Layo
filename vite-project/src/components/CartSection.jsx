@@ -5,7 +5,6 @@ import '../assets/styles/CartSection.css';
 const CartSection = () => {
     const { cart, dispatch } = useCart();
 
-    // Ambil data dari localStorage saat komponen pertama kali dimuat
     useEffect(() => {
         const storedCart = localStorage.getItem('cart');
         if (storedCart) {
@@ -13,7 +12,6 @@ const CartSection = () => {
         }
     }, [dispatch]);
 
-    // Simpan data keranjang ke localStorage setiap kali cart berubah
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
@@ -35,6 +33,7 @@ const CartSection = () => {
                         <li key={item.id} className="cart-item">
                             <span className="item-name">{item.name}</span>
                             <span className="item-price">{item.price}</span>
+                            <span className="item-quantity">Jumlah: {item.quantity}</span>
                             <button
                                 className="remove-button"
                                 onClick={() => handleRemoveFromCart(item)}
