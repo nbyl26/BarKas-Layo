@@ -137,11 +137,9 @@ nav {
     transform: translateX(-50%) scaleX(1);
 }
 
-.auth-links .cart-icon::after, .user:hover {
+.auth-links .cart-icon:hover, .user:hover {
     color: #FFC107;
 }
-
-
 
 
 .btn-login,

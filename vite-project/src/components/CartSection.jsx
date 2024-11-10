@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCart } from './context/CartContext';
 import '../assets/styles/CartSection.css';
 
 const CartSection = () => {
     const { cart, dispatch } = useCart();
+
+    // Ambil data dari localStorage saat komponen pertama kali dimuat
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            dispatch({ type: 'SET_CART', payload: JSON.parse(storedCart) });
+        }
+    }, [dispatch]);
+
+    // Simpan data keranjang ke localStorage setiap kali cart berubah
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     const handleRemoveFromCart = (item) => {
         dispatch({ type: 'REMOVE_FROM_CART', payload: item });
