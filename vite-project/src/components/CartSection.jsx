@@ -20,6 +20,16 @@ const CartSection = () => {
         dispatch({ type: 'REMOVE_FROM_CART', payload: item });
     };
 
+    const handleIncreaseQuantity = (item) => {
+        dispatch({ type: 'INCREASE_QUANTITY', payload: item });
+    };
+
+    const handleDecreaseQuantity = (item) => {
+        if (item.quantity > 1) {
+            dispatch({ type: 'DECREASE_QUANTITY', payload: item });
+        }
+    };
+
     return (
         <div className="cartSection-container">
             <h2 className="cartSection-title"><span>Keranjang</span> Belanja Anda</h2>
@@ -47,7 +57,21 @@ const CartSection = () => {
                                     </div>
                                 </div>
                                 <span className="cartSection-item-price">Rp {item.price}</span>
-                                <span className="cartSection-item-quantity">x{item.quantity}</span>
+                                <div className="cartSection-item-quantity-container">
+                                    <button
+                                        className="cartSection-quantity-button"
+                                        onClick={() => handleDecreaseQuantity(item)}
+                                    >
+                                        -
+                                    </button>
+                                    <span className="cartSection-item-quantity">{item.quantity}</span>
+                                    <button
+                                        className="cartSection-quantity-button"
+                                        onClick={() => handleIncreaseQuantity(item)}
+                                    >
+                                        +
+                                    </button>
+                                </div>
                                 <button
                                     className="cartSection-remove-button"
                                     onClick={() => handleRemoveFromCart(item)}
