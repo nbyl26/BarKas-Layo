@@ -13,9 +13,10 @@ function DetailBarangSection() {
   const [itemDetail, setItemDetail] = useState(null);
   const { cart, dispatch } = useCart();
 
-  // Function to calculate total quantity of items in cart
-  const calculateTotalQuantity = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
+  // Function to get the quantity of the specific item in the cart
+  const getItemQuantity = () => {
+    const cartItem = cart.find(item => item.id === itemDetail?.id);
+    return cartItem ? cartItem.quantity : 0;
   };
 
   useEffect(() => {
@@ -89,7 +90,7 @@ function DetailBarangSection() {
             <button onClick={handleAddToCart} className="cart-icon-add">
               <FontAwesomeIcon icon={faPlus} className="icon"/>
               <p>Add </p>
-              <span>({calculateTotalQuantity()})</span>
+              {getItemQuantity() > 0 && <span>({getItemQuantity()})</span>}
             </button>
           </div>
         </>
