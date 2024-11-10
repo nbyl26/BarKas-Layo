@@ -7,6 +7,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading dan deskripsi keranjang */
 .cart-title {
     font-size: 24px;
     font-weight: bold;
@@ -22,6 +23,7 @@
     color: #666;
 }
 
+/* Header cart */
 .cart-header {
     display: flex;
     justify-content: space-between;
@@ -34,6 +36,7 @@
     margin-top: 20px;
 }
 
+/* List Item Cart */
 .cart-list {
     list-style-type: none;
     padding: 0;
@@ -47,6 +50,7 @@
     border-bottom: 1px solid #ddd;
 }
 
+/* Detail Item */
 .item-details {
     display: flex;
     align-items: center;
@@ -84,6 +88,7 @@
     color: #333;
 }
 
+/* Tombol Hapus */
 .remove-button {
     background-color: #ff4d4d;
     color: #fff;
@@ -118,4 +123,65 @@
 .clear-cart-button:hover,
 .checkout-button:hover {
     background-color: #45a049;
+}
+
+/* Media Query untuk Responsivitas */
+@media (max-width: 768px) {
+    .cart-header, .cart-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .item-details {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .item-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cart-title {
+        font-size: 22px;
+    }
+
+    .cart-description {
+        font-size: 14px;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .clear-cart-button, .checkout-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-header, .cart-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .item-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .item-info, .item-price, .item-quantity, .remove-button {
+        text-align: center;
+    }
+
+    .cart-title {
+        font-size: 20px;
+    }
+
+    .cart-description {
+        font-size: 13px;
+    }
 }
