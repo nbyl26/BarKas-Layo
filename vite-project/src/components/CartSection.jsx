@@ -88,7 +88,7 @@ const CartSection = () => {
             )}
             {cart.length > 0 && (
                 <div className="cartSection-total">
-                    <p className="cartSection-total-text">Total Harga: Rp {totalPrice}</p>
+                    <p className="cartSection-total-text"><span>Total Harga:</span> Rp {totalPrice}</p>
                 </div>
             )}
             {cart.length > 0 && (

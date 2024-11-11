@@ -14,7 +14,6 @@ function BarangTerbaru() {
         const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'), limit(3));
         const querySnapshot = await getDocs(q);
 
-        // Menyimpan data produk ke dalam state
         const latestProducts = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data(),
@@ -32,6 +31,12 @@ function BarangTerbaru() {
     navigate(`/DetailBarang?item=${itemId}`);
   };
 
+  const formatCategoryName = (category) => {
+    return category
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/^./, (str) => str.toUpperCase());
+  };
+
   return (
     <section className="featured-items">
       <div className="container">
@@ -43,7 +48,7 @@ function BarangTerbaru() {
               <div className="item-info">
                 <h3>{product.name}</h3>
                 <p>Kondisi: {product.condition}</p>
-                <p>Kategori: {product.category}</p>
+                <p>Kategori: {formatCategoryName(product.category)}</p>
                 <p className="price">Rp {product.price}</p>
                 <button className="detail-button">Detail</button>
               </div>

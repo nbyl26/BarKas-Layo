@@ -182,6 +182,22 @@
     background-color: #45a049;
 }
 
+.cartSection-total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.cartSection-total-text {
+    color: #333;
+}
+
+.cartSection-total-text span {
+    color: #4CAF50;
+}
+
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .cartSection-container {
