@@ -1,0 +1,26 @@
+/* ChatPages.css */
+html, body {
+    height: 100%; /* Memastikan body mengisi seluruh tinggi layar */
+    margin: 0; /* Menghapus margin default */
+  }
+  
+  .chat-pages-container {
+    display: flex;
+    flex-direction: column; /* Mengatur elemen dalam kolom */
+    min-height: 100vh; /* Memastikan konten mengisi seluruh layar */
+  }
+  
+  .main-content {
+    flex: 1; /* Membuat konten utama mengisi ruang yang tersisa */
+  }
+  
+  /* Jika perlu, styling footer lebih lanjut */
+  .footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    clear: both;
+    width: 100%;
+  }
+  

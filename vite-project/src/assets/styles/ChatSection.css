@@ -24,6 +24,7 @@ h2 {
     flex-direction: column;
     height: 80vh;
     margin-top: 8rem;
+    margin-bottom: 3rem;
 }
 
 .messages {
@@ -31,11 +32,11 @@ h2 {
     overflow-y: auto;
     padding-right: 10px;
     margin-bottom: 10px;
-    max-height: 60vh; /* Make messages area scrollable */
+    max-height: 60vh; 
 }
 
 .message {
-    background-color: #d1f7d1; /* Light green background for messages */
+    background-color: #d1f7d1; 
     color: #333;
     border-radius: 15px;
     padding: 12px;
@@ -47,13 +48,13 @@ h2 {
 }
 
 .message:nth-child(odd) {
-    align-self: flex-start; /* Align odd messages to the left */
+    align-self: flex-start; 
     background-color: #f1f1f1;
 }
 
 .message:nth-child(even) {
-    align-self: flex-end; /* Align even messages to the right */
-    background-color: #a1c4fd; /* Light blue background for user messages */
+    align-self: flex-end; 
+    background-color: #a1c4fd;
 }
 
 .chat-input {
@@ -104,7 +105,6 @@ h2 {
     margin-top: 20px;
 }
 
-/* Scrollbar styles */
 .messages::-webkit-scrollbar {
     width: 8px;
 }

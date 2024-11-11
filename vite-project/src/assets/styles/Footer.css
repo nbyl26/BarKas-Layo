@@ -1,3 +1,17 @@
+/* Menambahkan gaya pada body dan container utama */
+html, body {
+    height: 100%; /* Memastikan body mengisi seluruh tinggi layar */
+    margin: 0; /* Menghapus margin default */
+    display: flex; /* Menggunakan flexbox pada body */
+    flex-direction: column; /* Mengarahkan elemen dalam kolom */
+}
+
+/* Mengatur kontainer utama yang berisi konten */
+.main-content {
+    flex: 1; /* Membuat konten mengisi sisa ruang yang ada */
+}
+
+/* Footer */
 .footer {
     background-color: #333;
     color: white;
@@ -5,6 +19,7 @@
     text-align: center;
     clear: both;
     position: relative;
+    width: 100%; /* Memastikan footer mengisi lebar penuh */
 }
 
 .footer .socials {
