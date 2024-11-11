@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { CartProvider } from './components/context/CartContext';
-import { AuthProvider } from './components/context/AuthContext';
 
 import Beranda from './pages/Beranda'
 import Kategori from './pages/Kategori'
@@ -19,13 +18,12 @@ import Profil from './pages/AccountProfile'
 import FilterPencarian from './pages/FilterPencarianPages';
 import KategoriBarang from './pages/KategoriBarang';
 import SearchPage from './pages/SearchPage';
-import ChatPage from './pages/Chat';
+import ChatPage from './components/ChatPage';
 import ChatSection from './pages/Chat';
 
 function App() {
   return (
     <Router>
-      <AuthProvider>
         <CartProvider>
           <Routes>
             <Route path="/" element={<Beranda />} />
@@ -48,7 +46,6 @@ function App() {
             <Route path="/Chat/:chatId" element={<ChatSection />} />
           </Routes>
         </CartProvider>
-      </AuthProvider>
     </Router>
   )
 }

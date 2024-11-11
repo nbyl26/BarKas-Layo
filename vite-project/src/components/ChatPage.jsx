@@ -36,7 +36,7 @@ function ChatPage() {
             <h2>Daftar Percakapan</h2>
             <div className="chat-list">
                 {chats.map(chat => (
-                    <Link to={`/Chat/${chat.id}`} key={chat.id} className="chat-item">
+                    <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">
                         <div className="chat-info">
                             <span>{chat.users.join(' & ')}</span>
                             <p>{chat.lastMessage}</p>
