@@ -1,0 +1,95 @@
+.chat-page {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 8rem;
+}
+
+.chat-page h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.chat-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-info {
+    margin-bottom: 10px;
+}
+
+.chat-info span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #17a2b8; /* Color for users' names */
+    display: block;
+}
+
+.chat-info p {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-info p::before {
+    content: "Last Message: ";
+    font-weight: bold;
+    color: #343a40;
+}
+
+.chat-info p {
+    font-size: 0.9rem;
+    color: #495057;
+    margin-top: 5px;
+}
+
+.chat-item:last-child {
+    margin-bottom: 20px;
+}
+
+.chat-item .status-icon {
+    font-size: 16px;
+    color: #28a745;
+}
+
+.chat-item .status-icon.inactive {
+    color: #ffc107;
+}
+
+/* Adjustments for mobile responsiveness */
+@media (max-width: 768px) {
+    .chat-list {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-page h2 {
+        font-size: 1.5rem;
+    }
+}
+
