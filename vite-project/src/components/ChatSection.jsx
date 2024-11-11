@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '..'; // Untuk mengambil user yang sedang login
-import { db, auth } from './firebaseConfig';
+import { useAuth } from './context/AuthContext'; 
+import { db } from '../firebaseConfig'; 
 import { collection, addDoc, onSnapshot, query, orderBy, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 const ChatSection = () => {
-    const { currentUser } = useAuth();
+    const { currentUser } = useAuth(); // Mendapatkan user yang sedang login
     const [messageContent, setMessageContent] = useState('');
     const [messages, setMessages] = useState([]);
+
+    if (!currentUser) return <p>Loading...</p>; // Tambahkan pengecekan jika user belum login
 
     // Fungsi untuk mengirim pesan
     const sendMessage = async () => {
@@ -21,7 +23,7 @@ const ChatSection = () => {
 
         try {
             // Menambahkan pesan ke subcollection 'messages'
-            await addDoc(collection(db, 'chats', 'user1_user2', 'messages'), messageData);
+            await addDoc(collection(db, 'chats', `user_${currentUser.uid}_otherUserId`, 'messages'), messageData);
 
             // Mengupdate lastMessage dan lastMessageTimestamp di document 'user1_user2'
             await updateLastMessage(messageContent);
@@ -35,7 +37,7 @@ const ChatSection = () => {
 
     // Fungsi untuk memperbarui informasi pesan terakhir
     const updateLastMessage = async (messageContent) => {
-        const chatRef = doc(db, 'chats', 'user1_user2');
+        const chatRef = doc(db, 'chats', `user_${currentUser.uid}_otherUserId`);
         await updateDoc(chatRef, {
             lastMessage: messageContent,
             lastMessageTimestamp: serverTimestamp(),
@@ -44,7 +46,7 @@ const ChatSection = () => {
 
     // Mendengarkan perubahan pesan secara real-time
     useEffect(() => {
-        const q = query(collection(db, 'chats', 'user1_user2', 'messages'), orderBy('timestamp'));
+        const q = query(collection(db, 'chats', `user_${currentUser.uid}_otherUserId`, 'messages'), orderBy('timestamp'));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const messages = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -54,7 +56,7 @@ const ChatSection = () => {
         });
 
         return () => unsubscribe(); // Cleanup listener ketika komponen di-unmount
-    }, []);
+    }, [currentUser]);
 
     return (
         <div className="chatSection-container">

@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { CartProvider } from './components/context/CartContext';
+import { AuthProvider } from './components/context/AuthContext';
 
 import Beranda from './pages/Beranda'
 import Kategori from './pages/Kategori'
@@ -23,27 +24,29 @@ import Chat from './pages/Chat';
 function App() {
   return (
     <Router>
-      <CartProvider>
-        <Routes>
-          <Route path="/" element={<Beranda />} />
-          <Route path="/Kategori" element={<Kategori />} />
-          <Route path="/JualBarang" element={<JualBarang />} />
-          <Route path="/TentangKami" element={<TentangKami />} />
-          <Route path="/SyaratDanKetentuan" element={<SyaratDanKetentuan />} />
-          <Route path="/KebijakanPrivasi" element={<KebijakanPrivasi />} />
-          <Route path="/KontakKami" element={<KontakKami />} />
-          <Route path="/SemuaBarang" element={<SemuaBarang />} />
-          <Route path="/DetailBarang" element={<DetailBarang />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/Profil" element={<Profil />} />
-          <Route path="/Filter" element={<FilterPencarian />} />
-          <Route path="/KategoriBarang" element={<KategoriBarang />} />
-          <Route path="/SearchPage" element={<SearchPage />} />
-          <Route path="/Chat" element={<Chat />} />
-        </Routes>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <Routes>
+            <Route path="/" element={<Beranda />} />
+            <Route path="/Kategori" element={<Kategori />} />
+            <Route path="/JualBarang" element={<JualBarang />} />
+            <Route path="/TentangKami" element={<TentangKami />} />
+            <Route path="/SyaratDanKetentuan" element={<SyaratDanKetentuan />} />
+            <Route path="/KebijakanPrivasi" element={<KebijakanPrivasi />} />
+            <Route path="/KontakKami" element={<KontakKami />} />
+            <Route path="/SemuaBarang" element={<SemuaBarang />} />
+            <Route path="/DetailBarang" element={<DetailBarang />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/Profil" element={<Profil />} />
+            <Route path="/Filter" element={<FilterPencarian />} />
+            <Route path="/KategoriBarang" element={<KategoriBarang />} />
+            <Route path="/SearchPage" element={<SearchPage />} />
+            <Route path="/Chat" element={<Chat />} />
+          </Routes>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   )
 }
