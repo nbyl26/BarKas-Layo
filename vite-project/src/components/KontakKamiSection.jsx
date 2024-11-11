@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
+import { db } from '../firebaseConfig';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import '../assets/styles/KontakKamiSection.css';
 
 function KontakKamiSection() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -19,14 +23,38 @@ function KontakKamiSection() {
     }
   }, []);
 
-  const handleSendNow = (event) =>{
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if(!user){
+    if (!user) {
       alert('Silakan login terlebih dahulu untuk mengirim pesan.');
+      navigate('/Login');
       return;
     }
-    alert ('Pesan berhasil dikirim!');
-  }
+    alert('Pesan berhasil dikirim!');
+    
+    event.preventDefault();
+    const name = event.target['nama'].value;
+    const email = event.target['email'].value;
+    const nohp = event.target['nohp'].value;
+    const message = event.target['pesan'].value;
+
+    try {
+      await addDoc(collection(db, 'messages'), {
+        name,
+        email,
+        nohp,
+        message,
+        createdAt: serverTimestamp()
+      });
+
+      alert('Pesan berhasil dikirim!');
+      setErrorMessage('');
+      event.target.reset();
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      setErrorMessage('Terjadi kesalahan saat mengirim pesan: ' + error.message);
+    }
+  };
 
   return (
     <section id="contact" className="contact">
@@ -43,7 +71,7 @@ function KontakKamiSection() {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
 
-        <form id="contact-form" onSubmit={handleSendNow}>
+        <form id="contact-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <i data-feather="user"></i>
             <input type="text" name="nama" placeholder="Nama" required />

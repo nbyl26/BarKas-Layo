@@ -80,7 +80,7 @@ body {
 }
 
 .auth-button {
-  background: linear-gradient(90deg, var(--primary-green), var(--accent-orange));
+  background: linear-gradient(180deg, var(--primary-green), var(--accent-orange));
   color: #fff;
   padding: 12px;
   font-size: 1rem;
@@ -93,7 +93,7 @@ body {
 }
 
 .auth-button:hover {
-  background: linear-gradient(90deg, var(--accent-orange), var(--primary-green));
+  background: linear-gradient(180deg, var(--accent-orange), var(--primary-green));
 }
 
 .auth-footer-text {
