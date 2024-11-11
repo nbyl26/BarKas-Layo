@@ -2,7 +2,7 @@
     padding: 40px 20px;
     background-color: #f8f9fa;
     font-family: 'Roboto', sans-serif;
-    margin-top: 8rem;
+    margin-top: 15rem;
 }
 
 .chat-page h2 {
@@ -82,7 +82,6 @@
     color: #ffc107;
 }
 
-/* Adjustments for mobile responsiveness */
 @media (max-width: 768px) {
     .chat-list {
         grid-template-columns: 1fr;

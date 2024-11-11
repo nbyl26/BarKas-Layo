@@ -6,19 +6,30 @@ import '../assets/styles/ChatPage.css';
 
 function ChatPage() {
     const [chats, setChats] = useState([]);
-    
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchChats = async () => {
-            const querySnapshot = await getDocs(collection(db, "chats"));
-            const chatList = [];
-            querySnapshot.forEach((doc) => {
-                chatList.push({ id: doc.id, ...doc.data() });
-            });
-            setChats(chatList);
+            try {
+                const querySnapshot = await getDocs(collection(db, "chats"));
+                const chatList = [];
+                querySnapshot.forEach((doc) => {
+                    chatList.push({ id: doc.id, ...doc.data() });
+                });
+                setChats(chatList);
+            } catch (err) {
+                setError("Failed to load chats");
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchChats();
     }, []);
+
+    if (loading) return <div>Loading chats...</div>;
+    if (error) return <div>{error}</div>;
 
     return (
         <div className="chat-page">
