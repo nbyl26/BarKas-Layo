@@ -24,7 +24,6 @@ function JualBarangSection() {
     }, [navigate]);
 
     
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const priceValue = parseFloat(price);

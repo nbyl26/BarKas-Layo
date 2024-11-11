@@ -9,26 +9,26 @@ import Footer from "../components/Footer"
 
 function Cart() {
   const [user, setUser] = useState(null);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-            if (!currentUser) {
-                alert('Silakan login terlebih dahulu untuk mengakses halaman ini.');
-                navigate('/login'); 
-            }
-        });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (!currentUser) {
+        alert('Silakan login terlebih dahulu untuk mengakses halaman ini.');
+        navigate('/login');
+      }
+    });
 
-        return () => unsubscribe();
-    }, [navigate]);
+    return () => unsubscribe();
+  }, [navigate]);
 
   return (
     <>
-    <Header2 />
-    <CartSection />
-    <Footer />
-    
+      <Header2 />
+      <CartSection />
+      <Footer />
+
     </>
   )
 }

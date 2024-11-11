@@ -2,7 +2,8 @@
   --primary-green: #4CAF50;
   --accent-orange: #FFA000;
   --background-light: #f7f9fc;
-  --background-dark: #283044;
+  --background-dark: #94e199;
+  --background-bottom: #122313;
   --glass-bg: rgba(255, 255, 255, 0.8);
   --border-radius: 14px;
   --text-color: #333;
@@ -17,7 +18,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(120deg, var(--background-light), var(--background-dark));
+  background: linear-gradient(180deg, var(--background-light), var(--background-dark), var(--background-bottom));
 }
 
 .auth-header {
