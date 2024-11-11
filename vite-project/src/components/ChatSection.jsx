@@ -1,79 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from './context/AuthContext'; 
-import { db } from '../firebaseConfig'; 
-import { collection, addDoc, onSnapshot, query, orderBy, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
-import '../assets/styles/ChatSection.css';
+import { useParams } from 'react-router-dom';
+import { db } from '../firebaseConfig'; // Firebase setup
+import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-const ChatSection = () => {
-    const { currentUser } = useAuth(); 
-    const [messageContent, setMessageContent] = useState(''); 
-    const [messages, setMessages] = useState([]); 
+function ChatSection() {
+    const { chatId } = useParams(); // Mengambil chatId dari URL
+    const [chat, setChat] = useState(null);
+    const [message, setMessage] = useState('');
 
-    const sendMessage = async () => {
-        if (messageContent.trim() === '') return;
+    useEffect(() => {
+        // Mengambil data chat berdasarkan chatId
+        const fetchChat = async () => {
+            const docRef = doc(db, "chats", chatId);
+            const docSnap = await getDoc(docRef);
 
-        const messageData = {
-            senderId: currentUser.uid,
-            content: messageContent,
-            timestamp: serverTimestamp(),
-            isRead: false
+            if (docSnap.exists()) {
+                setChat(docSnap.data());
+            }
         };
 
-        try {
-            await addDoc(collection(db, 'chats', 'user1_user2', 'messages'), messageData);
+        fetchChat();
+    }, [chatId]);
 
-            await updateLastMessage(messageContent);
-
-            setMessageContent('');
-        } catch (error) {
-            console.error("Error sending message: ", error);
+    const handleSendMessage = async () => {
+        if (message.trim()) {
+            const docRef = doc(db, "chats", chatId);
+            await updateDoc(docRef, {
+                messages: arrayUnion({ text: message, timestamp: new Date() })
+            });
+            setMessage(''); // Reset input message
         }
     };
 
-    const updateLastMessage = async (messageContent) => {
-        const chatRef = doc(db, 'chats', 'user1_user2');
-        await updateDoc(chatRef, {
-            lastMessage: messageContent,
-            lastMessageTimestamp: serverTimestamp(),
-        });
-    };
-
-    useEffect(() => {
-        const q = query(collection(db, 'chats', 'user1_user2', 'messages'), orderBy('timestamp'));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const messages = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setMessages(messages);
-        });
-
-        return () => unsubscribe(); 
-    }, []);
+    if (!chat) return <div>Loading...</div>;
 
     return (
-        <div className="chatSection-container">
-            <h2>Chat dengan Penjual</h2>
-
-            <div className="chatSection-messages">
-                {messages.map((msg) => (
-                    <div key={msg.id} className={`chatMessage ${msg.senderId === currentUser.uid ? 'sent' : 'received'}`}>
-                        <p>{msg.content}</p>
+        <div className="chat-section">
+            <h2>Percakapan dengan {chat.users.join(' & ')}</h2>
+            <div className="messages">
+                {chat.messages?.map((msg, index) => (
+                    <div key={index} className="message">
+                        <p>{msg.text}</p>
                     </div>
                 ))}
             </div>
-
-            <div className="chatSection-input">
-                <input
-                    type="text"
-                    value={messageContent}
-                    onChange={(e) => setMessageContent(e.target.value)}
-                    placeholder="Ketik pesan..."
+            <div className="chat-input">
+                <input 
+                    type="text" 
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Kirim pesan..."
                 />
-                <button onClick={sendMessage}>Kirim</button>
+                <button onClick={handleSendMessage}>Kirim</button>
             </div>
         </div>
     );
-};
+}
 
 export default ChatSection;
