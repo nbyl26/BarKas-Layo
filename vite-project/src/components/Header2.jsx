@@ -39,14 +39,17 @@ function Header() {
                         <Link to="/Kategori">Kategori</Link>
                         <Link to="/JualBarang">Jual Barang</Link>
                         <Link to="/TentangKami">Tentang Kami</Link>
-                        
                     </div>
                     <div className="auth-links">
+                        <Link to="/Chat" className="chat-icon">
+                            <i data-feather="message-square"></i>
+                        </Link>
+
                         <Link to="/cart" className="cart-icon">
                             <i data-feather="shopping-cart"></i>
                             {cart.length > 0 && <span>({cart.length})</span>}
                         </Link>
-                        
+
                         <Link to="/Profil" className="user">
                             <i data-feather="user"></i>
                         </Link>

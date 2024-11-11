@@ -112,7 +112,7 @@ nav {
     align-items: center;
 }
 
-.auth-links .cart-icon, .user {
+.auth-links .cart-icon, .user, .chat-icon {
     position: relative;
     color: white;
     margin-right: 2rem;
@@ -120,7 +120,7 @@ nav {
     text-decoration: none;
 }
 
-.auth-links .cart-icon::after, .user::after {
+.auth-links .cart-icon::after, .user::after, .chat-icon::after {
     content: "";
     display: block;
     width: 100%;
@@ -133,11 +133,11 @@ nav {
     transition: transform 0.3s ease;
 }
 
-.auth-links .cart-icon:hover::after, .user:hover::after {
+.auth-links .cart-icon:hover::after, .user:hover::after, .chat-icon:hover::after {
     transform: translateX(-50%) scaleX(1);
 }
 
-.auth-links .cart-icon:hover, .user:hover {
+.auth-links .cart-icon:hover, .user:hover, .chat-icon:hover {
     color: #FFC107;
 }
 

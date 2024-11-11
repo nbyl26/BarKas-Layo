@@ -1,9 +1,10 @@
-/* ChatSection.css */
 .chatSection-container {
     display: flex;
     flex-direction: column;
     max-width: 600px;
     margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 5rem;
 }
 
 .chatSection-messages {
