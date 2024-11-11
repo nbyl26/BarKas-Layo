@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/Auth.css';
 import Header2 from '../components/Header2';
-import Footer from '../components/Footer';
+import Footer from '../components/FooterAuth';
 import { loginUser } from '../auth/authService';
 
 function LoginPages() {
