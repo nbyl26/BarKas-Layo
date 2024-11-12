@@ -32,6 +32,10 @@
     position: relative;
 }
 
+.about-us h2 span {
+    color: #FFA000;
+}
+
 .about-us h2::after {
     content: "";
     display: block;
