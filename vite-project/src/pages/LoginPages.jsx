@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/Auth.css';
 import Header2 from '../components/Header2';
@@ -15,14 +15,14 @@ function LoginPages() {
     e.preventDefault();
     try {
       await loginUser(email, password);
-      navigate('/'); 
+      navigate('/');
     } catch (error) {
       setErrorMessage(error.message);
     }
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-page" id="auth-page">
       <Header2 />
       <div className="auth-container">
         <div className="auth-box">

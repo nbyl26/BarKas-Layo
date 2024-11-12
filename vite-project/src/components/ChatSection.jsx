@@ -7,16 +7,14 @@ import '../assets/styles/ChatSection.css'
 function ChatSection() {
     const { chatId } = useParams();
     const [chat, setChat] = useState(null);
+    const [userNames, setUserNames] = useState({});
     const [message, setMessage] = useState('');
     const [error, setError] = useState(null);
-    const messagesEndRef = useRef(null); // Reference for scrolling to the bottom
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        console.log("Received chatId:", chatId); // Menambahkan log untuk memverifikasi chatId
-
         const fetchChat = async () => {
             if (!chatId) {
-                console.error("Invalid chatId:", chatId); // Log error jika chatId tidak valid
                 setError("Chat ID tidak valid");
                 return;
             }
@@ -26,20 +24,28 @@ function ChatSection() {
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
-                    setChat(docSnap.data());
+                    const chatData = docSnap.data();
+                    setChat(chatData);
+
+                    const userNamesData = {};
+                    for (let userId of chatData.users) {
+                        const userRef = doc(db, "users", userId);
+                        const userSnap = await getDoc(userRef);
+                        if (userSnap.exists()) {
+                            userNamesData[userId] = userSnap.data().name;
+                        }
+                    }
+                    setUserNames(userNamesData);
                 } else {
                     setError("Chat tidak ditemukan");
                 }
             } catch (err) {
-                console.error("Error fetching chat:", err);
                 setError("Gagal memuat chat");
             }
         };
 
         fetchChat();
     }, [chatId]);
-
-
 
     const handleSendMessage = async () => {
         if (message.trim()) {
@@ -49,7 +55,6 @@ function ChatSection() {
                     messages: arrayUnion({ text: message, timestamp: new Date() })
                 });
                 setMessage('');
-                // Scroll to the bottom after sending a message
                 messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
             } catch (err) {
                 setError("Failed to send message");
@@ -62,14 +67,14 @@ function ChatSection() {
 
     return (
         <div className="chat-section">
-            <h2>Percakapan dengan {chat.users.join(' & ')}</h2>
+            <h2>Percakapan antara {chat.users.map(userId => userNames[userId]).join(' & ')}</h2>
             <div className="messages">
                 {chat.messages?.map((msg, index) => (
                     <div key={index} className="message">
                         <p>{msg.text}</p>
                     </div>
                 ))}
-                <div ref={messagesEndRef} /> {/* Scroll target */}
+                <div ref={messagesEndRef} />
             </div>
             <div className="chat-input">
                 <input
