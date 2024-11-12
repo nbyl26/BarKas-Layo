@@ -33,7 +33,7 @@ function ChatPage() {
 
     return (
         <div className="chat-page">
-            <h2>Daftar Percakapan</h2>
+            <h2><span>Daftar</span> Percakapan</h2>
             <div className="chat-list">
                 {chats.map(chat => (
                     <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">

@@ -12,6 +12,10 @@
     margin-bottom: 20px;
 }
 
+.chat-page h2 span{
+    color: #FFA000;
+}
+
 .chat-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

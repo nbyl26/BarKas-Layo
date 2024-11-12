@@ -3,7 +3,7 @@ html, body {
     margin: 0; 
   }
   
-  .chat-pages-container {
+  .cart-pages-container {
     display: flex;
     flex-direction: column; 
     min-height: 100vh; 
