@@ -51,11 +51,11 @@ function ChatPage() {
             <div className="chat-list">
                 {chats.map(chat => (
                     <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">
-                        <div className="chat-info">
-                            <span>{chat.userNames.join(' & ')}</span> 
-                            <p>{chat.lastMessage}</p>
-                        </div>
-                    </Link>
+                    <div className="chat-info">
+                      <span>{chat.userNames.join(' & ')}</span>
+                      <p>{chat.lastMessage}</p>
+                    </div>
+                  </Link>
                 ))}
             </div>
         </div>
