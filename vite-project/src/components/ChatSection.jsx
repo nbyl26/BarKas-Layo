@@ -77,7 +77,7 @@ function ChatSection() {
                         <p>{msg.text}</p>
                     </div>
                 ))}
-                <div ref={messagesEndRef} /> {/* Scroll target */}
+                <div ref={messagesEndRef} />
             </div>
             <div className="chat-input">
                 <input
