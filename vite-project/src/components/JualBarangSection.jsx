@@ -23,7 +23,7 @@ function JualBarangSection() {
         return () => unsubscribe();
     }, [navigate]);
 
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const priceValue = parseFloat(price);
@@ -39,26 +39,33 @@ function JualBarangSection() {
         const condition = event.target['condition'].value;
         const image = event.target['product-image'].files[0];
 
-        try {
-            await addDoc(collection(db, 'products'), {
-                name,
-                description,
-                category,
-                condition,
-                price: priceValue,
-                image: image ? image.name : null,
-                userId: user.uid,
-                createdAt: serverTimestamp() 
-            });
+        if (image) {
+            // Jika gambar ada, simpan nama file gambar ke Firestore
+            try {
+                await addDoc(collection(db, 'products'), {
+                    name,
+                    description,
+                    category,
+                    condition,
+                    price: priceValue,
+                    image: image.name,  // Menyimpan nama gambar saja
+                    userId: user.uid,   // Menyimpan userId sebagai penjual
+                    createdAt: serverTimestamp()
+                });
 
-            alert('Barang telah ditambahkan untuk dijual!');
-            setErrorMessage('');
-            event.target.reset();
-        } catch (error) {
-            console.error('Error adding document: ', error);
-            setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
+                alert('Barang telah ditambahkan untuk dijual!');
+                setErrorMessage('');
+                event.target.reset();
+            } catch (error) {
+                console.error('Error adding document: ', error);
+                setErrorMessage('Terjadi kesalahan saat menambahkan barang: ' + error.message);
+            }
+        } else {
+            setErrorMessage('Gambar barang harus diunggah.');
         }
     };
+
+
 
 
     useEffect(() => {

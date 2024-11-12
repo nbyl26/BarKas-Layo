@@ -27,7 +27,7 @@ function ChatSection() {
                     const chatData = docSnap.data();
                     const userIds = chatData.users;
                     
-                    // Ambil nama pengguna berdasarkan ID
+                    // Ambil nama pengguna berdasarkan userId
                     const userNames = await Promise.all(userIds.map(async (userId) => {
                         const userDoc = await getDoc(doc(db, "users", userId));
                         return userDoc.exists() ? userDoc.data().name : userId;
@@ -51,7 +51,11 @@ function ChatSection() {
             try {
                 const docRef = doc(db, "chats", chatId);
                 await updateDoc(docRef, {
-                    messages: arrayUnion({ text: message, timestamp: new Date() })
+                    messages: arrayUnion({ 
+                        userId: "current_user_id", // Gantilah dengan ID pengguna yang sedang login
+                        text: message, 
+                        timestamp: new Date() 
+                    })
                 });
                 setMessage('');
                 messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -69,7 +73,7 @@ function ChatSection() {
             <h2>Percakapan dengan {usersNames.join(' & ')}</h2> {/* Tampilkan nama pengguna */}
             <div className="messages">
                 {chat.messages?.map((msg, index) => (
-                    <div key={index} className="message">
+                    <div key={index} className={`message ${msg.userId === "current_user_id" ? 'sent' : 'received'}`}>
                         <p>{msg.text}</p>
                     </div>
                 ))}

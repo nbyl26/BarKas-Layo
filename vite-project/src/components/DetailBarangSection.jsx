@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';  // Pastikan setDoc diimpor
 import { useCart } from './context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -51,12 +51,38 @@ function DetailBarangSection() {
     fetchItemDetails();
   }, []);
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (!user) {
       alert('Silakan login terlebih dahulu untuk membeli barang.');
       return;
     }
-    alert('Pembelian berhasil!');
+
+    const sellerId = itemDetail.sellerId;  // Pastikan sellerId ada di detail produk
+    const chatId = `chat_${user.uid}_${sellerId}`;
+
+    // Periksa apakah percakapan sudah ada
+    const chatRef = doc(db, 'chats', chatId);
+    const chatSnapshot = await getDoc(chatRef);
+
+    if (chatSnapshot.exists()) {
+      // Jika percakapan sudah ada, arahkan pengguna ke halaman chat
+      window.location.href = `/chat/${chatId}`;
+    } else {
+      // Jika percakapan belum ada, buat percakapan baru
+      await setDoc(chatRef, {
+        users: [user.uid, sellerId],
+        lastMessage: "Halo, saya tertarik dengan barang ini",
+        lastMessageTimestamp: new Date(),
+        messages: [{
+          userId: user.uid,
+          text: "Halo, saya tertarik dengan barang ini",
+          timestamp: new Date(),
+        }]
+      });
+
+      // Arahkan pengguna ke halaman chat
+      window.location.href = `/chat/${chatId}`;
+    }
   };
 
   const handleAddToCart = () => {

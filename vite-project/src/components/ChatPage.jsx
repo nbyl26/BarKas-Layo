@@ -10,7 +10,6 @@ function ChatPage() {
     const [error, setError] = useState(null);
     const [users, setUsers] = useState({}); // Store user names
 
-    // Fetch the list of chats and user names
     useEffect(() => {
         const fetchChats = async () => {
             try {
@@ -21,11 +20,13 @@ function ChatPage() {
                 for (const docSnap of querySnapshot.docs) {
                     const chatData = docSnap.data();
                     const userIds = chatData.users;
+                    
+                    // Ambil nama pengguna berdasarkan userId
                     const userNames = await Promise.all(userIds.map(async (userId) => {
                         const userDoc = await getDoc(doc(db, "users", userId));
                         return userDoc.exists() ? userDoc.data().name : userId;
                     }));
-                    
+
                     chatList.push({ id: docSnap.id, ...chatData, userNames });
                 }
 
