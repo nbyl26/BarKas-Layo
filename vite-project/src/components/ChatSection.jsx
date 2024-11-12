@@ -9,8 +9,8 @@ function ChatSection() {
     const [chat, setChat] = useState(null);
     const [message, setMessage] = useState('');
     const [error, setError] = useState(null);
-    const messagesEndRef = useRef(null); 
-    const [usersNames, setUsersNames] = useState([]); 
+    const messagesEndRef = useRef(null);
+    const [usersNames, setUsersNames] = useState([]);
 
     useEffect(() => {
         const fetchChat = async () => {
@@ -18,28 +18,28 @@ function ChatSection() {
                 setError("Chat ID tidak valid");
                 return;
             }
-    
+
             try {
                 const docRef = doc(db, "chats", chatId);
                 const docSnap = await getDoc(docRef);
-    
+
                 if (docSnap.exists()) {
                     const chatData = docSnap.data();
                     const userIds = chatData?.users;
-    
+
                     if (!Array.isArray(userIds)) {
                         setError("Data pengguna tidak valid");
                         return;
                     }
-    
+
                     const userNames = await Promise.all(
                         userIds.map(async (userId) => {
                             const userDoc = await getDoc(doc(db, "users", userId));
                             return userDoc.exists() ? userDoc.data().name : userId;
                         })
                     );
-    
-                    setUsersNames(userNames); 
+
+                    setUsersNames(userNames);
                     setChat(chatData);
                 } else {
                     setError("Chat tidak ditemukan");
@@ -48,29 +48,30 @@ function ChatSection() {
                 setError("Gagal memuat chat");
             }
         };
-    
+
         fetchChat();
     }, [chatId]);
-    
+
 
     const handleSendMessage = async () => {
         if (message.trim()) {
             try {
                 const docRef = doc(db, "chats", chatId);
                 await updateDoc(docRef, {
-                    messages: arrayUnion({ 
+                    messages: arrayUnion({
                         userId: "current_user_id", 
-                        text: message, 
-                        timestamp: new Date() 
-                    })
+                        text: message,
+                        timestamp: new Date(),
+                    }),
                 });
                 setMessage('');
                 messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
             } catch (err) {
-                setError("Failed to send message");
+                setError("Gagal mengirim pesan");
             }
         }
     };
+
 
     if (error) return <div>{error}</div>;
     if (!chat) return <div>Loading chat...</div>;
