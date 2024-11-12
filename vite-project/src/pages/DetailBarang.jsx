@@ -1,16 +1,19 @@
 import Header from "../components/Header"
 import DetailBarangSection from "../components/DetailBarangSection"
 import Footer from "../components/Footer"
+import '../assets/styles/DetailBarang.css'
 
 
 function DetailBarang() {
-  
+
   return (
-    <>
-    <Header />
-    <DetailBarangSection/>
-    <Footer />
-    </>
+    <div className="detail-pages-container">
+      <div className="main-content">
+        <Header />
+        <DetailBarangSection />
+      </div>
+      <Footer />
+    </div>
   )
 }
 
