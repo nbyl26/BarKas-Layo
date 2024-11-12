@@ -9,8 +9,8 @@ function ChatSection() {
     const [chat, setChat] = useState(null);
     const [message, setMessage] = useState('');
     const [error, setError] = useState(null);
-    const messagesEndRef = useRef(null); // Reference for scrolling to the bottom
-    const [usersNames, setUsersNames] = useState([]); // Store user names for chat
+    const messagesEndRef = useRef(null); 
+    const [usersNames, setUsersNames] = useState([]); 
 
     useEffect(() => {
         const fetchChat = async () => {
@@ -18,22 +18,28 @@ function ChatSection() {
                 setError("Chat ID tidak valid");
                 return;
             }
-
+    
             try {
                 const docRef = doc(db, "chats", chatId);
                 const docSnap = await getDoc(docRef);
-
+    
                 if (docSnap.exists()) {
                     const chatData = docSnap.data();
-                    const userIds = chatData.users;
-                    
-                    // Ambil nama pengguna berdasarkan userId
-                    const userNames = await Promise.all(userIds.map(async (userId) => {
-                        const userDoc = await getDoc(doc(db, "users", userId));
-                        return userDoc.exists() ? userDoc.data().name : userId;
-                    }));
-
-                    setUsersNames(userNames); // Set user names
+                    const userIds = chatData?.users;
+    
+                    if (!Array.isArray(userIds)) {
+                        setError("Data pengguna tidak valid");
+                        return;
+                    }
+    
+                    const userNames = await Promise.all(
+                        userIds.map(async (userId) => {
+                            const userDoc = await getDoc(doc(db, "users", userId));
+                            return userDoc.exists() ? userDoc.data().name : userId;
+                        })
+                    );
+    
+                    setUsersNames(userNames); 
                     setChat(chatData);
                 } else {
                     setError("Chat tidak ditemukan");
@@ -42,9 +48,10 @@ function ChatSection() {
                 setError("Gagal memuat chat");
             }
         };
-
+    
         fetchChat();
     }, [chatId]);
+    
 
     const handleSendMessage = async () => {
         if (message.trim()) {
@@ -52,7 +59,7 @@ function ChatSection() {
                 const docRef = doc(db, "chats", chatId);
                 await updateDoc(docRef, {
                     messages: arrayUnion({ 
-                        userId: "current_user_id", // Gantilah dengan ID pengguna yang sedang login
+                        userId: "current_user_id", 
                         text: message, 
                         timestamp: new Date() 
                     })
@@ -70,7 +77,7 @@ function ChatSection() {
 
     return (
         <div className="chat-section">
-            <h2>Percakapan dengan {usersNames.join(' & ')}</h2> {/* Tampilkan nama pengguna */}
+            <h2>Percakapan dengan {usersNames.join(' & ')}</h2>
             <div className="messages">
                 {chat.messages?.map((msg, index) => (
                     <div key={index} className={`message ${msg.userId === "current_user_id" ? 'sent' : 'received'}`}>
