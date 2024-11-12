@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import '../assets/styles/ChatPage.css';
 
 function ChatPage() {
     const [chats, setChats] = useState([]);
-    const [userNames, setUserNames] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -15,24 +14,16 @@ function ChatPage() {
             try {
                 const querySnapshot = await getDocs(collection(db, "chats"));
                 const chatList = [];
-                const userNamesData = {};
-
-                for (const docSnap of querySnapshot.docs) {
-                    const chatData = { id: docSnap.id, ...docSnap.data() };
-                    chatList.push(chatData);
-
-                    for (const userId of chatData.users) {
-                        if (!userNamesData[userId]) {
-                            const userDoc = await getDoc(doc(db, "users", userId));
-                            if (userDoc.exists()) {
-                                userNamesData[userId] = userDoc.data().name;
-                            }
-                        }
-                    }
-                }
+                querySnapshot.forEach((doc) => {
+                    chatList.push({ id: doc.id, ...doc.data() });
+                });
+                
+                // Log hasil data yang didapatkan dari Firestore
+                console.log("Chats data:", chatList);
+                
                 setChats(chatList);
-                setUserNames(userNamesData);
             } catch (err) {
+                console.error("Error loading chats:", err); // Detail error
                 setError("Failed to load chats");
             } finally {
                 setLoading(false);
@@ -52,7 +43,7 @@ function ChatPage() {
                 {chats.map(chat => (
                     <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">
                         <div className="chat-info">
-                            <span>{chat.users.map(userId => userNames[userId]).join(' & ')}</span>
+                            <span>{chat.users.join(' & ')}</span>
                             <p>{chat.lastMessage}</p>
                         </div>
                     </Link>
