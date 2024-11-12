@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
-import '../assets/styles/ChatSection.css'
+import '../assets/styles/ChatSection.css';
 
 function ChatSection() {
     const { chatId } = useParams();
     const [chat, setChat] = useState(null);
-    const [userNames, setUserNames] = useState({});
     const [message, setMessage] = useState('');
     const [error, setError] = useState(null);
-    const messagesEndRef = useRef(null);
+    const messagesEndRef = useRef(null); // Reference for scrolling to the bottom
+    const [usersNames, setUsersNames] = useState([]); // Store user names for chat
 
     useEffect(() => {
         const fetchChat = async () => {
@@ -25,17 +25,16 @@ function ChatSection() {
 
                 if (docSnap.exists()) {
                     const chatData = docSnap.data();
-                    setChat(chatData);
+                    const userIds = chatData.users;
+                    
+                    // Ambil nama pengguna berdasarkan ID
+                    const userNames = await Promise.all(userIds.map(async (userId) => {
+                        const userDoc = await getDoc(doc(db, "users", userId));
+                        return userDoc.exists() ? userDoc.data().name : userId;
+                    }));
 
-                    const userNamesData = {};
-                    for (let userId of chatData.users) {
-                        const userRef = doc(db, "users", userId);
-                        const userSnap = await getDoc(userRef);
-                        if (userSnap.exists()) {
-                            userNamesData[userId] = userSnap.data().name;
-                        }
-                    }
-                    setUserNames(userNamesData);
+                    setUsersNames(userNames); // Set user names
+                    setChat(chatData);
                 } else {
                     setError("Chat tidak ditemukan");
                 }
@@ -67,14 +66,14 @@ function ChatSection() {
 
     return (
         <div className="chat-section">
-            <h2>Percakapan antara {chat.users.map(userId => userNames[userId]).join(' & ')}</h2>
+            <h2>Percakapan dengan {usersNames.join(' & ')}</h2> {/* Tampilkan nama pengguna */}
             <div className="messages">
                 {chat.messages?.map((msg, index) => (
                     <div key={index} className="message">
                         <p>{msg.text}</p>
                     </div>
                 ))}
-                <div ref={messagesEndRef} />
+                <div ref={messagesEndRef} /> {/* Scroll target */}
             </div>
             <div className="chat-input">
                 <input
