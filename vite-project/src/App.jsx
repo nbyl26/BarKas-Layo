@@ -16,7 +16,7 @@ import Login from './pages/LoginPages'
 import Cart from './pages/Cart'
 import Profil from './pages/AccountProfile'
 import FilterPencarian from './pages/FilterPencarianPages';
-import KategoriBarang from './pages/KategoriBarang';
+import KategoriBarangPages from './pages/KategoriBarangPages';
 import SearchPage from './pages/SearchPage';
 import ChatPages from './pages/ChatPages';
 import ChatSection from './pages/Chat';
@@ -40,7 +40,7 @@ function App() {
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Profil" element={<Profil />} />
             <Route path="/Filter" element={<FilterPencarian />} />
-            <Route path="/KategoriBarang" element={<KategoriBarang />} />
+            <Route path="/KategoriBarang" element={<KategoriBarangPages />} />
             <Route path="/SearchPage" element={<SearchPage />} />
             <Route path="/Chat" element={<ChatPages />} />
             <Route path="/Chat/:chatId" element={<ChatSection />} />
