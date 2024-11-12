@@ -52,7 +52,7 @@ function ChatPage() {
                 {chats.map(chat => (
                     <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">
                         <div className="chat-info">
-                            <span>{chat.userNames.join(' & ')}</span> {/* Tampilkan nama pengguna */}
+                            <span>{chat.userNames.join(' & ')}</span> 
                             <p>{chat.lastMessage}</p>
                         </div>
                     </Link>
