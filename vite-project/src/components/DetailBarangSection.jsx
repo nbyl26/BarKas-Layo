@@ -12,6 +12,7 @@ function DetailBarangSection() {
   const [user, setUser] = useState(null);
   const [itemDetail, setItemDetail] = useState(null);
   const { cart, dispatch } = useCart();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getItemQuantity = () => {
     const cartItem = cart.find(item => item.id === itemDetail?.id);
@@ -27,6 +28,8 @@ function DetailBarangSection() {
 
   useEffect(() => {
     const fetchItemDetails = async () => {
+      setIsLoading(true);
+
       const params = new URLSearchParams(window.location.search);
       const itemId = params.get('item');
 
@@ -44,6 +47,8 @@ function DetailBarangSection() {
         } catch (error) {
           console.error("Error fetching item details:", error);
           setItemDetail({ error: "Terjadi kesalahan saat memuat detail barang." });
+        } finally {
+          setIsLoading(false);
         }
       }
     };
@@ -91,6 +96,10 @@ function DetailBarangSection() {
       alert('Terjadi kesalahan saat memulai chat. Silakan coba lagi.');
     }
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   const handleAddToCart = () => {
     if (itemDetail && user) {
