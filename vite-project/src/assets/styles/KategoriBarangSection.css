@@ -4,13 +4,13 @@
     margin-top: 9rem;
 }
 
-.kategori-barang h1 {
+.kategori-barang h2 {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-.kategori-barang h1 span {
+.kategori-barang h2 span {
     color: #FFA000;
 }
 

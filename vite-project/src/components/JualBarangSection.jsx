@@ -40,7 +40,6 @@ function JualBarangSection() {
         const image = event.target['product-image'].files[0];
 
         if (image) {
-            // Jika gambar ada, simpan nama file gambar ke Firestore
             try {
                 await addDoc(collection(db, 'products'), {
                     name,
@@ -48,7 +47,7 @@ function JualBarangSection() {
                     category,
                     condition,
                     price: priceValue,
-                    image: image.name,  // Menyimpan nama gambar saja
+                    image: image.name,  // Menyimpan nama gambar
                     userId: user.uid,   // Menyimpan userId sebagai penjual
                     createdAt: serverTimestamp()
                 });

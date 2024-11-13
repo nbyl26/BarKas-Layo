@@ -8,7 +8,7 @@ function ChatPage() {
     const [chats, setChats] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [users, setUsers] = useState({}); // Store user names
+    const [users, setUsers] = useState({});
 
     useEffect(() => {
         const fetchChats = async () => {

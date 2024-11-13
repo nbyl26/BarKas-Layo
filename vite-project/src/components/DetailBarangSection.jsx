@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebaseConfig';
-import { doc, getDoc, setDoc } from 'firebase/firestore';  // Pastikan setDoc diimpor
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useCart } from './context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,6 @@ function DetailBarangSection() {
   const [itemDetail, setItemDetail] = useState(null);
   const { cart, dispatch } = useCart();
 
-  // Function to get the quantity of the specific item in the cart
   const getItemQuantity = () => {
     const cartItem = cart.find(item => item.id === itemDetail?.id);
     return cartItem ? cartItem.quantity : 0;
@@ -44,6 +43,7 @@ function DetailBarangSection() {
           }
         } catch (error) {
           console.error("Error fetching item details:", error);
+          setItemDetail({ error: "Terjadi kesalahan saat memuat detail barang." });
         }
       }
     };
@@ -57,31 +57,38 @@ function DetailBarangSection() {
       return;
     }
 
-    const sellerId = itemDetail.sellerId;  // Pastikan sellerId ada di detail produk
+    if (!itemDetail || !itemDetail.sellerId) {
+      console.error('Seller ID is missing or item details are not loaded.');
+      alert('Detail barang tidak lengkap. Silakan coba lagi.');
+      return;
+    }
+
+    const sellerId = itemDetail.sellerId;
     const chatId = `chat_${user.uid}_${sellerId}`;
 
-    // Periksa apakah percakapan sudah ada
-    const chatRef = doc(db, 'chats', chatId);
-    const chatSnapshot = await getDoc(chatRef);
+    try {
+      const chatRef = doc(db, 'chats', chatId);
+      const chatSnapshot = await getDoc(chatRef);
 
-    if (chatSnapshot.exists()) {
-      // Jika percakapan sudah ada, arahkan pengguna ke halaman chat
-      window.location.href = `/chat/${chatId}`;
-    } else {
-      // Jika percakapan belum ada, buat percakapan baru
-      await setDoc(chatRef, {
-        users: [user.uid, sellerId],
-        lastMessage: "Halo, saya tertarik dengan barang ini",
-        lastMessageTimestamp: new Date(),
-        messages: [{
-          userId: user.uid,
-          text: "Halo, saya tertarik dengan barang ini",
-          timestamp: new Date(),
-        }]
-      });
+      if (chatSnapshot.exists()) {
+        window.location.href = `/Chat/${chatId}`;
+      } else {
+        await setDoc(chatRef, {
+          users: [user.uid, sellerId],
+          lastMessage: "Halo, saya tertarik dengan barang ini",
+          lastMessageTimestamp: new Date(),
+          messages: [{
+            userId: user.uid,
+            text: "Halo, saya tertarik dengan barang ini",
+            timestamp: new Date(),
+          }]
+        });
 
-      // Arahkan pengguna ke halaman chat
-      window.location.href = `/chat/${chatId}`;
+        window.location.href = `/Chat/${chatId}`;
+      }
+    } catch (error) {
+      console.error('Error creating chat:', error);
+      alert('Terjadi kesalahan saat memulai chat. Silakan coba lagi.');
     }
   };
 
@@ -114,7 +121,7 @@ function DetailBarangSection() {
           <div className="button-container">
             <a href="#" onClick={handleBuyNow} className="btn-buy">Beli Sekarang</a>
             <button onClick={handleAddToCart} className="cart-icon-add">
-              <FontAwesomeIcon icon={faPlus} className="icon"/>
+              <FontAwesomeIcon icon={faPlus} className="icon" />
               <p>Add </p>
               {getItemQuantity() > 0 && <span>({getItemQuantity()})</span>}
             </button>

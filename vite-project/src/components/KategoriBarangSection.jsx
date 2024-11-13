@@ -45,7 +45,7 @@ function KategoriBarangSection() {
     return (
         <section className="kategori-barang">
             <div className="container">
-                <h1>Barang Kategori <span>{formatCategoryName(category)}</span></h1>
+                <h2>Barang Kategori <span>{formatCategoryName(category)}</span></h2>
                 <div className="product-grid">
                     {products.length > 0 ? (
                         products.map(product => (
