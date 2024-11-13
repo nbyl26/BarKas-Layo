@@ -1,111 +1,99 @@
-import React, { useEffect } from 'react';
-import { useCart } from './context/CartContext';
-import '../assets/styles/CartSection.css';
+import React, { useEffect, useState } from 'react';
+import { db } from '../firebaseConfig';
+import { collection, doc, getDoc, getDocs, query, where, addDoc, orderBy, onSnapshot } from 'firebase/firestore';
+import { useParams } from 'react-router-dom';
+import '../assets/styles/ChatSection.css';
+import { auth } from '../firebaseConfig';
 
-const CartSection = () => {
-    const { cart, dispatch } = useCart();
+function ChatSection() {
+  const { chatId } = useParams();
+  const [chatMessages, setChatMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [userNames, setUserNames] = useState({});
+  const [currentUserId, setCurrentUserId] = useState(null);
 
-    useEffect(() => {
-        const storedCart = localStorage.getItem('cart');
-        if (storedCart) {
-            dispatch({ type: 'SET_CART', payload: JSON.parse(storedCart) });
-        }
-    }, [dispatch]);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setCurrentUserId(currentUser.uid);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
+  useEffect(() => {
+    const fetchChatData = async () => {
+      const chatRef = doc(db, 'chats', chatId);
+      const chatSnapshot = await getDoc(chatRef);
 
-    const handleRemoveFromCart = (item) => {
-        dispatch({ type: 'REMOVE_FROM_CART', payload: item });
+      if (chatSnapshot.exists()) {
+        const chatData = chatSnapshot.data();
+        setChatMessages(chatData.messages);
+
+        const users = chatData.users;
+        const userNamesData = {};
+
+        await Promise.all(
+          users.map(async (userId) => {
+            const userDoc = await getDoc(doc(db, 'users', userId));
+            userNamesData[userId] = userDoc.data().name;
+          })
+        );
+
+        setUserNames(userNamesData);
+      }
     };
 
-    const handleIncreaseQuantity = (item) => {
-        dispatch({ type: 'INCREASE_QUANTITY', payload: item });
+    const unsubscribeChat = onSnapshot(doc(db, 'chats', chatId), (snapshot) => {
+      if (snapshot.exists()) {
+        const chatData = snapshot.data();
+        setChatMessages(chatData.messages);
+      }
+    });
+
+    fetchChatData();
+    return () => unsubscribeChat();
+  }, [chatId]);
+
+  const handleSendMessage = async () => {
+    if (!newMessage.trim()) return;
+
+    const chatRef = doc(db, 'chats', chatId);
+    const messageData = {
+      userId: currentUserId,
+      text: newMessage,
+      timestamp: new Date(),
     };
 
-    const handleDecreaseQuantity = (item) => {
-        if (item.quantity > 1) {
-            dispatch({ type: 'DECREASE_QUANTITY', payload: item });
-        }
-    };
+    await updateDoc(chatRef, {
+      messages: arrayUnion(messageData),
+      lastMessage: newMessage,
+      lastMessageTimestamp: new Date(),
+    });
 
-    // Menghitung total harga
-    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    setNewMessage('');
+  };
 
-    return (
-        <div className="cartSection-container">
-            <h2 className="cartSection-title"><span>Keranjang</span> Belanja Anda</h2>
-            <p className="cartSection-description">Nikmati pengalaman berbelanja yang mudah dan nyaman.</p>
-            {cart.length === 0 ? (
-                <div className="cartSection-empty">
-                    <p>Keranjang Anda kosong.</p>
-                </div>
-            ) : (
-                <div className="cartSection-items">
-                    <div className="cartSection-header">
-                        <span className="cartSection-header-item">Produk</span>
-                        <span className="cartSection-header-price">Harga</span>
-                        <span className="cartSection-header-quantity">Jumlah</span>
-                        <span className="cartSection-header-actions">Aksi</span>
-                    </div>
-                    <ul className="cartSection-list">
-                        {cart.map(item => (
-                            <li key={item.id} className="cartSection-item">
-                                <div className="cartSection-item-details">
-                                    <img src={item.image} alt={item.name} className="cartSection-item-image" />
-                                    <div className="cartSection-item-info">
-                                        <h4 className="cartSection-item-name">{item.name}</h4>
-                                        <p className="cartSection-item-description">{item.description}</p>
-                                    </div>
-                                </div>
-                                <span className="cartSection-item-price">Rp {item.price}</span>
-                                <div className="cartSection-item-quantity-container">
-                                    <button
-                                        className="cartSection-quantity-button"
-                                        onClick={() => handleDecreaseQuantity(item)}
-                                    >
-                                        -
-                                    </button>
-                                    <span className="cartSection-item-quantity">{item.quantity}</span>
-                                    <button
-                                        className="cartSection-quantity-button"
-                                        onClick={() => handleIncreaseQuantity(item)}
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                                <button
-                                    className="cartSection-remove-button"
-                                    onClick={() => handleRemoveFromCart(item)}
-                                >
-                                    Hapus
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-            {cart.length > 0 && (
-                <div className="cartSection-total">
-                    <p className="cartSection-total-text"><span>Total Harga:</span> Rp {totalPrice}</p>
-                </div>
-            )}
-            {cart.length > 0 && (
-                <div className="cartSection-actions">
-                    <button
-                        className="cartSection-clear-cart-button"
-                        onClick={() => dispatch({ type: 'CLEAR_CART' })}
-                    >
-                        Kosongkan Keranjang
-                    </button>
-                    <button className="cartSection-checkout-button">
-                        Checkout
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-};
+  return (
+    <div className="chat-section">
+      <div className="chat-messages">
+        {chatMessages.map((message, index) => (
+          <div key={index} className={`message ${message.userId === currentUserId ? 'sent' : 'received'}`}>
+            <strong>{userNames[message.userId] || 'User'}:</strong> {message.text}
+          </div>
+        ))}
+      </div>
+      <div className="chat-input">
+        <input
+          type="text"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          placeholder="Ketik pesan..."
+        />
+        <button onClick={handleSendMessage}>Kirim</button>
+      </div>
+    </div>
+  );
+}
 
-export default CartSection;
+export default ChatSection;

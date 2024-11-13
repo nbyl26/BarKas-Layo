@@ -47,7 +47,7 @@
     padding: 0.5rem;
 }
 
-.submit-button {
+.btn-submit {
     display: block;
     width: 100%;
     background-color: #4CAF50;
@@ -59,7 +59,7 @@
     cursor: pointer;
 }
 
-.submit-button:hover {
+.btn-submit:hover {
     background-color: #45a049;
 }
 
