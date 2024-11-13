@@ -97,9 +97,7 @@ function DetailBarangSection() {
     }
   };
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+
 
   const handleAddToCart = () => {
     if (itemDetail && user) {
@@ -110,6 +108,10 @@ function DetailBarangSection() {
   };
 
   if (!itemDetail) {
+    return <p>Loading...</p>;
+  }
+
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
