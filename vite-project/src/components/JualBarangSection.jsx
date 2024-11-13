@@ -23,7 +23,6 @@ function JualBarangSection() {
         return () => unsubscribe();
     }, [navigate]);
 
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const priceValue = parseFloat(price);
@@ -47,8 +46,8 @@ function JualBarangSection() {
                     category,
                     condition,
                     price: priceValue,
-                    image: image.name,  // Menyimpan nama gambar
-                    userId: user.uid,   // Menyimpan userId sebagai penjual
+                    image: image.name,
+                    userId: user.uid,
                     createdAt: serverTimestamp()
                 });
 
@@ -63,9 +62,6 @@ function JualBarangSection() {
             setErrorMessage('Gambar barang harus diunggah.');
         }
     };
-
-
-
 
     useEffect(() => {
         const imageInput = document.getElementById('product-image');
@@ -94,7 +90,6 @@ function JualBarangSection() {
             }
         };
     }, []);
-
 
     return (
         <section className="sell-form-section">
@@ -131,12 +126,12 @@ function JualBarangSection() {
                         <label htmlFor="condition">Kondisi</label>
                         <select id="condition" name="condition" required>
                             <option value="new">Baru</option>
-                            <option value="second">Bekas</option>
+                            <option value="used">Bekas</option>
                         </select>
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="price">Harga (Rp)</label>
+                        <label htmlFor="price">Harga</label>
                         <input
                             type="number"
                             id="price"
@@ -146,15 +141,17 @@ function JualBarangSection() {
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                         />
-                        {errorMessage && <span className="error-message">{errorMessage}</span>}
+                        {errorMessage && <p className="error">{errorMessage}</p>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="product-image">Unggah Gambar</label>
-                        <input type="file" id="product-image" name="product-image" accept="image/*" required />
+                        <label htmlFor="product-image">Gambar Barang</label>
+                        <input type="file" id="product-image" name="product-image" required />
                     </div>
 
-                    <button type="submit" className="submit-button">Jual Barang</button>
+                    <div className="form-group">
+                        <button type="submit" className="btn-submit">Jual Barang</button>
+                    </div>
                 </form>
             </div>
         </section>
