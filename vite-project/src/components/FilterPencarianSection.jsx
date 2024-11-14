@@ -27,12 +27,12 @@ function FilterPencarianSection() {
 
       try {
         const querySnapshot = await getDocs(q);
-        console.log('Query Snapshot:', querySnapshot); // Debugging query snapshot
+        console.log('Query Snapshot:', querySnapshot); 
 
         const filteredProducts = querySnapshot.docs.map(doc => doc.data());
-        console.log('Filtered Products:', filteredProducts); // Debugging filtered products
+        console.log('Filtered Products:', filteredProducts);  products
 
-        setProducts(filteredProducts); // Menyimpan produk yang sudah difilter
+        setProducts(filteredProducts); 
       } catch (error) {
         console.error('Error fetching filtered products:', error);
       }
