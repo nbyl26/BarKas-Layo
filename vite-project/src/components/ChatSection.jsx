@@ -12,46 +12,6 @@ function ChatSection() {
     const messagesEndRef = useRef(null); 
     const [usersNames, setUsersNames] = useState([]); 
 
-    // useEffect(() => {
-    //     const fetchChat = async () => {
-    //         if (!chatId) {
-    //             setError("Chat ID tidak valid");
-    //             return;
-    //         }
-    
-    //         try {
-    //             const docRef = doc(db, "chats", chatId);
-    //             const docSnap = await getDoc(docRef);
-    
-    //             if (docSnap.exists()) {
-    //                 const chatData = docSnap.data();
-    //                 const userIds = chatData?.users;
-    
-    //                 if (!Array.isArray(userIds)) {
-    //                     setError("Data pengguna tidak valid");
-    //                     return;
-    //                 }
-    
-    //                 const userNames = await Promise.all(
-    //                     userIds.map(async (userId) => {
-    //                         const userDoc = await getDoc(doc(db, "users", userId));
-    //                         return userDoc.exists() ? userDoc.data().name : userId;
-    //                     })
-    //                 );
-    
-    //                 setUsersNames(userNames); 
-    //                 setChat(chatData);
-    //             } else {
-    //                 setError("Chat tidak ditemukan");
-    //             }
-    //         } catch (err) {
-    //             setError("Gagal memuat chat");
-    //         }
-    //     };
-    
-    //     fetchChat();
-    // }, [chatId]);
-
     useEffect(() => {
         if (!chatId) {
             setError("Chat ID tidak valid");

@@ -97,8 +97,6 @@ function DetailBarangSection() {
     }
   };
 
-
-
   const handleAddToCart = () => {
     if (itemDetail && user) {
       dispatch({ type: 'ADD_TO_CART', payload: itemDetail });
