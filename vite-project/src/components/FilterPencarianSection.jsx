@@ -38,7 +38,7 @@ function FilterPencarianSection() {
       }
     };
 
-    fetchFilteredProducts(); // Menjalankan fungsi pengambilan produk
+    fetchFilteredProducts();
   }, [kategori, minPrice, maxPrice, kondisi]); 
 
   return (
