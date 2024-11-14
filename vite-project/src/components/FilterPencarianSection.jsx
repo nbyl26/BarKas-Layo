@@ -45,7 +45,7 @@ function FilterPencarianSection() {
     <section className="filtered-products">
       <div className="container">
         <h1><span>Produk yang</span> Terfilter</h1>
-        <div className="products-list">
+        <div className="products-listt">
           {products.length > 0 ? (
             products.map((product, index) => (
               <div key={index} className="product-item">

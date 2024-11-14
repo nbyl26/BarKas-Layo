@@ -24,7 +24,7 @@
     margin-bottom: 2rem;
 }
 
-.products-list {
+.products-listt {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
@@ -99,7 +99,7 @@
         font-size: 1.75rem;
     }
 
-    .products-list {
+    .products-listt {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 
@@ -109,7 +109,7 @@
 }
 
 @media (max-width: 480px) {
-    .products-list {
+    .products-listt {
         grid-template-columns: 1fr;
     }
 
