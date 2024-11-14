@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import '../assets/styles/FilterPencarianSection.css';
@@ -29,8 +29,8 @@ function FilterPencarianSection() {
         const querySnapshot = await getDocs(q);
         console.log('Query Snapshot:', querySnapshot); 
 
-        const filteredProducts = querySnapshot.docs.map(doc => doc.data());
-        console.log('Filtered Products:', filteredProducts);  products
+        const filteredProducts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        console.log('Filtered Products:', filteredProducts); 
 
         setProducts(filteredProducts); 
       } catch (error) {
@@ -55,10 +55,9 @@ function FilterPencarianSection() {
                   <p>{product.description}</p>
                   <p>{product.condition}</p>
                   <p className="price">{product.price}</p>
-                  <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
+                  <Link to={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</Link>
                 </div>
               </div>
-
             ))
           ) : (
             <p>Produk tidak ditemukan dengan filter yang dipilih.</p>
