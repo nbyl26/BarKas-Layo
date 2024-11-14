@@ -1,14 +1,17 @@
 import Header2 from "../components/Header2"
 import Footer from "../components/Footer"
 import JualBarangSection from "../components/JualBarangSection"
+import '../assets/styles/JualBarang.css'
 
 function JualBarang() {
   return (
-    <>
-    <Header2 />
-    <JualBarangSection />
-    <Footer />
-    </>
+    <div className="sell-pages-container">
+      <div className="main-content">
+        <Header2 />
+        <JualBarangSection />
+      </div>
+      <Footer />
+    </div>
   )
 }
 

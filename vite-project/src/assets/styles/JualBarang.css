@@ -1,0 +1,24 @@
+html, body {
+    height: 100%; 
+    margin: 0; 
+  }
+  
+  .sell-pages-container {
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh; 
+  }
+  
+  .main-content {
+    flex: 1; 
+  }
+  
+  .footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    clear: both;
+    width: 100%;
+  }
+  

@@ -26,7 +26,6 @@ function FilterPencarianSection() {
       }
 
       try {
-        // Mengambil data produk yang sesuai dengan query
         const querySnapshot = await getDocs(q);
         console.log('Query Snapshot:', querySnapshot); // Debugging query snapshot
 
@@ -40,31 +39,31 @@ function FilterPencarianSection() {
     };
 
     fetchFilteredProducts(); // Menjalankan fungsi pengambilan produk
-  }, [kategori, minPrice, maxPrice, kondisi]); // Menyinkronkan filter jika ada perubahan
+  }, [kategori, minPrice, maxPrice, kondisi]); 
 
   return (
     <section className="filtered-products">
-        <div className="container">
-      <h1><span>Produk yang</span> Terfilter</h1>
-      <div className="products-list">
-        {products.length > 0 ? (
-          products.map((product, index) => (
-            <div key={index} className="product-item">
-              <img src={product.image} alt={product.name} className="item-image" />
-              <div className="item-info">
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <p>{product.condition}</p>
-              <p className="price">{product.price}</p>
-              <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
+      <div className="container">
+        <h1><span>Produk yang</span> Terfilter</h1>
+        <div className="products-list">
+          {products.length > 0 ? (
+            products.map((product, index) => (
+              <div key={index} className="product-item">
+                <img src={product.image} alt={product.name} className="item-image" />
+                <div className="item-info">
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                  <p>{product.condition}</p>
+                  <p className="price">{product.price}</p>
+                  <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
+                </div>
               </div>
-            </div>
-            
-          ))
-        ) : (
-          <p>Produk tidak ditemukan dengan filter yang dipilih.</p>
-        )}
-      </div>
+
+            ))
+          ) : (
+            <p>Produk tidak ditemukan dengan filter yang dipilih.</p>
+          )}
+        </div>
       </div>
     </section>
   );
