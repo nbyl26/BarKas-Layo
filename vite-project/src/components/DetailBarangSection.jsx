@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import '../assets/styles/DetailBarangSection.css';
+import '../assets/styles/DetailBarang/DetailBarangSection.css';
 
 function DetailBarangSection() {
   const [user, setUser] = useState(null);
