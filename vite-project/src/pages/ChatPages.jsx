@@ -2,7 +2,7 @@ import React from 'react';
 import Header2 from '../components/Header2';
 import ChatPage from '../components/ChatPage';
 import Footer from '../components/Footer';
-import '../assets/styles/ChatPages.css'; 
+import '../assets/styles/Chat/ChatPages.css'; 
 
 function ChatPages() {
   return (

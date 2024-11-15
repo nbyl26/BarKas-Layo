@@ -2,7 +2,7 @@ import React from 'react'
 import Header2 from '../components/Header2'
 import ChatSection from '../components/chatSection'
 import Footer from '../components/Footer'
-import '../assets/styles/Chat.css'
+import '../assets/styles/Chat/Chat.css'
 
 function Chat() {
   return (

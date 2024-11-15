@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import '../assets/styles/ChatPage.css';
+import '../assets/styles/Chat/ChatPage.css';
 
 function ChatPage() {
     const [chats, setChats] = useState([]);
