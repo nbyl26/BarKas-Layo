@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Header2 from "../components/Header2"
 import CartSection from "../components/CartSection"
 import Footer from "../components/Footer"
-import '../assets/styles/Cart.css'
+import '../assets/styles/Cart/Cart.css'
 
 function Cart() {
   const [user, setUser] = useState(null);
