@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import '../assets/styles/JualBarangSection.css';
+import '../assets/styles/JualBarang/JualBarangSection.css';
 
 function JualBarangSection() {
     const [user, setUser] = useState(null);
