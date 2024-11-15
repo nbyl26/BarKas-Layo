@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Auth.css';
+import '../assets/styles/Auth/Auth.css';
 import Header2 from '../components/Header2';
 import Footer from '../components/FooterAuth';
 import { loginUser } from '../auth/authService';
