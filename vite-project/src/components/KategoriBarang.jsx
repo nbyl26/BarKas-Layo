@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/KategoriBarang.css';
+import '../assets/styles/Category/KategoriBarang.css';
 
 import imgElektronik from '../assets/img/elektronik.png';
 import imgFurnitur from '../assets/img/furniture.png';

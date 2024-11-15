@@ -1,7 +1,7 @@
 import Header from "../components/Header"
 import KategoriBarangSection from "../components/KategoriBarangSection"
 import Footer from "../components/Footer"
-import '../assets/styles/KategoriBarangPages.css'
+import '../assets/styles/Category/KategoriBarangPages.css'
 
 
 function KategoriBarangPages() {

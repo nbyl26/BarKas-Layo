@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; 
-import '../assets/styles/KategoriBarangSection.css';
+import '../assets/styles/Category/KategoriBarangSection.css';
 
 function KategoriBarangSection() {
     const [products, setProducts] = useState([]);
