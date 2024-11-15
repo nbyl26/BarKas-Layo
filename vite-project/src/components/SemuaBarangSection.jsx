@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebaseConfig'; // Import Firestore configuration
-import { collection, getDocs } from 'firebase/firestore'; // Import Firestore methods
-import '../assets/styles/SemuaBarangSection.css';
+import { db } from '../firebaseConfig'; 
+import { collection, getDocs } from 'firebase/firestore';
+import '../assets/styles/SemuaBarang/SemuaBarangSection.css';
 
 function SemuaBarangSection() {
   const [products, setProducts] = useState([]);
