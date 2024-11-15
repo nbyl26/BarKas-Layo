@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import '../assets/styles/hero.css'
+import '../assets/styles/Beranda/Hero.css'
 
 function Hero() {
   return (

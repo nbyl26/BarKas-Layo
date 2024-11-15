@@ -5,7 +5,7 @@ import Hero from "../components/Hero"
 import KategoriPopuler from "../components/KategoriPopuler"
 import BarangTerbaru from "../components/BarangTerbaru"
 import ChatBot from "../components/ChatBot"
-import '../assets/styles/Beranda.css'
+import '../assets/styles/Beranda/Beranda.css'
 
 function Beranda() {
   return (

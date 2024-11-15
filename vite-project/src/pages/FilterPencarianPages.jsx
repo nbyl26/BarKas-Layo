@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import FilterPencarianSection from '../components/FilterPencarianSection';
 import Footer from '../components/Footer';
-import '../assets/styles/FilterPencarianPages.css';
+import '../assets/styles/Beranda/FilterPencarian/FilterPencarianPages.css';
 
 function FilterPencarianPages() {
   return (
