@@ -2,7 +2,7 @@ import React from 'react';
 import AccountProfileSection from '../components/AccountProfileSection';
 import Header2 from '../components/Header2';
 import Footer from '../components/Footer';
-import '../assets/styles/AccountProfile.css';
+import '../assets/styles/AccountProfile/AccountProfile.css';
 
 function AccountProfile() {
     return (

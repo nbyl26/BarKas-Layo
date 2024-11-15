@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { auth, db} from '../firebaseConfig';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/AccountProfileSection.css';
+import '../assets/styles/AccountProfile/AccountProfileSection.css';
 
 function AccountProfileSection() {
     const [userData, setUserData] = useState(null);

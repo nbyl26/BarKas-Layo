@@ -62,13 +62,13 @@ function DetailBarangSection() {
       return;
     }
 
-    if (!itemDetail || !itemDetail.sellerId) {
+    if (!itemDetail || !itemDetail.userId) {
       console.error('Seller ID is missing or item details are not loaded.');
       alert('Detail barang tidak lengkap. Silakan coba lagi.');
       return;
     }
 
-    const sellerId = itemDetail.sellerId;
+    const sellerId = itemDetail.userId;
     const chatId = `chat_${user.uid}_${sellerId}`;
 
     try {

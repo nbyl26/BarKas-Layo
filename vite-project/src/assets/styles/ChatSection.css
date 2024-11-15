@@ -12,7 +12,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Chat section */
 .chat-section {
     max-width: 600px;
     margin: 0 auto;
@@ -25,6 +24,10 @@ h2 {
     height: 80vh;
     margin-top: 8rem;
     margin-bottom: 3rem;
+}
+
+.chat-section h2 span {
+    color: #FFA000;
 }
 
 .messages {
@@ -122,7 +125,6 @@ h2 {
     background: #f1f1f1;
 }
 
-/* Loading message */
 .chat-section .loading {
     text-align: center;
     font-size: 18px;

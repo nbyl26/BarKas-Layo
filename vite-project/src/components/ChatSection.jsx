@@ -46,7 +46,6 @@ function ChatSection() {
             setError("Gagal memuat chat");
         });
     
-        // Cleanup subscription on unmount
         return () => unsubscribe();
     }, [chatId]);
     
@@ -63,7 +62,7 @@ function ChatSection() {
                     }),
                 });
                 setMessage('');
-                messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+                // messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
             } catch (err) {
                 setError("Gagal mengirim pesan");
             }
@@ -76,7 +75,7 @@ function ChatSection() {
 
     return (
         <div className="chat-section">
-            <h2>Percakapan dengan {usersNames.join(' & ')}</h2>
+            <h2>Percakapan dengan <span>{usersNames.join(' & ')}</span></h2>
             <div className="messages">
                 {chat.messages?.map((msg, index) => (
                     <div key={index} className={`message ${msg.userId === "current_user_id" ? 'sent' : 'received'}`}>
