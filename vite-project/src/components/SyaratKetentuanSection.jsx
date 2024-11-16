@@ -1,4 +1,4 @@
-import '../assets/styles/SyaratKetentuanSection.css'
+import '../assets/styles/SyaratKetentuan/SyaratKetentuanSection.css'
 
 function SyaratKetentuanSection() {
   return (
