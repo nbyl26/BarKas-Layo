@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Beranda/FilterPencarian/FilterPencarian.css';
+import '../../assets/styles/Beranda/FilterPencarian/FilterPencarian.css';
 
 function FilterPencarian() {
   const [kategori, setKategori] = useState('');

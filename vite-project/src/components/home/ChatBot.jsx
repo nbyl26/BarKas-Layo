@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { MessageCircle } from 'react-feather';
-import '../assets/styles/ChatBot/ChatBot.css';
+import '../../assets/styles/ChatBot/ChatBot.css';
 
 function ChatBot() {
   const [isChatVisible, setChatVisible] = useState(false);

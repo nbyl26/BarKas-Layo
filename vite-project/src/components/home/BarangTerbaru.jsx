@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Beranda/BarangTerbaru.css';
+import '../../assets/styles/Beranda/BarangTerbaru.css';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
+import { db } from '../../firebaseConfig';
 
 function BarangTerbaru() {
   const [products, setProducts] = useState([]);

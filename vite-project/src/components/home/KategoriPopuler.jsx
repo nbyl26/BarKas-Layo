@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Beranda/KategoriPopuler.css';
+import '../../assets/styles/Beranda/KategoriPopuler.css';
 
-import imgElektronik from '../assets/img/elektronik.png'
-import imgFurnitur from '../assets/img/furniture.png'
-import imgPakaian from '../assets/img/pakaian.png'
-import imgAlatTulis from '../assets/img/stationery.png'
+import imgElektronik from '../../assets/img/elektronik.png'
+import imgFurnitur from '../../assets/img/furniture.png'
+import imgPakaian from '../../assets/img/pakaian.png'
+import imgAlatTulis from '../../assets/img/stationery.png'
 
 
 function KategoriPopuler() {

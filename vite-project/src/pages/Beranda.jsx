@@ -1,10 +1,10 @@
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import FilterPencarian from "../components/FilterPencarian"
-import Hero from "../components/Hero"
-import KategoriPopuler from "../components/KategoriPopuler"
-import BarangTerbaru from "../components/BarangTerbaru"
-import ChatBot from "../components/ChatBot"
+import FilterPencarian from "../components/home/FilterPencarian"
+import Hero from "../components/home/Hero"
+import KategoriPopuler from "../components/home/KategoriPopuler"
+import BarangTerbaru from "../components/home/BarangTerbaru"
+import ChatBot from "../components/home/ChatBot"
 import '../assets/styles/Beranda/Beranda.css'
 
 function Beranda() {

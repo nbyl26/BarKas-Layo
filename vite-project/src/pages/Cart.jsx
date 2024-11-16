@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import Header2 from "../components/Header2"
-import CartSection from "../components/ChatSection"
+import CartSection from "../components/cart/CartSection"
 import Footer from "../components/Footer"
 import '../assets/styles/Cart/Cart.css'
 
