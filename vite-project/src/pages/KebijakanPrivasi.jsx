@@ -1,6 +1,6 @@
 import Header2 from "../components/header/Header2"
 import Footer from "../components/footer/Footer"
-import KebijakanPrivasiSection from "../components/KebijakanPrivasiSection"
+import KebijakanPrivasiSection from "../components/pages/KebijakanPrivasiSection"
 import '../assets/styles/PrivacyPolicy/KebijakanPrivasi.css'
 
 function KebijakanPrivasi() {

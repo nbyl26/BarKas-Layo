@@ -1,4 +1,4 @@
-import '../assets/styles/TentangKami/TentangKamiSection.css';
+import '../../assets/styles/TentangKami/TentangKamiSection.css';
 
 function TentangKamiSection() {
   return (

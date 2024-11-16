@@ -1,6 +1,6 @@
 import Header2 from "../components/header/Header2"
 import Footer from "../components/footer/Footer"
-import KontakKamiSection from "../components/KontakKamiSection"
+import KontakKamiSection from "../components/pages/KontakKamiSection"
 
 function KontakKami() {
   return (

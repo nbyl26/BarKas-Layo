@@ -1,6 +1,6 @@
 import Header2 from "../components/header/Header2"
 import Footer from "../components/footer/Footer"
-import SyaratKetentuanSection from "../components/SyaratKetentuanSection"
+import SyaratKetentuanSection from "../components/pages/SyaratKetentuanSection"
 
 function SyaratDanKetentuan() {
   return (

@@ -1,4 +1,4 @@
-import '../assets/styles/PrivacyPolicy/KebijakanPrivasiSection.css'
+import '../../assets/styles/PrivacyPolicy/KebijakanPrivasiSection.css'
 
 function KebijakanPrivasiSection() {
   return (
