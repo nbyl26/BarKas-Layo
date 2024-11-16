@@ -38,7 +38,7 @@ function Register() {
           <div className="auth-box">
             <h2 className="auth-title">Register</h2>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <form  className="auth-form" onSubmit={handleRegister}>
+            <form className="auth-form" onSubmit={handleRegister}>
               <input
                 type="text"
                 placeholder="Nama Lengkap"
@@ -74,8 +74,8 @@ function Register() {
               <button type="submit" className="auth-button">Daftar</button>
             </form>
             <p className="auth-footer-text">
-            Already have an account? <a href="/Login" className="auth-link">Login</a>
-          </p>
+              Already have an account? <a href="/Login" className="auth-link">Login</a>
+            </p>
           </div>
         </div>
         <Footer />

@@ -68,7 +68,7 @@
     background-color: #f0f0f0;
 }
 
-input[type="text"] {
+input .chat-bot-input {
     width: calc(100% - 80px);
     padding: 10px;
     border: 1px solid #ccc;

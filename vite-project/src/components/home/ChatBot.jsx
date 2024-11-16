@@ -85,6 +85,7 @@ function ChatBot() {
             placeholder="Tanya kami..."
             onKeyPress={handleKeyPress}
             style={{ width: 'calc(100% - 40px)', padding: '10px', border: 'none', borderTop: '1px solid #ddd', borderRadius: '0 0 8px 8px' }}
+            className="chat-bot-input"
           />
           <button onClick={sendMessage} style={{ backgroundColor: '#76c7c0', border: 'none', color: 'white', padding: '10px', borderRadius: '0 0 8px 0' }}>Kirim</button>
         </div>
