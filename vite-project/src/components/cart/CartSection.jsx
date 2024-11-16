@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useCart } from './cart/CartContext';
-import '../assets/styles/Cart/CartSection.css';
+import { useCart } from '../cart/CartContext';
+import '../../assets/styles/Cart/CartSection.css';
 
 const CartSection = () => {
     const { cart, dispatch } = useCart();

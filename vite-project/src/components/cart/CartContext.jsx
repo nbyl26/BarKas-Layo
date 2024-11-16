@@ -22,7 +22,7 @@ const cartReducer = (state, action) => {
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
-        .filter(item => item.quantity > 0); // Ensure no items with 0 quantity remain
+        .filter(item => item.quantity > 0);
     case 'INCREASE_QUANTITY':
       return state.map(item =>
         item.id === action.payload.id
