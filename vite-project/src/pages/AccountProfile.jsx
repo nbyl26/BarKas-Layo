@@ -1,7 +1,7 @@
 import React from 'react';
 import AccountProfileSection from '../components/AccountProfileSection';
 import Header2 from '../components/header/Header2';
-import Footer from '../components/Footer';
+import Footer from '../components/footer/Footer';
 import '../assets/styles/AccountProfile/AccountProfile.css';
 
 function AccountProfile() {

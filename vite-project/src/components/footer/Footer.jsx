@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import feather from 'feather-icons'
-import '../assets/styles/Footer/Footer.css'
+import '../../assets/styles/Footer/Footer.css'
 
 function Footer() {
   useEffect(() => {

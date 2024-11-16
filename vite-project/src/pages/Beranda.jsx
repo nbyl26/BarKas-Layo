@@ -1,5 +1,5 @@
 import Header from "../components/header/Header"
-import Footer from "../components/Footer"
+import Footer from "../components/footer/Footer"
 import FilterPencarian from "../components/home/FilterPencarian"
 import Hero from "../components/home/Hero"
 import KategoriPopuler from "../components/home/KategoriPopuler"

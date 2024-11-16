@@ -1,7 +1,7 @@
 import React from 'react'
 import Header2 from '../components/header/Header2'
 import ChatSection from '../components/chatSection'
-import Footer from '../components/Footer'
+import Footer from '../components/footer/Footer'
 import '../assets/styles/Chat/Chat.css'
 
 function Chat() {

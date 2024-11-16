@@ -1,5 +1,5 @@
 import Header2 from "../components/header/Header2"
-import Footer from "../components/Footer"
+import Footer from "../components/footer/Footer"
 import TentangKamiSection from "../components/TentangKamiSection"
 
 function TentangKami() {

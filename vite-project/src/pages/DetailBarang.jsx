@@ -1,6 +1,6 @@
 import Header from "../components/header/Header"
 import DetailBarangSection from "../components/DetailBarangSection"
-import Footer from "../components/Footer"
+import Footer from "../components/footer/Footer"
 import '../assets/styles/DetailBarang/DetailBarang.css'
 
 
