@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db } from '../firebaseConfig';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import '../assets/styles/KontakKamiSection.css';
+import '../assets/styles/KontakKami/KontakKamiSection.css';
 
 function KontakKamiSection() {
   const [user, setUser] = useState(null);
