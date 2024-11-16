@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { MessageCircle } from 'react-feather';
+import '../assets/styles/ChatBot/ChatBot.css';
 
 function ChatBot() {
   const [isChatVisible, setChatVisible] = useState(false);
@@ -15,9 +16,8 @@ function ChatBot() {
 
     if (userMessage) {
       setMessages((prevMessages) => [...prevMessages, { text: userMessage, sender: 'user' }]);
-      inputRef.current.value = ''; // Clear the input field
+      inputRef.current.value = ''; 
 
-      // Simulate a bot response
       setTimeout(() => {
         const botResponse = getBotResponse(userMessage);
         setMessages((prevMessages) => [...prevMessages, { text: botResponse, sender: 'bot' }]);
@@ -28,7 +28,6 @@ function ChatBot() {
   const sendTemplateMessage = (message) => {
     setMessages((prevMessages) => [...prevMessages, { text: message, sender: 'user' }]);
 
-    // Simulate a bot response
     setTimeout(() => {
       const botResponse = getBotResponse(message);
       setMessages((prevMessages) => [...prevMessages, { text: botResponse, sender: 'bot' }]);

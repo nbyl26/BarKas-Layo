@@ -15,7 +15,7 @@
 }
 
 .chatbot-window {
-    display: none; /* Mulai dalam keadaan tersembunyi */
+    display: none;
     width: 300px;
     background-color: white;
     border: 1px solid #ccc;
