@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import '../assets/styles/SearchPageSection.css';
+import '../assets/styles/SearchPages/SearchPageSection.css';
 
 const SearchPageSection = () => {
     const [products, setProducts] = useState([]);
