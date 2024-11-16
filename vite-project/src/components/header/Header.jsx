@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { auth } from '../firebaseConfig';
+import { auth } from '../../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import '../assets/styles/Header/Header.css';
-import { useCart } from './cart/CartContext';
+import '../../assets/styles/Header/Header.css';
+import { useCart } from '../cart/CartContext';
 
 function Header() {
     const [user, setUser] = useState(null);

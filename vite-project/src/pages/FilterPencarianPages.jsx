@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import FilterPencarianSection from '../components/FilterPencarianSection';
 import Footer from '../components/Footer';
 import '../assets/styles/Beranda/FilterPencarian/FilterPencarianPages.css';

@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountProfileSection from '../components/AccountProfileSection';
-import Header2 from '../components/Header2';
+import Header2 from '../components/header/Header2';
 import Footer from '../components/Footer';
 import '../assets/styles/AccountProfile/AccountProfile.css';
 

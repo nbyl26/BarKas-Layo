@@ -1,4 +1,4 @@
-import Header from "../components/Header"
+import Header from "../components/header/Header"
 import SearchPageSection from "../components/SearchPageSection"
 import Footer from "../components/Footer"
 

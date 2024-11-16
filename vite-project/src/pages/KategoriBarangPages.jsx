@@ -1,4 +1,4 @@
-import Header from "../components/Header"
+import Header from "../components/header/Header"
 import KategoriBarangSection from "../components/KategoriBarangSection"
 import Footer from "../components/Footer"
 import '../assets/styles/Category/KategoriBarangPages.css'

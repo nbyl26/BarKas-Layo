@@ -1,4 +1,4 @@
-import Header from "../components/Header"
+import Header from "../components/header/Header"
 import DetailBarangSection from "../components/DetailBarangSection"
 import Footer from "../components/Footer"
 import '../assets/styles/DetailBarang/DetailBarang.css'

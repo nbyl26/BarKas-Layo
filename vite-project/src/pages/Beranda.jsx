@@ -1,4 +1,4 @@
-import Header from "../components/Header"
+import Header from "../components/header/Header"
 import Footer from "../components/Footer"
 import FilterPencarian from "../components/home/FilterPencarian"
 import Hero from "../components/home/Hero"
