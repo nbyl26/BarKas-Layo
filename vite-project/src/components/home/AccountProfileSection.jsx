@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db} from '../firebaseConfig';
+import { auth, db} from '../../firebaseConfig';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/AccountProfile/AccountProfileSection.css';
+import '../../assets/styles/AccountProfile/AccountProfileSection.css';
 
 function AccountProfileSection() {
     const [userData, setUserData] = useState(null);
@@ -23,6 +23,7 @@ function AccountProfileSection() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (!user) {
+                alert('Silakan login terlebih dahulu untuk mengakses halaman ini.');
                 navigate('/login');
                 return;
             }
