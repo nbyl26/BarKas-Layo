@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../assets/styles/Header/Header.css';
-import { useCart } from './context/CartContext';
+import { useCart } from './cart/CartContext';
 
 function Header() {
     const [user, setUser] = useState(null);

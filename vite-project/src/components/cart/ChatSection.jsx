@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { db } from '../firebaseConfig';
+import { db } from '../../firebaseConfig';
 import { doc, getDoc, updateDoc, arrayUnion, onSnapshot } from 'firebase/firestore';
-import '../assets/styles/Chat/ChatSection.css';
+import '../../assets/styles/Chat/ChatSection.css';
 
 function ChatSection() {
     const { chatId } = useParams();

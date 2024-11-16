@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { CartProvider } from './components/context/CartContext';
+import { CartProvider } from './components/cart/CartContext';
 
 import Beranda from './pages/Beranda'
 import Kategori from './pages/Kategori'
