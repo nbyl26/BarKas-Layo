@@ -4,12 +4,13 @@ import Footer from "../../components/footer/Footer"
 
 function SearchPage() {
   return (
-    <>
-    <Header />
-    <SearchPageSection />
-    <Footer />
-    
-    </>
+    <div className="search-pages-container">
+      <div className="main-content">
+        <Header />
+        <SearchPageSection />
+      </div>
+      <Footer />
+    </div>
   )
 }
 
