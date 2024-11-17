@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Auth/Auth.css';
-import Header2 from '../components/header/Header2';
-import Footer from '../components/auth/FooterAuth';
-import { loginUser } from '../auth/authService';
+import '../../assets/styles/Auth/Auth.css';
+import Header2 from '../../components/header/Header2';
+import Footer from '../../components/auth/FooterAuth';
+import { loginUser } from '../../auth/authService';
 
 function LoginPages() {
   const [email, setEmail] = useState('');

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Auth/Auth.css';
-import Header2 from '../components/header/Header2';
-import Footer from '../components/auth/FooterAuth';
-import { registerUser } from '../auth/authService';
+import '../../assets/styles/Auth/Auth.css';
+import Header2 from '../../components/header/Header2';
+import Footer from '../../components/auth/FooterAuth';
+import { registerUser } from '../../auth/authService';
 
 function Register() {
   const [email, setEmail] = useState('');

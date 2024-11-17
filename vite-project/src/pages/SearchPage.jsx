@@ -1,5 +1,5 @@
 import Header from "../components/header/Header"
-import SearchPageSection from "../components/SearchPageSection"
+import SearchPageSection from "../components/search/SearchPageSection"
 import Footer from "../components/footer/Footer"
 
 function SearchPage() {
