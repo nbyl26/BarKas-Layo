@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebaseConfig'; 
+import { db } from '../../firebaseConfig'; 
 import { collection, getDocs } from 'firebase/firestore';
-import '../assets/styles/SemuaBarang/SemuaBarangSection.css';
+import '../../assets/styles/SemuaBarang/SemuaBarangSection.css';
 
 function SemuaBarangSection() {
   const [products, setProducts] = useState([]);

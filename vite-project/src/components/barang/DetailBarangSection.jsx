@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebaseConfig';
+import { db } from '../../firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { useCart } from '../components/cart/CartContext';
+import { useCart } from '../cart/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { auth } from '../firebaseConfig';
+import { auth } from '../../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import '../assets/styles/DetailBarang/DetailBarangSection.css';
+import '../../assets/styles/DetailBarang/DetailBarangSection.css';
 
 function DetailBarangSection() {
   const [user, setUser] = useState(null);
