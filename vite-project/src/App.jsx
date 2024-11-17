@@ -15,9 +15,9 @@ import Register from './pages/auth/Register'
 import Login from './pages/auth/LoginPages'
 import Cart from './pages/cart/Cart'
 import Profil from './pages/profile/AccountProfile'
-import FilterPencarian from './pages/FilterPencarianPages';
+import FilterPencarian from './pages/filter/FilterPencarianPages';
 import KategoriBarangPages from './pages/KategoriBarangPages';
-import SearchPage from './pages/SearchPage';
+import SearchPage from './pages/filter/SearchPage';
 import ChatPages from './pages/chat/ChatPages';
 import ChatSection from './pages/chat/Chat';
 
