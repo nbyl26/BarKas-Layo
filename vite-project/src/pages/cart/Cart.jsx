@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../firebaseConfig';
+import { auth } from '../../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-import Header2 from "../components/header/Header2"
-import CartSection from "../components/cart/CartSection"
-import Footer from "../components/footer/Footer"
-import '../assets/styles/Cart/Cart.css'
+import Header2 from "../../components/header/Header2"
+import CartSection from "../../components/cart/CartSection"
+import Footer from "../../components/footer/Footer"
+import '../../assets/styles/Cart/Cart.css'
 
 function Cart() {
   const [user, setUser] = useState(null);
