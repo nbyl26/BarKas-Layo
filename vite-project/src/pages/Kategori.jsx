@@ -1,6 +1,6 @@
 import Header from "../components/header/Header"
 import Footer from "../components/footer/Footer"
-import KategoriBarang from "../components/KategoriBarang"
+import KategoriBarang from "../components/category/KategoriBarang"
 import '../assets/styles/Category/Kategori.css'
 
 

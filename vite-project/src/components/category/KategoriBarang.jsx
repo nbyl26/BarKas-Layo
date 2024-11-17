@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import '../assets/styles/Category/KategoriBarang.css';
+import '../../assets/styles/Category/KategoriBarang.css';
 
-import imgElektronik from '../assets/img/elektronik.png';
-import imgFurnitur from '../assets/img/furniture.png';
-import imgPakaian from '../assets/img/pakaian.png';
-import imgAlatTulis from '../assets/img/stationery.png';
-import imgAlatOlahraga from '../assets/img/sport.png';
-import imgAlatKecantikan from '../assets/img/makeup.png';
-import imgKendaraan from '../assets/img/motorcycle.png';
-import imgAlatDapur from '../assets/img/kitchen.png';
-import imgPerlengkapanBayi from '../assets/img/baby-products.png';
-import imgMainan from '../assets/img/game-console.png';
+import imgElektronik from '../../assets/img/elektronik.png';
+import imgFurnitur from '../../assets/img/furniture.png';
+import imgPakaian from '../../assets/img/pakaian.png';
+import imgAlatTulis from '../../assets/img/stationery.png';
+import imgAlatOlahraga from '../../assets/img/sport.png';
+import imgAlatKecantikan from '../../assets/img/makeup.png';
+import imgKendaraan from '../../assets/img/motorcycle.png';
+import imgAlatDapur from '../../assets/img/kitchen.png';
+import imgPerlengkapanBayi from '../../assets/img/baby-products.png';
+import imgMainan from '../../assets/img/game-console.png';
 
 function KategoriBarang() {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import Header from "../components/header/Header"
-import KategoriBarangSection from "../components/KategoriBarangSection"
+import KategoriBarangSection from "../components/category/KategoriBarangSection"
 import Footer from "../components/footer/Footer"
 import '../assets/styles/Category/KategoriBarangPages.css'
 
