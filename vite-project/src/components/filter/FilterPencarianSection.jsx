@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
-import '../assets/styles/Beranda/FilterPencarian/FilterPencarianSection.css';
+import { db } from '../../firebaseConfig';
+import '../../assets/styles/Beranda/FilterPencarian/FilterPencarianSection.css';
 
 function FilterPencarianSection() {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header/Header';
-import FilterPencarianSection from '../components/FilterPencarianSection';
+import FilterPencarianSection from '../components/filter/FilterPencarianSection';
 import Footer from '../components/footer/Footer';
 import '../assets/styles/Beranda/FilterPencarian/FilterPencarianPages.css';
 
