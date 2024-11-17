@@ -14,7 +14,7 @@ import DetailBarang from './pages/barang/DetailBarang'
 import Register from './pages/auth/Register'
 import Login from './pages/auth/LoginPages'
 import Cart from './pages/cart/Cart'
-import Profil from './pages/AccountProfile'
+import Profil from './pages/profile/AccountProfile'
 import FilterPencarian from './pages/FilterPencarianPages';
 import KategoriBarangPages from './pages/KategoriBarangPages';
 import SearchPage from './pages/SearchPage';
