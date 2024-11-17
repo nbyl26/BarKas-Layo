@@ -1,7 +1,7 @@
-import Header from "../components/header/Header"
-import Footer from "../components/footer/Footer"
-import SemuaBarangSection from "../components/barang/SemuaBarangSection"
-import '../assets/styles/SemuaBarang/SemuaBarang.css' 
+import Header from "../../components/header/Header"
+import Footer from "../../components/footer/Footer"
+import SemuaBarangSection from "../../components/barang/SemuaBarangSection"
+import '../../assets/styles/SemuaBarang/SemuaBarang.css' 
 
 function SemuaBarang() {
   return (

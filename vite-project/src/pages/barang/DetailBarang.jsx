@@ -1,7 +1,7 @@
-import Header from "../components/header/Header"
-import DetailBarangSection from "../components/barang/DetailBarangSection"
-import Footer from "../components/footer/Footer"
-import '../assets/styles/DetailBarang/DetailBarang.css'
+import Header from "../../components/header/Header"
+import DetailBarangSection from "../../components/barang/DetailBarangSection"
+import Footer from "../../components/footer/Footer"
+import '../../assets/styles/DetailBarang/DetailBarang.css'
 
 
 function DetailBarang() {
