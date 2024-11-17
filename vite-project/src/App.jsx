@@ -18,8 +18,8 @@ import Profil from './pages/profile/AccountProfile'
 import FilterPencarian from './pages/FilterPencarianPages';
 import KategoriBarangPages from './pages/KategoriBarangPages';
 import SearchPage from './pages/SearchPage';
-import ChatPages from './pages/ChatPages';
-import ChatSection from './pages/Chat';
+import ChatPages from './pages/chat/ChatPages';
+import ChatSection from './pages/chat/Chat';
 
 function App() {
   return (
