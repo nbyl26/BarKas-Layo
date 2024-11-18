@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { CartProvider } from './components/cart/CartContext';
 
 import Beranda from './pages/static/Beranda'
-import Kategori from './pages/Kategori'
+import Kategori from './pages/category/Kategori'
 import JualBarang from './pages/barang/JualBarang'
 import TentangKami from './pages/static/TentangKami'
 import SyaratDanKetentuan from './pages/static/SyaratDanKetentuan'
@@ -16,7 +16,7 @@ import Login from './pages/auth/LoginPages'
 import Cart from './pages/cart/Cart'
 import Profil from './pages/profile/AccountProfile'
 import FilterPencarian from './pages/filter/FilterPencarianPages';
-import KategoriBarangPages from './pages/KategoriBarangPages';
+import KategoriBarangPages from './pages/category/KategoriBarangPages';
 import SearchPage from './pages/filter/SearchPage';
 import ChatPages from './pages/chat/ChatPages';
 import ChatSection from './pages/chat/Chat';
