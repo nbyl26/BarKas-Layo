@@ -27,19 +27,25 @@ function FilterPencarianSection() {
 
       try {
         const querySnapshot = await getDocs(q);
-        console.log('Query Snapshot:', querySnapshot); 
+        console.log('Query Snapshot:', querySnapshot);
 
         const filteredProducts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        console.log('Filtered Products:', filteredProducts); 
+        console.log('Filtered Products:', filteredProducts);
 
-        setProducts(filteredProducts); 
+        setProducts(filteredProducts);
       } catch (error) {
         console.error('Error fetching filtered products:', error);
       }
     };
 
     fetchFilteredProducts();
-  }, [kategori, minPrice, maxPrice, kondisi]); 
+  }, [kategori, minPrice, maxPrice, kondisi]);
+
+  const formatCategoryName = (category) => {
+    return category
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/^./, (str) => str.toUpperCase());
+  };
 
   return (
     <section className="filtered-products">
@@ -52,10 +58,10 @@ function FilterPencarianSection() {
                 <img src={product.image} alt={product.name} className="item-image" />
                 <div className="item-info">
                   <h3>{product.name}</h3>
-                  <p>{product.description}</p>
-                  <p>{product.condition}</p>
-                  <p className="price">{product.price}</p>
-                  <Link to={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</Link>
+                  <p>Kondisi: {product.condition}</p>
+                  <p>Kategori: {formatCategoryName(product.category)}</p>
+                  <p className="price">Rp {product.price}</p>
+                  <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
                 </div>
               </div>
             ))
