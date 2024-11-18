@@ -9,34 +9,40 @@ const SearchPageSection = () => {
     const [loading, setLoading] = useState(true);
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
-    const searchTerm = queryParams.get('query'); 
+    const searchTerm = queryParams.get('query');
 
     useEffect(() => {
         if (searchTerm) {
-            fetchProducts(searchTerm); 
+            fetchProducts(searchTerm);
         }
-    }, [searchTerm]); 
+    }, [searchTerm]);
 
     const fetchProducts = async (term) => {
         setLoading(true);
         const productsCollection = collection(db, 'products');
-      
+
         const q = query(
             productsCollection,
             where('name', '>=', term),
-            where('name', '<=', term + '\uf8ff') 
+            where('name', '<=', term + '\uf8ff')
         );
         try {
             const querySnapshot = await getDocs(q);
             const fetchedProducts = querySnapshot.docs.map(doc => ({
                 id: doc.id,
-                ...doc.data() 
+                ...doc.data()
             }));
             setProducts(fetchedProducts);
         } catch (error) {
-            console.error("Error fetching products:", error); 
+            console.error("Error fetching products:", error);
         }
         setLoading(false);
+    };
+
+    const formatCategoryName = (category) => {
+        return category
+            .replace(/([a-z])([A-Z])/g, '$1 $2')
+            .replace(/^./, (str) => str.toUpperCase());
     };
 
     return (
@@ -53,8 +59,8 @@ const SearchPageSection = () => {
                                     <img src={product.image} alt={product.name} className="item-image" />
                                     <div className="item-info">
                                         <h3>{product.name}</h3>
-                                        <p>{product.description}</p>
-                                        <p>{product.condition}</p>
+                                        <p>Kondisi: {product.condition}</p>
+                                        <p>Kategori: {formatCategoryName(product.category)}</p>
                                         <p className="price">Rp {product.price}</p>
                                         <a href={`/DetailBarang?item=${product.id}`} className="detail-button">Detail</a>
                                     </div>
@@ -66,8 +72,7 @@ const SearchPageSection = () => {
                     )}
                 </div>
             </div>
-        </section>
-
+        </section >
     );
 };
 
