@@ -49,7 +49,7 @@ const SearchPageSection = () => {
                     ) : products.length > 0 ? (
                         <div className="products-list">
                             {products.map((product) => (
-                                <div key={product.id} className="product-card">
+                                <div key={product.id} className="product-item">
                                     <img src={product.image} alt={product.name} className="item-image" />
                                     <div className="item-info">
                                         <h3>{product.name}</h3>
