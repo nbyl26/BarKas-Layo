@@ -10,7 +10,7 @@
     margin-bottom: 2rem;
 }
 
-.search-page h1 span{
+.search-page h1 span {
     color: #FFA000;
     font-weight: bold;
 }
@@ -24,14 +24,20 @@
 
 .products-list {
     display: flex;
-    background-color: white;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+    /* Menambahkan jarak antar item */
     padding: 1rem;
     margin: 1rem;
-    max-width: 400px;
-    align-items: center;
+    flex-wrap: wrap;
+    /* Membuat elemen bisa berpindah baris jika tidak cukup */
+    justify-content: flex-start;
+    /* Mengatur posisi elemen */
+    background-color: transparent;
+    /* Hapus background */
+    border: none;
+    /* Hapus border */
+    box-shadow: none;
+    /* Hapus bayangan */
 }
 
 .product-card {
